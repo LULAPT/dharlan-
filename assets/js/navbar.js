@@ -377,7 +377,7 @@ export function carregarNavbar() {
 				{ label: "Links", href: "/links.html" },
 			],
 		},
-		doar: { label: "Doar", href: "/doar.html" },
+		// doar: { label: "Doar", href: "/doar.html" }, // desativado - reativar removendo o comentário
 	};
 
 	function gerarNavbarLinks(obj) {

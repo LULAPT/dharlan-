@@ -54,7 +54,7 @@ export const sitemap = [
           { href: "/links.html", label: "/links" },
         ],
       },
-      { href: "/doar.html", label: "/doar" },
+      // { href: "/doar.html", label: "/doar" }, // desativado - reativar removendo o comentário
       { href: "/changelog.html", label: "/changelog" },
       { href: "/not_found.html", label: "/404" },
     ],
