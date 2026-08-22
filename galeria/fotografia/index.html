@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan ˄</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/galeria/index.html">galeria</a> >
+					<span class="animate-flicker">fotografia</span>
+				</div>
+				<div id="col-centro">
+					<h1>Fotografia</h1>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const minhasFotos = [
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/064aa682-d0ab-4317-8bc6-4830d6e32cec.jpg" }],
+				},
+				{
+					title: "",
+					year: 2023,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20230615_133249.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240319_165135_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240423_153147_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240423_162745.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240430_161926_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240430_172218.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240522_190010_lmc_8.4.NIGHT.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240603_212648_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240614_202132_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240624_155539_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240716_192454_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240726_182334_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240910_174229_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240928_212626_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240929_154401_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20240929_185235_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20241106_133721_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20241106_201217_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20241203_183934_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20241218_031614_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20241224_175534_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20250105_162657_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20250315_205136_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20250420_194731_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20250824_093953_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20250910_195948_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20250920_023512_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20251012_185605_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20251014_205220_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20251014_234538_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2025,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20251022_022451_lmc_8.4.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260119_124321.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260122_133205.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260405_002329.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260407_180828.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260502_191947.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260505_202022.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260523_191937.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260615_195104.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260620_233435.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260628_172931.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260716_160650.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260717_181737.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260719_014849.jpg" }],
+				},
+				{
+					title: "",
+					year: 2026,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/20260727_164807.jpg" }],
+				},
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/image%20(1).jpg" }],
+				},
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/image%20(2).jpg" }],
+				},
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/image.jpg" }],
+				},
+				{
+					title: "",
+					year: 2023,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/IMG-20230602-WA0051.jpeg" }],
+				},
+				{
+					title: "",
+					year: 2023,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/IMG-20230828-WA0023.jpg" }],
+				},
+				{
+					title: "",
+					year: 2023,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/IMG-20231015-WA0016.jpeg" }],
+				},
+				{
+					title: "",
+					year: 2023,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/PXL_20230828_184023465.jpg" }],
+				},
+				{
+					title: "",
+					year: 2023,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/PXL_20231107_221756870.NIGHT.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/PXL_20240302_213102523.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/Screenshot_20240430-170358_One%20UI%20Home.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/Screenshot_20240815-203541_Gallery.jpg" }],
+				},
+				{
+					title: "",
+					year: 2024,
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/Screenshot_20240923-234126_WhatsApp.jpg" }],
+				},
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/Snapchat-1549410135.jpg" }],
+				},
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/Snapchat-1655878117.jpg" }],
+				},
+				{
+					title: "",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/fotografias/Snapchat-347202177.jpg" }],
+				},
+			];
+
+			setupGalleryFilter({
+				items: minhasFotos,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
+	</body>
+</html>

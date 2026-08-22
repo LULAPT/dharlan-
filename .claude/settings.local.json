@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"https://www.last.fm/user/xw4\")",
+      "Bash(curl -s -o /tmp/collage7day.png -w \"HTTP %{http_code} | content-type: %{content_type} | size: %{size_download} bytes\\\\n\" \"https://tapmusic.net/collage.php?user=xw4&type=7day&size=3x3\")",
+      "Bash(curl -s -o /tmp/collage1month.png -w \"HTTP %{http_code} | content-type: %{content_type} | size: %{size_download} bytes\\\\n\" \"https://tapmusic.net/collage.php?user=xw4&type=1month&size=5x5\")",
+      "Read(//tmp/**)"
+    ]
+  }
+}

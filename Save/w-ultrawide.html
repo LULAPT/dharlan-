@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan ˄</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/Save/index.html">save</a> >
+					<a href="/Save/w.html">/w/</a> >
+					<span class="animate-flicker">duas telas/ultrawide</span>
+				</div>
+				<div id="col-centro">
+					<h1>/w/ — Duas telas/Ultrawide</h1>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const wallpapersUltrawide = [
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/050.jpg" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/hatsunemiku.jpg" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/rozenmaidenmeinengel_w5120_h1440_cw5120_ch1440.jpg" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/wallhaven-72k3l3.png" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/wallhaven-96jpjw.jpg" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/wallhaven-r7ywx7.png" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/wallhaven-wqv2qx.jpg" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/wp6396096-ultra-wide-anime-wallpapers.jpg" }] },
+				{ title: "", medias: [{ type: "image", src: "/assets/img/ultrawide%20ou%202telas/wp8606760-dual-monitor-anime-wallpapers.jpg" }] },
+			];
+
+			setupGalleryFilter({
+				items: wallpapersUltrawide,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
+	</body>
+</html>

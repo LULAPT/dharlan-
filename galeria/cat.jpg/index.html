@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan ˄</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/gallery-filter.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/galeria/index.html">galeria</a> >
+					<span class="animate-flicker">cat.jpg</span>
+				</div>
+				<div id="col-centro">
+					<h1>cat.jpg</h1>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<footer></footer>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const meusDesigns = [
+				{
+					title: "Dia Bom",
+					year: 2025,
+					type: "Fotografia",
+					client: "",
+					desc: "Zoe visivelmente satisfeita com a vida, sem motivo aparente (como sempre).",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2025", "feliz"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_1.jpg",
+						},
+					],
+				},
+				{
+					title: "Segunda-Feira",
+					year: 2024,
+					type: "Fotografia",
+					client: "",
+					desc: "Aquele olhar de quem descobriu que o pote de ração estava vazio.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2024", "triste"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_2.jpg",
+						},
+					],
+				},
+				{
+					title: "Não Mexe Comigo",
+					year: 2023,
+					type: "Fotografia",
+					client: "",
+					desc: "Reação clássica após alguém tentar cortar as unhas dela.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2023", "raiva"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_3.jpg",
+						},
+					],
+				},
+				{
+					title: "Trauma do Banho",
+					year: 2022,
+					type: "Fotografia",
+					client: "",
+					desc: "O pós-banho mais dramático já registrado nesta casa.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2022", "banho"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_4.jpg",
+						},
+					],
+				},
+				{
+					title: "Derretendo no Calor",
+					year: 2021,
+					type: "Fotografia",
+					client: "",
+					desc: "Esparramada no chão frio tentando sobreviver ao calor do verão.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2021", "quente"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_5.jpg",
+						},
+					],
+				},
+				{
+					title: "Bolinha de Frio",
+					year: 2025,
+					type: "Fotografia",
+					client: "",
+					desc: "Enrolada feito rocambole pra fugir do friozinho.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2025", "frio"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_6.jpg",
+						},
+					],
+				},
+				{
+					title: "Mais Uma Soneca",
+					year: 2024,
+					type: "Fotografia",
+					client: "",
+					desc: "Mais um capítulo da série 'Zoe dormindo em lugares aleatórios'.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2024", "sono"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_7.jpg",
+						},
+					],
+				},
+				{
+					title: "Hora do Brinquedo",
+					year: 2023,
+					type: "Fotografia",
+					client: "",
+					desc: "Perseguindo o brinquedo com uma dedicação preocupante.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2023", "brincalhona"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_8.jpg",
+						},
+					],
+				},
+				{
+					title: "Fofura Nível Máximo",
+					year: 2022,
+					type: "Fotografia",
+					client: "",
+					desc: "Momento em que ela decide ser gentil com a câmera.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2022", "fofa"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_9.jpg",
+						},
+					],
+				},
+				{
+					title: "O Que Tem Aí?",
+					year: 2021,
+					type: "Fotografia",
+					client: "",
+					desc: "Investigando uma sacola vazia como se fosse um mistério a ser resolvido.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2021", "curiosa"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_10.jpg",
+						},
+					],
+				},
+				{
+					title: "Flagrada",
+					year: 2025,
+					type: "Fotografia",
+					client: "",
+					desc: "Pega no flagra descendo da mesa da cozinha.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2025", "envergonhada"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_11.jpg",
+						},
+					],
+				},
+				{
+					title: "Zero Vontade de Levantar",
+					year: 2024,
+					type: "Fotografia",
+					client: "",
+					desc: "Recusando-se educadamente a fazer qualquer esforço físico.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2024", "preguiçosa"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_12.jpg",
+						},
+					],
+				},
+				{
+					title: "Vigiando o Território",
+					year: 2023,
+					type: "Fotografia",
+					client: "",
+					desc: "De olho em um passarinho lá fora, plano de ataque em andamento.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2023", "atenta"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_13.jpg",
+						},
+					],
+				},
+				{
+					title: "Já Passou da Hora do Jantar",
+					year: 2022,
+					type: "Fotografia",
+					client: "",
+					desc: "Encarando o pote vazio como se isso fosse resolver o problema.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2022", "com fome"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_14.jpg",
+						},
+					],
+				},
+				{
+					title: "Rainha da Casa",
+					year: 2021,
+					type: "Fotografia",
+					client: "",
+					desc: "Exigindo carinho imediato, sem exceções.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2021", "mimada"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_15.jpg",
+						},
+					],
+				},
+				{
+					title: "Susto com o Aspirador",
+					year: 2025,
+					type: "Fotografia",
+					client: "",
+					desc: "O momento exato em que o aspirador de pó ligou.",
+					programs: ["lightroom"],
+					tags: ["gato", "zoe", "fotografia", "2025", "assustada"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_16.jpg",
+						},
+					],
+				},
+				{
+					title: "Missão Cumprida",
+					year: 2024,
+					type: "Fotografia",
+					client: "",
+					desc: "Depois de derrubar (mais) um objeto da estante.",
+					programs: ["lightroom", "photoshop"],
+					tags: ["gato", "zoe", "fotografia", "2024", "orgulhosa"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/designs/cat/zoe_17.jpg",
+						},
+					],
+				},
+			];
+
+			setupGalleryFilter({
+				items: meusDesigns,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
+	</body>
+</html>

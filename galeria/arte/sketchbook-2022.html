@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan ˄</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/galeria/index.html">galeria</a> >
+					<a href="/galeria/arte/index.html">arte</a> >
+					<span class="animate-flicker">sketchbook-2022</span>
+				</div>
+				<div id="col-centro">
+					<!--<div class="undercon"></div>-->
+
+					<h1>Sketchbook 2022-2023</h1>
+					<p>
+						Apesar de esse ser um sketchbook relativamente recente, ele já
+						passou por umas poucas e boas. Eventualmente, ele começou a se
+						desmontar e eu tive que cortar as páginas fora com um estilete pra
+						preservá-las.
+					</p>
+
+					<div class="espaçador"></div>
+
+					<div id="book-container">
+						<div class="book">
+							<div class="page-left"></div>
+							<div class="page-right"></div>
+						</div>
+						<!-- <h2 id="sketchbook-title"></h2> -->
+						<!-- <p id="sketchbook-desc"></p> -->
+						<div class="book-controls">
+							<button id="prev-page">Anterior</button>
+							<span id="page-num"></span>
+							<button id="next-page">Próxima</button>
+						</div>
+					</div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<img id="modal-img" src="" />
+							<div id="modal-info">
+								<div id="modal-title"></div>
+								<div id="modal-desc"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/sketchbook-book.js"></script>
+		<script>
+			// Sketchbook 2022-2023 — treat as paired single pages (left/right)
+			(function () {
+				const imgs = [
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_001.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_002.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_003.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_004.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_005.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_006.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_007.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_008.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_009.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_010.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_011.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_012.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_013.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_014.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_015.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_016.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_017.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_018.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_019.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_020.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_021.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_022.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_023.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_024.jpg",
+					"/assets/img/sketchbooks/2022/Sketchbook_2022_025.jpg",
+				];
+				const pairs = [];
+				for (let i = 0; i < imgs.length; i += 2) {
+					pairs.push({ type: "pair", left: imgs[i], right: imgs[i + 1] || "" });
+				}
+				window.paginasSketchbook = pairs;
+			})();
+		</script>
+	</body>
+</html>

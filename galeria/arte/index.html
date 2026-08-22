@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan ˄</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<style>
+			ul {
+				padding: 28px 32px;
+				border: var(--borda-padrao);
+				border-radius: var(--b-radius);
+				margin-bottom: 24px;
+			}
+
+			ul li:not(:first-child) {
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/galeria/index.html">galeria</a> >
+					<span class="animate-flicker">arte</span>
+				</div>
+				<div id="col-centro">
+					<h1>Arte</h1>
+
+					<ul>
+						<!-- <li><a href="tradicional.html">Tradicional</a></li> -->
+						<li><a href="sketchbook-2022.html">Sketchbook 2022</a></li>
+						<li><a href="sketchbook-2019.html">Sketchbook 2019</a></li>
+					</ul>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const meusDesigns = [
+				{
+					title: "06c87f03b0625f42fe3fbbb23ebf0df2_0ac6bf5c_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_06c87f03b0625f42fe3fbbb23ebf0df2_0ac6bf5c_2048.jpg" }],
+				},
+				{
+					title: "1247d19601aa529e36349c9df4fa75b1_31673f48_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_1247d19601aa529e36349c9df4fa75b1_31673f48_1280.jpg" }],
+				},
+				{
+					title: "19fe895bd0994376b7b0701600aefccd_dadf5104_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_19fe895bd0994376b7b0701600aefccd_dadf5104_1280.jpg" }],
+				},
+				{
+					title: "209bda99c55011a0b2f82b98b3edec14_557f2149_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_209bda99c55011a0b2f82b98b3edec14_557f2149_1280.jpg" }],
+				},
+				{
+					title: "20ff5bfa83d9c44e8e51264210536408_edf0594c_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_20ff5bfa83d9c44e8e51264210536408_edf0594c_1280.jpg" }],
+				},
+				{
+					title: "252810d54dcb6ce96c3efd1241cf8a30_9f86bc1a_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_252810d54dcb6ce96c3efd1241cf8a30_9f86bc1a_1280.jpg" }],
+				},
+				{
+					title: "292a79e4be996c0c61512aa7851512bc_5d3fed8b_500.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_292a79e4be996c0c61512aa7851512bc_5d3fed8b_500.jpg" }],
+				},
+				{
+					title: "2f0ccad0d60bdc2b4545b31b41a7003e_569c0547_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_2f0ccad0d60bdc2b4545b31b41a7003e_569c0547_1280.jpg" }],
+				},
+				{
+					title: "30626b5e848dbefb956e8d690b63ec16_1aea1616_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_30626b5e848dbefb956e8d690b63ec16_1aea1616_640.jpg" }],
+				},
+				{
+					title: "37d8e245bb05eb4bd8395932a73d3294_39bd1550_400.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_37d8e245bb05eb4bd8395932a73d3294_39bd1550_400.jpg" }],
+				},
+				{
+					title: "37fc7550b4fda87173cf4f9ad2f41d80_39321eea_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_37fc7550b4fda87173cf4f9ad2f41d80_39321eea_1280.jpg" }],
+				},
+				{
+					title: "3ab394c665a3cb28748a15c71db6c8a9_633deb5b_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_3ab394c665a3cb28748a15c71db6c8a9_633deb5b_1280.jpg" }],
+				},
+				{
+					title: "46ec799564c97b366041c1b53a3d39fb_957090b7_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_46ec799564c97b366041c1b53a3d39fb_957090b7_640.jpg" }],
+				},
+				{
+					title: "4fa586838ad2e73116a8fc6a018f1543_8204f19f_500.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_4fa586838ad2e73116a8fc6a018f1543_8204f19f_500.jpg" }],
+				},
+				{
+					title: "544d2d304db6e301915cecbb9ce579e4_f1019f54_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_544d2d304db6e301915cecbb9ce579e4_f1019f54_2048.jpg" }],
+				},
+				{
+					title: "55efaa16f11fae7a50f32defa0215b04_6c14cdbe_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_55efaa16f11fae7a50f32defa0215b04_6c14cdbe_1280.jpg" }],
+				},
+				{
+					title: "569d60fc573725d8618357c73708418e_02929c21_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_569d60fc573725d8618357c73708418e_02929c21_1280.jpg" }],
+				},
+				{
+					title: "6dff2bbad15ccdc9ef09676d5211d8e8_7ecd0829_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_6dff2bbad15ccdc9ef09676d5211d8e8_7ecd0829_2048.jpg" }],
+				},
+				{
+					title: "70b7e39c6cbeed2eb9f5c97d49c58155_4fd49b5c_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_70b7e39c6cbeed2eb9f5c97d49c58155_4fd49b5c_1280.jpg" }],
+				},
+				{
+					title: "78a3f3b593c0647ba6b7e8165d8153e4_c1a46e9a_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_78a3f3b593c0647ba6b7e8165d8153e4_c1a46e9a_640.jpg" }],
+				},
+				{
+					title: "7a9d5738791f67394714ac8de7dca487_5e306fe8_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_7a9d5738791f67394714ac8de7dca487_5e306fe8_1280.jpg" }],
+				},
+				{
+					title: "7b3b875bdfbdd3d8654627e59dad122e_ed560d1f_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_7b3b875bdfbdd3d8654627e59dad122e_ed560d1f_2048.jpg" }],
+				},
+				{
+					title: "7cee5030af11d93458e2a2f0474e72e9_8c6f89c5_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_7cee5030af11d93458e2a2f0474e72e9_8c6f89c5_1280.jpg" }],
+				},
+				{
+					title: "8f4f624ea12d09dff40199c9c5a21dd2_f89d50f4_400.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_8f4f624ea12d09dff40199c9c5a21dd2_f89d50f4_400.jpg" }],
+				},
+				{
+					title: "90af2bb2eed776d7fb98f6c384a5d628_850a00e0_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_90af2bb2eed776d7fb98f6c384a5d628_850a00e0_1280.jpg" }],
+				},
+				{
+					title: "90c43cb9fa4eacef9280b34e0c93511d_4a0b6b5e_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_90c43cb9fa4eacef9280b34e0c93511d_4a0b6b5e_1280.jpg" }],
+				},
+				{
+					title: "938ff4a3a8946542ec1cf761100001bc_cdaa38f2_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_938ff4a3a8946542ec1cf761100001bc_cdaa38f2_2048.jpg" }],
+				},
+				{
+					title: "95c2b2de5266223378405d38310bd15c_188e85a1_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_95c2b2de5266223378405d38310bd15c_188e85a1_640.jpg" }],
+				},
+				{
+					title: "97b8824920fe614f0611010f9d963869_4809bc5d_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_97b8824920fe614f0611010f9d963869_4809bc5d_1280.jpg" }],
+				},
+				{
+					title: "a43d4df0ee904992681bbac9762889be_1dace397_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_a43d4df0ee904992681bbac9762889be_1dace397_1280.jpg" }],
+				},
+				{
+					title: "ac0cab0b485f0c56f5fe69eaba57341a_630d31ae_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_ac0cab0b485f0c56f5fe69eaba57341a_630d31ae_2048.jpg" }],
+				},
+				{
+					title: "b878de2164bd960579d8d93d1598e657_725927a6_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_b878de2164bd960579d8d93d1598e657_725927a6_2048.jpg" }],
+				},
+				{
+					title: "bdd062025938ac35cf43531622248737_e9e70008_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_bdd062025938ac35cf43531622248737_e9e70008_1280.jpg" }],
+				},
+				{
+					title: "c85183c85d6f7fb5601ba75a01d28be4_41d62ff4_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_c85183c85d6f7fb5601ba75a01d28be4_41d62ff4_640.jpg" }],
+				},
+				{
+					title: "cf029fcda33bbb8122bf485d6f560d50_c2ce023d_400.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_cf029fcda33bbb8122bf485d6f560d50_c2ce023d_400.jpg" }],
+				},
+				{
+					title: "d24f2bcdfcd16ecb59f6c665e109e35d_398b1115_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_d24f2bcdfcd16ecb59f6c665e109e35d_398b1115_640.jpg" }],
+				},
+				{
+					title: "d2ae8c0946439e97a6beab1a02572848_b8a1cef1_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_d2ae8c0946439e97a6beab1a02572848_b8a1cef1_1280.jpg" }],
+				},
+				{
+					title: "dd9c53588ed3cbd74fa1772789d2f48a_c63671a2_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_dd9c53588ed3cbd74fa1772789d2f48a_c63671a2_1280.jpg" }],
+				},
+				{
+					title: "ddaa801733fbf19d26f6a6df01679247_73d707c1_1280.webp",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_ddaa801733fbf19d26f6a6df01679247_73d707c1_1280.webp" }],
+				},
+				{
+					title: "e8a6e3e1dd338fadad7a1d222454db4b_7c8281df_500.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_e8a6e3e1dd338fadad7a1d222454db4b_7c8281df_500.jpg" }],
+				},
+				{
+					title: "eaa63aed68b46289e570d0881bd7b84f_9bf8167a_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_eaa63aed68b46289e570d0881bd7b84f_9bf8167a_1280.jpg" }],
+				},
+				{
+					title: "edc83382812ccbf7ddefd34b09e83489_1f773885_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_edc83382812ccbf7ddefd34b09e83489_1f773885_640.jpg" }],
+				},
+				{
+					title: "f4662e418e8febbe85e1eacfe147d86d_8edca6b1_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_f4662e418e8febbe85e1eacfe147d86d_8edca6b1_2048.jpg" }],
+				},
+				{
+					title: "f54b7b7143062e614b71f895d393402f_06b66d8c_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_f54b7b7143062e614b71f895d393402f_06b66d8c_1280.jpg" }],
+				},
+				{
+					title: "f5d2d226f0fefb01f73d7402c80c46de_ed6afbb0_2048.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_f5d2d226f0fefb01f73d7402c80c46de_ed6afbb0_2048.jpg" }],
+				},
+				{
+					title: "f754ed33684ac262368c68cc1bf6109b_66eb9df2_500.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_f754ed33684ac262368c68cc1bf6109b_66eb9df2_500.jpg" }],
+				},
+				{
+					title: "f952a6f371ba3f8864b0131946e32d2c_235f9627_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_f952a6f371ba3f8864b0131946e32d2c_235f9627_1280.jpg" }],
+				},
+				{
+					title: "ln6f2v43tX1qbfiiuo1_640.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_ln6f2v43tX1qbfiiuo1_640.jpg" }],
+				},
+				{
+					title: "m8c7pnr6Xl1qb0nhyo1_540.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_m8c7pnr6Xl1qb0nhyo1_540.jpg" }],
+				},
+				{
+					title: "opnijcm7ts1qagjnzo1_1280.jpg",
+					tags: [],
+					medias: [{ type: "image", src: "/assets/img/arte/tumblr_opnijcm7ts1qagjnzo1_1280.jpg" }],
+				},
+			];
+
+			setupGalleryFilter({
+				items: meusDesigns,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
+	</body>
+</html>

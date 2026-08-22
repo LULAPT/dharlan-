@@ -23,7 +23,7 @@
 		"date": "2026-01-01",
 		"items": [
 			"página <a href=\"/curriculo.html\">/curriculo</a> adicionada",
-			"mais <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a> adicionadas",
+			"mais <a href=\"/galeria/fotografia/index.html\">/galeria/fotografia</a> adicionadas",
 			"mais <a href=\"/links.html\">/links</a> adicionados",
 			"alterações no visual das tags nas galerias",
 			"alterações no texto e ordem dos itens da caixa de configurações",
@@ -59,14 +59,14 @@
 			"sistema de tags e busca implementados e notificação de copiar corrigida na página <a href=\"/anotacoes.html\">/anotacoes</a>",
 			"mais <a href=\"/sonhos.html\">/sonhos</a> adicionados",
 			"correções no css da <a href=\"/home.html\">/home</a>",
-			"alterações na <a href=\"/portfolio/design/index.html\">/portfolio/design</a>",
+			"alterações na <a href=\"/galeria/cat.jpg/index.html\">/galeria/cat.jpg</a>",
 			"leves alterações no css geral"
 		]
 	},
 	{
 		"date": "2025-11-17",
 		"items": [
-			"rework da página <a href=\"/portfolio/arte/index.html\">/portfolio/arte</a>, mais artes adicionadas e artes digitais movidas para a página principal de arte",
+			"rework da página <a href=\"/galeria/arte/index.html\">/galeria/arte</a>, mais artes adicionadas e artes digitais movidas para a página principal de arte",
 			"mais <a href=\"/sonhos.html\">/sonhos</a> adicionados",
 			"mais <a href=\"/links.html\">/links</a> adicionados",
 			"páginas <a href=\"https://kaomoji.mozartsempiano.com\" target=\"_blank\">/kaomoji</a> e <a href=\"https://mozartsempiano.github.io/ascii-text-generator/\" target=\"_blank\">/gerador-ascii-texto</a> movidas para o github pages"
@@ -166,11 +166,11 @@
 		"items": [
 			"página <a href=\"/akatsukigames.html\">/akatsukigames</a> criada",
 			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas e alteração no cabeçalho",
-			"mais <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a> adicionadas",
-			"mais <a href=\"/portfolio/design/index.html\">/portfolio/design</a> adicionados",
+			"mais <a href=\"/galeria/fotografia/index.html\">/galeria/fotografia</a> adicionadas",
+			"mais <a href=\"/galeria/cat.jpg/index.html\">/galeria/cat.jpg</a> adicionados",
 			"mais itens adicionados nas <a href=\"/inventario.html\">/inventario</a>",
-			"sketchbooks agora divididos em duas páginas, <a href=\"/portfolio/arte/sketchbook-2019.html\">/portfolio/arte/sketchbook-2019</a> e <a href=\"/portfolio/arte/sketchbook-2022.html\">/portfolio/arte/sketchbook-2022</a>",
-			"rework da página de <a href=\"/portfolio/arte/index.html\">/portfolio/arte</a> pra usar o mesmo formato de galeria que as outras",
+			"sketchbooks agora divididos em duas páginas, <a href=\"/galeria/arte/sketchbook-2019.html\">/galeria/arte/sketchbook-2019</a> e <a href=\"/galeria/arte/sketchbook-2022.html\">/galeria/arte/sketchbook-2022</a>",
+			"rework da página de <a href=\"/galeria/arte/index.html\">/galeria/arte</a> pra usar o mesmo formato de galeria que as outras",
 			"adicionada animação fade-in nas outras páginas",
 			"alterações na página <a href=\"/sobre.html\">/sobre</a>",
 			"alterações no efeito CRT",
@@ -214,7 +214,7 @@
 		"items": [
 			"novo guestbook",
 			"criado botão 88x31",
-			"reorganização e mais fotos adicionadas à página <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a>",
+			"reorganização e mais fotos adicionadas à página <a href=\"/galeria/fotografia/index.html\">/galeria/fotografia</a>",
 			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas e leve alteração nas animações da página",
 			"livros adicionados à página <a href=\"/inventario.html\">/inventario</a>",
 			"uniformização das larguras dos conteúdos e dos tamanhos das fontes"
@@ -225,8 +225,8 @@
 		"items": [
 			"agora é possível filtrar os posts da página <a href=\"/pensamentos/index.html\">/pensamentos</a> pelas tags",
 			"rework de todas as galerias",
-			"rework da página <a href=\"/portfolio/design/index.html\">/portfolio/design</a>",
-			"rework da página <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a>",
+			"rework da página <a href=\"/galeria/cat.jpg/index.html\">/galeria/cat.jpg</a>",
+			"rework da página <a href=\"/galeria/fotografia/index.html\">/galeria/fotografia</a>",
 			"ajustes no css e rework das colunas da <a href=\"/anotacoes.html\">/anotacoes</a>",
 			"rework dos modals",
 			"leves alterações na <a href=\"/index.html\">/index</a>",
@@ -239,7 +239,7 @@
 		"items": [
 			"página <a href=\"/inventario.html\">/inventario</a> criada",
 			"página <a href=\"/anotacoes.html\">/anotacoes</a> criada",
-			"adicionadas mais duas fotos às <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a>",
+			"adicionadas mais duas fotos às <a href=\"/galeria/fotografia/index.html\">/galeria/fotografia</a>",
 			"alterações na página <a href=\"/sobre.html\">/sobre</a>",
 			"reorganização da página <a href=\"/links.html\">/links</a>",
 			"agora a tag title de cada post na página <a href=\"/pensamentos/index.html\">/pensamentos</a> é o nome do post em questão",

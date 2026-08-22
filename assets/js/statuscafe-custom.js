@@ -1,12 +1,24 @@
 // statuscafe-custom.js
-// Fetches status.cafe JSON and renders into #statuscafe without the emoji (r.face).
+// Mantém o visual/estrutura do widget do status.cafe, mas o texto e a data
+// vêm do nikki.top (status.cafe está com o cadastro quebrado no momento).
+// nikki.top não manda header CORS, então passamos por um proxy público;
+// e a API do nikki só expõe a data (sem hora), então "timeAgo" fica em dias.
 
 (function () {
 	// Configuration block: easy to customize defaults
 	// You can override these globally by setting `window.STATUSCAFE_CONFIG = { ... }` before this script runs,
 	// or per-page via data- attributes on `.statuscafe .box-inner` (data-avatar, data-show-face, data-show-avatar).
 	var DEFAULTS = {
-		statusUrl: "https://status.cafe/users/fire/status.json",
+		statusUrl: "https://nikki.top/api.php?id=376&limit=1",
+		nikkiProfileUrl: "https://nikki.top/profile.php?id=376",
+		nikkiAuthorName: "dharlan",
+		// Proxy próprio (Render) como primeira opção — confiável, sem depender
+		// de proxy CORS público de terceiros. allorigins.win fica como reserva
+		// caso o Render esteja "dormindo" ou fora do ar por algum motivo.
+		corsProxies: [
+			"https://nikki-top-custom-api.onrender.com/proxy?url=",
+			"https://api.allorigins.win/raw?url=",
+		],
 		// local fallback avatar used when remote avatar is missing or fails
 		defaultAvatar: "/assets/img/avatar.png",
 		// avatar display size in px (used in injected styles)
@@ -282,11 +294,80 @@ body.rounded #statuscafe .statuscafe-avatar {
 		}
 	})();
 
-	fetch(DEFAULTS.statusUrl)
-		.then(function (r) {
-			if (!r.ok) throw new Error("Network response was not ok");
-			return r.json();
-		})
+	// nikki.top só guarda a data (sem hora) de cada post, então o "timeAgo"
+	// fica em granularidade de dia: hoje / ontem / há N dias.
+	function relativeDaysPt(dateStr) {
+		try {
+			var parts = dateStr.split("-").map(Number);
+			var d = new Date(parts[0], parts[1] - 1, parts[2]);
+			var today = new Date();
+			d.setHours(0, 0, 0, 0);
+			today.setHours(0, 0, 0, 0);
+			var diffDays = Math.round((today - d) / 86400000);
+			if (diffDays <= 0) return "hoje";
+			if (diffDays === 1) return "ontem";
+			return "há " + diffDays + " dias";
+		} catch (e) {
+			return dateStr;
+		}
+	}
+
+	// A api.php do nikki.top devolve um fragmento de HTML, não JSON.
+	// Extrai o primeiro post e devolve no mesmo "formato" que o resto do
+	// script já espera (content/author/timeAgo/face/avatar).
+	function parseNikkiHtml(html) {
+		try {
+			var doc = new DOMParser().parseFromString(html, "text/html");
+			var post = doc.querySelector(".posts");
+			if (!post) return null;
+
+			var contentNode = post.querySelector(".content");
+			var dateNode = post.querySelector(".date");
+			var text = contentNode ? contentNode.textContent.trim() : "";
+			var dateStr = dateNode ? dateNode.textContent.trim() : "";
+
+			if (!text) return null;
+
+			return {
+				content: text,
+				author: DEFAULTS.nikkiAuthorName,
+				timeAgo: dateStr ? relativeDaysPt(dateStr) : "",
+				face: null,
+				avatar: null,
+				author_avatar: null,
+				icon: null,
+			};
+		} catch (e) {
+			return null;
+		}
+	}
+
+	// nikki.top não manda Access-Control-Allow-Origin, então passamos por um
+	// proxy CORS público. Tenta a lista em ordem e cai pro próximo se um falhar
+	// — seja por erro de rede/HTTP, seja porque o proxy devolveu 200 OK com
+	// uma página de erro no corpo (já vimos isso acontecer com allorigins).
+	function fetchViaProxies(targetUrl, proxies, index) {
+		index = index || 0;
+		if (index >= proxies.length) {
+			return Promise.reject(new Error("Todos os proxies CORS falharam"));
+		}
+		var proxiedUrl = proxies[index] + encodeURIComponent(targetUrl);
+		return fetch(proxiedUrl)
+			.then(function (r) {
+				if (!r.ok) throw new Error("Proxy respondeu " + r.status);
+				return r.text();
+			})
+			.then(function (html) {
+				var r = parseNikkiHtml(html);
+				if (!r) throw new Error("Conteúdo inesperado (proxy provavelmente falhou)");
+				return r;
+			})
+			.catch(function () {
+				return fetchViaProxies(targetUrl, proxies, index + 1);
+			});
+	}
+
+	fetchViaProxies(DEFAULTS.statusUrl, DEFAULTS.corsProxies)
 		.then(function (r) {
 			try {
 				const contentEl = document.getElementById("statuscafe-content");
@@ -305,12 +386,14 @@ body.rounded #statuscafe .statuscafe-avatar {
 					} catch (e) {
 						faceStr = "";
 					}
-					userEl.innerHTML =
+					// Sem <a> aqui de propósito: a caixa inteira do #statuscafe já é
+					// um link pro perfil no nikki.top (ver home.html), e <a> dentro
+					// de <a> é HTML inválido.
+					userEl.textContent =
 						faceStr +
 						" " +
-						'<a href="https://status.cafe/users/mozartsempiano" target="_blank">' +
-						(r.author || "mozartsempiano") +
-						"</a> · " +
+						(r.author || DEFAULTS.nikkiAuthorName) +
+						" · " +
 						(r.timeAgo || "");
 				}
 
@@ -396,7 +479,7 @@ body.rounded #statuscafe .statuscafe-avatar {
 			}
 		})
 		.catch(function (err) {
-			console.error("Failed to fetch status.cafe JSON:", err);
+			console.error("Falha ao buscar status do nikki.top:", err);
 			renderEmpty();
 		});
 })();

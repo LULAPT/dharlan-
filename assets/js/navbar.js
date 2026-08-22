@@ -354,13 +354,14 @@ export function carregarNavbar() {
 			label: "Galeria",
 			href: "/galeria/index.html",
 			children: [
-        { label: "Arte", href: "/portfolio/arte/index.html" },
-				{ label: "Fotografia", href: "/portfolio/fotografia/index.html" },
-				{ label: "Cat.jpg(s)", href: "/portfolio/design/index.html" },
+        { label: "Arte", href: "/galeria/arte/index.html" },
+				{ label: "Fotografia", href: "/galeria/fotografia/index.html" },
+				{ label: "Cat.jpg(s)", href: "/galeria/cat.jpg/index.html" },
 			],
 		},
 		projetos: {
 			label: "Save",
+			href: "/Save/index.html",
 			children: [
         { label: "/w/", href: "Save/w.html" },
 				{ label: "/pfp/", href: "Save/pfp.html" },

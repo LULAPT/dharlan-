@@ -4,10 +4,9 @@
 		<meta charset="UTF-8" />
 		<script src="/assets/js/theme-init.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
 		<meta name="author" content="Mozart Mattar" />
 
-		<title>mozartsempiano</title>
+		<title>dharlan ˄</title>
 		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
 
 		<!-- CSS -->
@@ -20,41 +19,54 @@
 		<!-- Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-		<style>
-			main {
-				height: 100vh;
-			}
-
-			.memory-fragment {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 1rem;
-			}
-		</style>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	</head>
 
 	<body>
-		<div class="container fade-in-404">
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
 			<main>
-				<div class="centralizar">
-					<div class="memory-fragment">
-						<h1 class="glitch">Página não encontrada</h1>
-						<pre>
-    :::      :::::::      :::     
-   :+:      :+:   :+:    :+:      
-  +:+ +:+   +:+  :+:+   +:+ +:+   
- +#+  +:+   +#+ + +:+  +#+  +:+   
-+#+#+#+#+#+ +#+#  +#+ +#+#+#+#+#+ 
-      #+#   #+#   #+#       #+#   
-      ###    #######        ###   
-            </pre>
-						<a href="/home.html">vamos para casa</a>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/Save/index.html">save</a> >
+					<span class="animate-flicker">/b/</span>
+				</div>
+				<div id="col-centro">
+					<h1>/b/ — Aleatório</h1>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</main>
 
-			<script type="module" src="/assets/js/main.js"></script>
+			<footer></footer>
 		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const minhasAleatorias = [];
+
+			setupGalleryFilter({
+				items: minhasAleatorias,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
 	</body>
 </html>

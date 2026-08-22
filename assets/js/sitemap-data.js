@@ -7,17 +7,41 @@ export const sitemap = [
       { href: "/home.html", label: "/home" },
       { href: "/sobre.html", label: "/sobre" },
       {
-        href: "/portfolio/index.html",
-        label: "/portfolio",
+        href: "/galeria/index.html",
+        label: "/galeria",
         children: [
-          { href: "/portfolio/fotografia/index.html", label: "/fotografia" },
+          {
+            href: "/galeria/arte/index.html",
+            label: "/arte",
+            children: [
+              { href: "/galeria/arte/sketchbook-2019.html", label: "/sketchbook-2019" },
+              { href: "/galeria/arte/sketchbook-2022.html", label: "/sketchbook-2022" },
+            ],
+          },
+          { href: "/galeria/fotografia/index.html", label: "/fotografia" },
+          { href: "/galeria/cat.jpg/index.html", label: "/cat.jpg" },
         ],
       },
-      { nopage: true, label: "/projetos" },
+      {
+        href: "/Save/index.html",
+        label: "/save",
+        children: [
+          {
+            href: "/Save/w.html",
+            label: "/w",
+            children: [
+              { href: "/Save/w-lewd.html", label: "/w-lewd" },
+              { href: "/Save/w-ultrawide.html", label: "/w-ultrawide" },
+              { href: "/Save/w-vertical.html", label: "/w-vertical" },
+            ],
+          },
+          { href: "/Save/pfp.html", label: "/pfp" },
+          { href: "/Save/b.html", label: "/b" },
+        ],
+      },
       {
         items: [
           { href: "/2kki.html", label: "/2kki" },
-          { href: "/akatsukigames.html", label: "/akatsukigames" },
           { href: "/mplace/index.html", label: "/mplace" },
         ],
       },
