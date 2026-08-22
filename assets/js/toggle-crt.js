@@ -25,8 +25,8 @@ export function toggleCrt() {
     // Inject CRT styles
     injectCrtStyles();
 
-    // Aplica estado inicial do localStorage
-    const switchLigado = localStorage.getItem("switchCRT") === "true";
+    // Aplica estado inicial do localStorage (CRT ligado por padrão)
+    const switchLigado = localStorage.getItem("switchCRT") !== "false";
     if (switchLigado) {
       document.body.classList.add("crt");
     }

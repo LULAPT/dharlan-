@@ -197,11 +197,11 @@ export async function initSettingsPanel() {
 	const nsfwBlurCheckbox = document.getElementById("panel-nsfw-blur-toggle");
 
 	// Estado inicial
-	crtCheckbox.checked = localStorage.getItem("switchCRT") === "true";
+	crtCheckbox.checked = localStorage.getItem("switchCRT") !== "false";
 	const currentTheme = localStorage.getItem("current-theme") || "dark";
 	themeSelect.value = currentTheme;
 	festiveCheckbox.checked = localStorage.getItem("festiveEffects") !== "false";
-	nsfwBlurCheckbox.checked = localStorage.getItem("nsfwBlur") !== "false";
+	nsfwBlurCheckbox.checked = localStorage.getItem("nsfwBlur") === "true";
 
 	// Eventos usando as funções dos scripts
 	crtCheckbox.addEventListener("change", () => {
