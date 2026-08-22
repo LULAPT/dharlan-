@@ -1,0 +1,99 @@
+@import url("variaveis.css");
+@import url("fonts.css");
+@import url("animations.css");
+@import url("icones.css");
+
+section.links-section h2:first-child {
+	background-color: var(--clr-main-a20);
+	padding: 0.25em 0.4em;
+	font-weight: bold;
+	margin: 0;
+	border-radius: 0 var(--b-radius) var(--b-radius) 0;
+}
+
+table {
+	column-count: 1;
+	text-transform: lowercase;
+	width: 100%;
+}
+
+table td:has(img) {
+	text-align: center;
+}
+
+table.sl1 {
+	column-count: 1;
+}
+
+table.sl2 {
+	column-count: 2;
+}
+
+table.sl3 {
+	column-count: 3;
+}
+
+table.sl4 {
+	column-count: 4;
+}
+
+table > li {
+	break-inside: avoid;
+	page-break-inside: avoid;
+	margin-bottom: 0;
+}
+
+table > li > ul {
+	margin-left: 20px;
+	padding-left: 0;
+	list-style-type: disc;
+}
+
+table > li > ul > li {
+	margin-bottom: 0;
+	list-style: disc;
+	list-style-position: inside;
+}
+
+table tr td {
+	background-color: unset;
+}
+
+.banners {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 88px);
+	grid-gap: 6px;
+	justify-content: left;
+	text-align: left;
+	width: 100%;
+}
+
+.banners img {
+	width: 88px;
+	height: 31px;
+}
+
+.banners a {
+	padding: 0;
+	margin: 0;
+	height: 31px;
+	width: 88px;
+}
+
+section.links-section {
+	border-top: var(--borda-padrao);
+	padding-top: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+section.links-section:not(:first-of-type) {
+	margin: 24px 0 0 0;
+}
+
+@media (max-width: 1024px) {
+	.sitelist {
+		column-count: 1;
+	}
+}

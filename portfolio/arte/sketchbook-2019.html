@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/portfolio/index.html">portfolio</a> >
+					<a href="/portfolio/arte/index.html">arte</a> >
+					<span class="animate-flicker">sketchbook-2019</span>
+				</div>
+				<div id="col-centro">
+					<!--<div class="undercon"></div>-->
+
+					<h1>Sketchbook 2019</h1>
+					<p>
+						Não tenho muito orgulho desse sketchbook. Sinto que ele já tá meio
+						velho e bem distante de quem eu sou hoje. Meu traço mudou bastante,
+						principalmente na forma como desenho cada linha e no peso que
+						atribuo a elas. Eu também tinha o costume de escrever do lado de
+						quase todo desenho, explicando ou fazendo comentários que hoje
+						parecem desnecessários. Pode ser também que eu esteja me julgando
+						demais—acho que é algo que se torna mais comum com o passar do
+						tempo, quando a gente olha pro passado. De qualquer forma, ainda
+						acho legal deixar ele aqui como um registro de quem eu já fui.
+					</p>
+
+					<div class="espaçador"></div>
+
+					<div id="book-container">
+						<div class="book">
+							<div class="page-left"></div>
+							<div class="page-right"></div>
+						</div>
+						<div class="book-controls">
+							<button id="prev-page">Anterior</button>
+							<span id="page-num"></span>
+							<button id="next-page">Próxima</button>
+						</div>
+					</div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<img id="modal-img" src="" />
+							<div id="modal-info">
+								<div id="modal-title"></div>
+								<div id="modal-desc"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/sketchbook-book.js"></script>
+		<script>
+			window.paginasSketchbook = [
+				{
+					img: "/assets/img/sketchbooks/2019/Sketchbook 2019 Capa.jpg",
+					title: "Capa",
+					desc: "",
+					single: true,
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0001.jpg",
+					title: "Página 1 e 2",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0002.jpg",
+					title: "Página 3 e 4",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_00003_1.jpg",
+					title: "Página 5 e 6",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_00003_2.jpg",
+					title: "Página 7 e 8",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0004.jpg",
+					title: "Página 9 e 10",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0005.jpg",
+					title: "Página 11 e 12",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0006.jpg",
+					title: "Página 13 e 14",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0007.jpg",
+					title: "Página 15 e 16",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0008.jpg",
+					title: "Página 17 e 18",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0009.jpg",
+					title: "Página 19 e 20",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0010.jpg",
+					title: "Página 21 e 22",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0011.jpg",
+					title: "Página 23 e 24",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0012.jpg",
+					title: "Página 25 e 26",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0013.jpg",
+					title: "Página 27 e 28",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0014.jpg",
+					title: "Página 29 e 30",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0015.jpg",
+					title: "Página 31 e 32",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0016.jpg",
+					title: "Página 33 e 34",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0017.jpg",
+					title: "Página 35 e 36",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0018.jpg",
+					title: "Página 37 e 38",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0019.jpg",
+					title: "Página 39 e 40",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0020.jpg",
+					title: "Página 41 e 42",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0021.jpg",
+					title: "Página 43 e 44",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0022.jpg",
+					title: "Página 45 e 46",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0023.jpg",
+					title: "Página 47 e 48",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0024.jpg",
+					title: "Página 49 e 50",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0025.jpg",
+					title: "Página 51 e 52",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0026.jpg",
+					title: "Página 53 e 54",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0027.jpg",
+					title: "Página 55 e 56",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0028.jpg",
+					title: "Página 57 e 58",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0029.jpg",
+					title: "Página 59 e 60",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0030.jpg",
+					title: "Página 61 e 62",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0031.jpg",
+					title: "Página 63 e 64",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0032.jpg",
+					title: "Página 65 e 66",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0033.jpg",
+					title: "Página 67 e 68",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0034.jpg",
+					title: "Página 69 e 70",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0035.jpg",
+					title: "Página 71 e 72",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0036.jpg",
+					title: "Página 73 e 74",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0037.jpg",
+					title: "Página 75 e 76",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0038.jpg",
+					title: "Página 77 e 78",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0039.jpg",
+					title: "Página 79 e 80",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0040.jpg",
+					title: "Página 81 e 82",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Image_20250422_0041.jpg",
+					title: "Página 83 e 84",
+					desc: "",
+				},
+				{
+					img: "/assets/img/sketchbooks/2019/Sketchbook 2019 ContraCapa.jpg",
+					title: "Contracapa",
+					desc: "",
+					single: true,
+				},
+			];
+		</script>
+	</body>
+</html>

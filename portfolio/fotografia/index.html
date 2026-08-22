@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/portfolio/index.html">portfolio</a> >
+					<span class="animate-flicker">fotografia</span>
+				</div>
+				<div id="col-centro">
+					<h1>Fotografia</h1>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const minhasFotos = [
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06488.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06473.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tirada no <a href='https://planetainseto.com.br/' target='_blank'>Planeta Inseto</a>, em São Paulo capital.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06440.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tirada no <a href='https://planetainseto.com.br/' target='_blank'>Planeta Inseto</a>, em São Paulo capital.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06434.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tirada no <a href='https://planetainseto.com.br/' target='_blank'>Planeta Inseto</a>, em São Paulo capital.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06433.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tirada no <a href='https://planetainseto.com.br/' target='_blank'>Planeta Inseto</a>, em São Paulo capital.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06427.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tirada no <a href='https://planetainseto.com.br/' target='_blank'>Planeta Inseto</a>, em São Paulo capital.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06426.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tirada no <a href='https://planetainseto.com.br/' target='_blank'>Planeta Inseto</a>, em São Paulo capital.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06424.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06422.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Tiradas no <a href='https://linktr.ee/cafeccsakura_br' target='_blank'>Café Cardcaptor Sakura</a>, em São Paulo capital. É um lugar muito bonitinho e o café é ótimo! Pedi também um pão com ovo, mas não tinha gosto de absolutamente nada.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06402.JPG" },
+						{ type: "image", src: "/assets/img/fotografia/DSC06400.JPG" },
+						{ type: "image", src: "/assets/img/fotografia/DSC06409.JPG" },
+						{ type: "image", src: "/assets/img/fotografia/DSC06412.JPG" },
+						{ type: "image", src: "/assets/img/fotografia/DSC06415.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06396.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06395.JPG" },
+					],
+				},
+				{
+					title: "bebê kewpie quer um abraço",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06393.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					desc: "Hambúrguer do Godzilla que comi no <a href='https://eatasia.com.br/' target='_blank'>Eat Asia</a>, em São Paulo capital. Sempre que vou a São Paulo, não deixo de visitar o restaurante, porque a comida é realmente muito boa. Dessa vez, tentei pedir algo diferente, e não me decepcionou.",
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06386.JPG" },
+						{ type: "image", src: "/assets/img/fotografia/DSC06382.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06374.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06356.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06316.JPG" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06299.JPG" },
+					],
+				},
+				{
+					title: "Alemão",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06292.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06301.jpg" },
+					],
+				},
+				{
+					title: "Maria Joaquina",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06280.jpg" },
+					],
+				},
+				{
+					title: "Amantes",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06260.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06252.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06219.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06199.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06200.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06206.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06170.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06169.jpg" },
+					],
+				},
+				{
+					title: "Buyu",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC05970.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06106.jpg" },
+						{ type: "image", src: "/assets/img/fotografia/DSC06104.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06145.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC05953.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC05957.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06127.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC05938.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC06193.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2025,
+					camera: "Sony Cyber-shot DSC-W180",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC05941.jpg" },
+					],
+				},
+				{
+					title: "só posso imaginar tudo que foi visto pelos seus olhos",
+					year: 2025,
+					desc: "",
+					camera: "Samsung Galaxy A14",
+					tags: ["memoria"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/20250327_171307.jpg",
+						},
+					],
+				},
+				{
+					title: "",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["memoria"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/090622_01-small.jpg",
+						},
+					],
+				},
+				{
+					title: "",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["memoria"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/090622_02-small.jpg",
+						},
+					],
+				},
+				{
+					title: "",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["memoria"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/061223_02-small.jpg",
+						},
+					],
+				},
+				{
+					title: "Mimi",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["memoria"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/061223_01-small.jpg",
+						},
+					],
+				},
+				{
+					title: "Mel",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["memoria"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/DSC_0009-small.jpg" },
+					],
+				},
+				{
+					title: "",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["memoria"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/061223_03-small.jpg",
+						},
+					],
+				},
+				{
+					title: "Adão & Eva",
+					year: 2023,
+					desc: "Um ensaio de moda que explora a dualidade da natureza humana e a transgressão como caminho para a felicidade. Inspirado na mitologia de Adão e Eva, mostra Eva celebrando a alegria e a desobediência ao comer a maçã, mantendo a leveza mesmo diante da repressão, enquanto Adão reflete a auto-repressão e a tristeza por não se permitir brincar. É uma reflexão sobre quebrar normas sociais e abraçar a liberdade emocional como ato subversivo.",
+					camera: "Nikon D3000",
+					tags: ["ensaio"],
+					medias: [
+						{ type: "image", src: "/assets/img/fotografia/Moda_01-small.jpg" },
+						{ type: "image", src: "/assets/img/fotografia/Moda_04-small.jpg" },
+						{ type: "image", src: "/assets/img/fotografia/Moda_05-small.jpg" },
+						{ type: "image", src: "/assets/img/fotografia/Moda_02-small.jpg" },
+					],
+				},
+				{
+					title: "Pós-Mundo",
+					year: 2023,
+					camera: "Nikon D3000",
+					tags: ["ensaio"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/fotografia/Pos_Mundo_01-small.jpg",
+						},
+						{
+							type: "image",
+							src: "/assets/img/fotografia/Pos_Mundo_02-small.jpg",
+						},
+					],
+				},
+			];
+
+			setupGalleryFilter({
+				items: minhasFotos,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
+	</body>
+</html>

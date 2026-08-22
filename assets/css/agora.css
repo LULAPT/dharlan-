@@ -1,0 +1,61 @@
+#col-centro {
+	gap: 14px;
+}
+
+#semaninhas {
+	display: flex;
+	gap: 16px;
+	flex-direction: row;
+}
+
+#semaninhas .caixinha > h1:first-of-type {
+	text-align: center;
+	margin-top: 0;
+	font-size: 1.1rem;
+}
+
+h1 {
+	font-size: 1.4rem;
+	margin-top: 0;
+	border-bottom: var(--borda-padrao);
+	padding-bottom: 7px;
+	margin-bottom: 16px;
+	text-transform: lowercase;
+	font-weight: normal;
+}
+
+div.letterboxd-log {
+	height: 407px;
+}
+
+div.letterboxd-log .scroll {
+	padding: 1em 0;
+}
+
+div.sub.letterboxd-log.in-view div.scroll {
+	max-height: 358px;
+}
+
+.caixinha {
+	border: var(--borda-padrao);
+	padding: 10px 16px;
+	overflow: hidden;
+}
+
+body.rounded .caixinha {
+	border-radius: 5px;
+}
+
+.caixinha h1:first-of-type {
+	font-size: 1.43rem;
+	font-family: var(--fonte-corpo);
+	color: var(--clr-white);
+	text-transform: lowercase;
+	text-align: center;
+}
+
+@media (max-width: 1024px) {
+	#semaninhas {
+		flex-direction: column;
+	}
+}

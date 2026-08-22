@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/index.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<!-- <div class="crt-grain"></div> -->
+		<div id="preloader" style="display: none">
+			<div class="loading-wheel"></div>
+		</div>
+
+		<div
+			class="leaves"
+			id="leaves"
+			style="
+				position: fixed;
+				inset: 0;
+				pointer-events: none;
+				overflow: hidden;
+				z-index: 500;
+			"
+		></div>
+		<div
+			class="container fade-in-index"
+			style="padding: 0; margin: 0; width: 100%; height: 100vh"
+		>
+			<div class="centralizar-start">
+				<a id="clique-para-entrar-link">
+					<img
+						src="/assets/img/mozartmt-logo-white.png"
+						alt="mozartsempiano"
+						id="logo"
+					/>
+					<p id="clique-para-entrar" class="animate-flicker" lang="pt-br">
+						clique para entrar
+					</p>
+				</a>
+
+				<div id="frase-container">
+					<div id="frase">
+						<span>
+							Este site, apesar de ser compatível com dispositivos móveis, é
+							ainda melhor visualizado em um computador.
+						</span>
+					</div>
+
+					<div id="classificacao" class="glitch">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+							<path
+								d="M339.33-362h51.34v-236H278v51.33h61.33V-362Zm125.34 0H634v-236H464.67v236ZM516-400v-62h66.67v62H516Zm0-98v-62h66.67v62H516ZM119.3-119.3v-721.56h721.56v721.56H119.3Zm72.42-72.42h576.56v-576.56H191.72v576.56Zm0 0v-576.56 576.56Z"
+							/>
+						</svg>
+						<span
+							>Recomenda-se discrição do espectador - o conteúdo deste site é
+							destinado a maiores de 18 anos.</span
+						>
+					</div>
+				</div>
+
+				<footer id="footer-index"></footer>
+			</div>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const leavesContainer = document.getElementById("leaves");
+				for (let i = 0; i < 12; i++) {
+					const leaf = document.createElement("span");
+					leaf.className = "leaf";
+					leaf.textContent = "/"; // Símbolo da folha
+					// Randomizar posição e duração
+					const startLeft = Math.random() * 100; // vw
+					leaf.style.left = startLeft + "vw";
+					leaf.style.position = "absolute";
+					// start slightly above the viewport
+					leaf.style.transform = `translate3d(0px, -10vh, 0)`;
+					leaf.style.animationDuration = 14 + Math.random() * 6 + "s";
+					leaf.style.setProperty(
+						"--leaf-x-end",
+						Math.random() * 100 - 50 + "vw"
+					);
+					leaf.style.setProperty("--leaf-rotate", Math.random() * 360 + "deg");
+					// ensure pointer-events none so links still clickable
+					leaf.style.pointerEvents = "none";
+					leavesContainer.appendChild(leaf);
+				}
+			});
+		</script>
+
+		<script>
+			preloader_original = true;
+
+			if (preloader_original) {
+				document.addEventListener("DOMContentLoaded", function () {
+					var entrar = document.getElementById("clique-para-entrar-link");
+					if (entrar) {
+						entrar.addEventListener("click", function (e) {
+							e.preventDefault();
+							document.querySelector(".container").style.display = "none";
+							var preloader = document.getElementById("preloader");
+							preloader.style.display = "flex";
+							setTimeout(function () {
+								preloader.classList.add("visible");
+								setTimeout(function () {
+									window.location.href = "home.html";
+								}, 1000);
+							}, 10);
+						});
+					}
+				});
+			} else {
+				document.addEventListener("DOMContentLoaded", function () {
+					var entrar = document.getElementById("clique-para-entrar-link");
+					if (entrar) {
+						entrar.addEventListener("click", function (e) {
+							e.preventDefault(); // evita o comportamento padrão do link, se houver
+							window.location.href = "home.html"; // redireciona direto
+						});
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

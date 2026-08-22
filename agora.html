@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/agora.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a>
+					>
+					<span class="animate-flicker">agora</span>
+				</div>
+				<div id="col-centro">
+					<h1>agora</h1>
+					<nav id="back">
+						<ul>
+							<li>voltar para <a href="/sobre.html">sobre</a></li>
+						</ul>
+					</nav>
+
+					<div id="semaninhas">
+						<div class="caixinha" id="semaninha">
+							<h1>o que ouvi na última semana</h1>
+							<a
+								href="https://www.last.fm/user/wrired/library/albums?date_preset=LAST_7_DAYS"
+								target="_blank"
+							>
+								<div class="collage-caixinha">
+									<img
+										class="dither dither-no-position"
+										src="https://tapmusic.net/collage.php?user=wrired&type=7day&size=3x3"
+										loading="lazy"
+									/>
+								</div>
+							</a>
+						</div>
+
+						<div class="caixinha" id="mes">
+							<h1>o que ouvi no último mês</h1>
+							<a
+								href="https://www.last.fm/user/wrired/library/albums?date_preset=LAST_30_DAYS"
+								target="_blank"
+							>
+								<div class="collage-caixinha">
+									<img
+										class="dither dither-no-position"
+										src="https://tapmusic.net/collage.php?user=wrired&type=1month&size=5x5"
+										loading="lazy"
+									/>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div>
+						<div class="caixinha sub letterboxd-log">
+							<h1>últimos filmes vistos</h1>
+							<div class="scroll">
+								<div id="letterboxd-embed-wrapper-tc">Carregando...</div>
+								<script>
+									// Toggle: true para ativar .dither nas imagens, false para desativar
+									const APPLY_DITHER = true;
+
+									fetch(
+										"https://lb-embed-content.bokonon.dev?username=mozartsempiano"
+									)
+										.then((response) => response.text())
+										.then((data) => {
+											const wrapper = document.getElementById(
+												"letterboxd-embed-wrapper-tc"
+											);
+											wrapper.innerHTML = data;
+											wrapper.classList.add("fade-in");
+
+											if (APPLY_DITHER) {
+												const imgs = wrapper.querySelectorAll(
+													".letterboxd-embed-tc-diary-entry img"
+												);
+												imgs.forEach((img) => img.classList.add("dither"));
+											}
+										})
+										.catch(() => {
+											const wrapper = document.getElementById(
+												"letterboxd-embed-wrapper-tc"
+											);
+											wrapper.innerHTML =
+												"<p>Erro ao carregar os filmes vistos. Tente novamente mais tarde.</p>";
+											wrapper.classList.add("fade-in");
+										});
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/typewriter.js"></script>
+	</body>
+</html>

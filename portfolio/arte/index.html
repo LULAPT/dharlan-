@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<style>
+			ul {
+				padding: 28px 32px;
+				border: var(--borda-padrao);
+				border-radius: var(--b-radius);
+				margin-bottom: 24px;
+			}
+
+			ul li:not(:first-child) {
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<a href="/portfolio/index.html">portfolio</a> >
+					<span class="animate-flicker">arte</span>
+				</div>
+				<div id="col-centro">
+					<h1>Arte</h1>
+
+					<ul>
+						<!-- <li><a href="tradicional.html">Tradicional</a></li> -->
+						<li><a href="sketchbook-2022.html">Sketchbook 2022</a></li>
+						<li><a href="sketchbook-2019.html">Sketchbook 2019</a></li>
+					</ul>
+
+					<div id="filter-gallery-filtros"></div>
+					<div id="filter-gallery-galeria"></div>
+
+					<div class="modal" id="modal">
+						<div id="modal-content">
+							<div id="modal-media"></div>
+							<div id="modal-sidebar">
+								<div id="modal-info">
+									<div id="modal-title" class="modal-title"></div>
+									<div id="modal-desc" class="modal-desc"></div>
+								</div>
+								<div id="modal-thumbs" class="modal-thumbs"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/gallery-filter.js"></script>
+		<script>
+			const meusDesigns = [
+				{
+					title: "Abril 2K e vinte e cinco",
+					year: 2025,
+					type: "",
+					client: "",
+					desc: "Feito inteiramente em <a href='https://github.com/mozartsempiano/ascii-text-generator' target='_blank'>JavaScript</a>, após um episódio depressivo.",
+					programs: ["javascript"],
+					tags: ["digital"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/arte/abril_2025.jpg",
+						},
+					],
+				},
+				{
+					title: "Nostalgia, e amadurecer com a dor",
+					year: 2025,
+					type: "",
+					client: "",
+					desc: "Conjunto de cartas e objetos que guardei no meu passado, associados a momentos que, embora difíceis, pavimentaram o caminho que me trouxe até aqui.",
+					programs: ["photoshop"],
+					tags: ["tradicional", "colagem"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/arte/Nostalgia e amadurecer com a dor.jpg",
+						},
+					],
+				},
+				{
+					title: "Fim do arco-íris",
+					year: 2023,
+					type: "",
+					client: "",
+					desc: "Desenho tradicional que sobrepus com uma fotografia que tirei.",
+					programs: ["photoshop"],
+					tags: ["tradicional"],
+					medias: [
+						{ type: "image", src: "/assets/img/arte/fim_do_arco_iris.jpg" },
+					],
+				},
+				{
+					title: "Sem título",
+					year: 2022,
+					type: "",
+					client: "",
+					desc: "",
+					programs: "",
+					tags: ["tradicional"],
+					medias: [{ type: "image", src: "/assets/img/arte/Image_20250421_0005.jpg" }],
+				},
+				{
+					title: "Mestre Ensinador",
+					year: 2022,
+					type: "Pixel art",
+					client: "",
+					desc: "",
+					programs: ["aseprite"],
+					tags: ["digital", "pixel"],
+					medias: [
+						{
+							type: "image",
+							src: "/assets/img/arte/digital/mestre_ensinador_2022.jpg",
+						},
+					],
+				},
+			];
+
+			setupGalleryFilter({
+				items: meusDesigns,
+				filtrosId: "filter-gallery-filtros",
+				galeriaId: "filter-gallery-galeria",
+			});
+		</script>
+	</body>
+</html>

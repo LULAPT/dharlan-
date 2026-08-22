@@ -1,0 +1,97 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# VSCode
+.vscode/
+.history/
+
+# Logs
+*.log
+
+# Env
+.env
+.env.*
+
+# Build
+/dist/
+/build/
+*.exe
+*.bat
+*.dll
+*.so
+*.dylib
+
+# Git
+.git/
+.gitmodules
+.gitconfig
+
+# Others
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+*.orig
+
+# Images cache
+*.psd
+*.xcf
+*.ai
+*.sketch
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Windows
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Linux
+*~
+
+# Custom
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.flv
+*.wmv
+
+# assets/img/favoritos/*
+# assets/img/designs/*
+# assets/img/bg/*
+# assets/img/arte/*
+# assets/img/anotacoes/*
+# assets/img/akatsukigames/*
+# assets/img/88x31 banners/*
+# assets/img/150x20 blinkies/*
+# assets/img/stamps/*
+# assets/img/sketchbooks/*
+# assets/fontes/*
+# assets/css/*
+
+shrines/*
+assets/css/pokemon.css
+assets/css/minecraft.css
+assets/img/pokemon/*
+assets/fontes/pokemon-bw.ttf
+assets/fontes/Pokemon-Classic.ttf

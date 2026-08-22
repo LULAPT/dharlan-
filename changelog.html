@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<style>
+			#updates-container strong {
+				display: block;
+				font-size: 1em;
+				font-weight: lighter;
+				text-align: left;
+				margin-bottom: 10px;
+				margin-top: 14px;
+				color: var(--clr-gray-a50);
+			}
+			#updates-container strong:not(:first-child) {
+				border-top: var(--borda-padrao);
+				padding-top: 1em;
+			}
+
+			#updates-container ul {
+				font-size: 1em;
+				margin-top: 0;
+			}
+
+			#updates-container .ultimo strong {
+				font-weight: bold;
+				font-size: 1.25em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a>
+					>
+					<span class="animate-flicker">changelog</span>
+				</div>
+				<div id="col-centro">
+					<div style="width: 100%; margin-bottom: 31px; text-align: center">
+						<img
+							src="/assets/img/lain-750px-v2.jpg"
+							class="img-clr-main"
+							style="width: 100%; border: 1px solid var(--clr-gray-a10)"
+						/>
+					</div>
+					<h1>Changelog</h1>
+					<div id="updates-container">
+						<div id="updates-loading">Carregando...</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script>
+			(function () {
+				const container = document.getElementById("updates-container");
+				const loading = document.getElementById("updates-loading");
+
+				if (!container) return;
+
+				fetch("/assets/json/updates.json", { cache: "no-store" })
+					.then((res) => {
+						if (!res.ok) throw new Error("Falha ao carregar updates.json");
+						return res.json();
+					})
+					.then((data) => {
+						if (!Array.isArray(data) || data.length === 0) {
+							container.innerHTML =
+								"<div>Nenhuma atualização encontrada.</div>";
+							return;
+						}
+
+						// Ordena por data (ISO) descendente
+						data.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+						// Marca o primeiro item como ultimo
+						const latestDate = data[0].date;
+
+						const frag = document.createDocumentFragment();
+
+						data.forEach((entry, idx) => {
+							const date = entry.date; // YYYY-MM-DD
+							const parts = date.split("-");
+							const formatted = `${parts[2]}/${parts[1]}/${parts[0].slice(2)}`;
+
+							if (idx === 0) {
+								const span = document.createElement("span");
+								span.className = "ultimo";
+								span.innerHTML = `<strong class="data">${formatted}</strong>`;
+								frag.appendChild(span);
+							} else {
+								const strong = document.createElement("strong");
+								strong.className = "data";
+								strong.textContent = formatted;
+								frag.appendChild(strong);
+							}
+
+							const ul = document.createElement("ul");
+							// items are HTML strings; insert as HTML to preserve links
+							entry.items.forEach((item) => {
+								const li = document.createElement("li");
+								li.innerHTML = item;
+								ul.appendChild(li);
+							});
+
+							frag.appendChild(ul);
+						});
+
+						container.innerHTML = "";
+						container.appendChild(frag);
+
+						// Run the 'novo' indicator script on the freshly injected DOM
+						try {
+							const strong = container.querySelector(".ultimo strong");
+							if (strong) {
+								const texto = strong.textContent.trim();
+								const match = texto.match(/(\d{2})\/(\d{2})\/(\d{2})/);
+								const periodo = 14;
+								if (match) {
+									const ano = "20" + match[3];
+									const mes = match[2];
+									const dia = match[1];
+									const dataRegistro = new Date(`${ano}-${mes}-${dia}`);
+									const hoje = new Date();
+									dataRegistro.setHours(0, 0, 0, 0);
+									hoje.setHours(0, 0, 0, 0);
+									const diffDias =
+										(hoje - dataRegistro) / (1000 * 60 * 60 * 24);
+									if (diffDias <= periodo) {
+										if (!strong.querySelector(".novo-icone")) {
+											const novoIcone = document.createElement("span");
+											novoIcone.className = "novo-icone img-clr-main";
+											strong.appendChild(document.createTextNode(" "));
+											strong.appendChild(novoIcone);
+										}
+									}
+								}
+							}
+						} catch (e) {
+							/* ignore */
+						}
+					})
+					.catch((err) => {
+						console.error(err);
+						if (loading) loading.textContent = "Erro ao carregar atualizações.";
+						else
+							container.innerHTML = "<div>Erro ao carregar atualizações.</div>";
+					});
+			})();
+		</script>
+	</body>
+</html>

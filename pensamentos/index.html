@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/pensamentos.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<style>
+			table {
+				margin-top: 20px;
+				border: 0;
+			}
+
+			th,
+			td {
+				padding: 8px 16px 8px 0;
+				text-align: left;
+				border: 0;
+				vertical-align: top;
+			}
+
+			.tag-link {
+				text-decoration: none;
+				cursor: pointer;
+				transition: background 0.2s;
+				/* border-radius: 4px; */
+				/* padding: 1px 4px; */
+			}
+
+			.tag-link.tag-selected {
+				/* background: var(--clr-main-a40) !important; */
+				color: var(--clr-white) !important;
+				font-weight: bold !important;
+				opacity: 1 !important;
+				text-decoration: underline solid !important;
+			}
+
+			#col-esquerda::before {
+				background: url(/assets/img/lain_book_205px_dither.png) no-repeat center
+					182px;
+				content: "";
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: calc(var(--main-width) - 35rem);
+				user-select: none;
+				pointer-events: none;
+				filter: var(--img-main-filter, none);
+				animation: breathing 8s ease-in-out infinite;
+				transform-origin: bottom;
+			}
+
+			@keyframes breathing {
+				0%,
+				100% {
+					transform: scaleY(1);
+				}
+				50% {
+					transform: scaleY(1.014);
+				}
+			}
+
+			@media (max-width: 1024px) {
+				#col-esquerda::before {
+					left: calc(var(--main-width) - 43rem);
+					z-index: -1;
+					background-position: center 0;
+				}
+			}
+
+			@media (max-width: 770px) {
+				#col-esquerda::before {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<span class="animate-flicker">pensamentos</span>
+				</div>
+				<div id="col-esquerda">
+					<h1>Pensamentos</h1>
+					<p>Sussurros entre paredes esquecidas.</p>
+					<p>Veja também minhas <a href="/anotacoes.html">anotações</a>.</p>
+				</div>
+				<div id="col-direita">
+					<div id="pensamentos-list"></div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/pensamentos.js" defer></script>
+	</body>
+</html>

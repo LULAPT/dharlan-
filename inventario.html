@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/favoritos.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const fundosCinza = [
+					"/assets/img/bg/werewolf-1080px-cinza.jpg",
+					"/assets/img/bg/paris-texas-1080px-cinza.jpg",
+					"/assets/img/bg/mulholland-1080px-cinza.jpg",
+					"/assets/img/bg/alien-1080px-cinza.jpg",
+				];
+
+				// Escolhe um aleatório da lista "cinza"
+				const fundoCinza =
+					fundosCinza[Math.floor(Math.random() * fundosCinza.length)];
+				// Troca "cinza" por "branco" no nome do arquivo
+				const fundoBranco = fundoCinza.replace("cinza", "branco");
+
+				function aplicarFundo() {
+					const temaClaro =
+						document.documentElement.getAttribute("data-theme") === "light";
+					document.body.style.backgroundImage = `url("${
+						temaClaro ? fundoBranco : fundoCinza
+					}")`;
+					document.body.style.backgroundRepeat = "no-repeat";
+					document.body.style.backgroundAttachment = "fixed";
+					document.body.style.backgroundSize = "cover";
+					document.body.style.backgroundPosition = "left";
+					document.body.style.transition = "background-image 0.5s ease";
+				}
+
+				aplicarFundo();
+
+				// Reaplica se o tema mudar
+				const observer = new MutationObserver(aplicarFundo);
+				observer.observe(document.documentElement, {
+					attributes: true,
+					attributeFilter: ["data-theme"],
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<span class="animate-flicker">inventario</span>
+				</div>
+
+				<div id="conteudo-inner">
+					<div id="col-centro">
+						<h1>Inventário</h1>
+						<div id="inicio" class="tab-panel" style="display: block">
+							<p>
+								Tenho muitos hobbies—às vezes, sinto que até demais, o que acaba
+								não só me frustrando um pouco, como também sai meio caro de vez
+								em quando. Sempre gostei de organização e de manter registro de
+								tudo que me interessa… ou até do que não me interessa nem um
+								pouco, pra que eu mesmo lembre mais tarde. Então, achei que
+								seria uma ideia legal criar uma página só pra deixar registradas
+								minhas obras favoritas, sejam elas quais forem.
+							</p>
+							<p>
+								Desde que me entendo por gente, sempre gostei de colecionar,
+								sejam DVDs, CDs, livros, entre outros. Devo ter começado a fazer
+								isso de forma mais consistente por volta de 2016. Tem algo muito
+								satisfatório em passar anos juntando coisas que te fazem bem e,
+								no fim, vê-las todas lado a lado.
+							</p>
+							<p>
+								Sendo bem sincero, me arrependo de várias compras que fiz por
+								impulso. Acho que dar uma pausa nesse hobby acabou me ajudando a
+								olhar pro meu dinheiro com mais cuidado e a investir de forma
+								mais consciente. Ainda assim, não me considero consumista—na
+								verdade, acho que sou pão-duro até demais.
+							</p>
+							<p>
+								Talvez eu ainda acabe vendendo diversos desses itens, como já
+								fiz no passado, quando a coleção era ainda maior, mas, por
+								enquanto, esse é o resultado de todo o meu garimpo até aqui. A
+								imensa maioria foi encontrada em sebos.
+							</p>
+							<div class="espaçador"></div>
+						</div>
+
+						<div id="filmes" class="tab-panel" style="display: none">
+							<div id="filmes" class="midias-secao">
+								<div class="favoritos">
+									<h2>favoritos</h2>
+									<div class="grid filmes">
+										<img
+											src="/assets/img/favoritos/filmes/Alien.png"
+											alt="Alien"
+											title="Alien (1979)"
+											class="tenho"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/American Werewolf.png"
+											alt="An American Werewolf in London"
+											title="An American Werewolf in London (1981)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/A Bigger Splash.png"
+											alt="A Bigger Splash"
+											title="A Bigger Splash (2015)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/bcs.jpg"
+											alt="Better Call Saul"
+											title="Better Call Saul (2015-2022)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/The Blair Witch Project.png"
+											alt="The Blair Witch Project"
+											title="The Blair Witch Project (1999)"
+											class="tenho"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Burning.png"
+											alt="Burning"
+											title="Burning (2018)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Challengers.png"
+											alt="Challengers"
+											title="Challengers (2024)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Crash.png"
+											alt="Crash"
+											title="Crash (1996)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Duel.png"
+											alt="Duel"
+											title="Duel (1971)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/The End of Evangelion.png"
+											alt="The End of Evangelion"
+											title="The End of Evangelion (1997)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Exotica.png"
+											alt="Exotica"
+											title="Exotica (1994)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/fargo.jpg"
+											alt="Fargo"
+											title="Fargo (2014–2024)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/flcl.jpg"
+											alt="FLCL"
+											title="FLCL (1ª temporada) (2000)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Good Time.png"
+											alt="Good Time"
+											title="Good Time (2017)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Irezumi.png"
+											alt="Irezumi"
+											title="Irezumi (1966)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Misery.png"
+											alt="Misery"
+											title="Misery (1990)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Lady Snowblood.png"
+											alt="Lady Snowblood"
+											title="Lady Snowblood (1973)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Look Back.png"
+											alt="Look Back"
+											title="Look Back (2021)"
+										/>
+										<!-- <img
+											src="/assets/img/favoritos/filmes/Mad Max Fury Road.png"
+											alt="Mad Max: Fury Road"
+											title="Mad Max: Fury Road (2015)"
+											class="tenho"
+										/> -->
+										<img
+											src="/assets/img/favoritos/filmes/Mid90s.png"
+											alt="mid90s"
+											title="mid90s (2018)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/mr_robot.jpg"
+											alt="Mr. Robot"
+											title="Mr. Robot (2015-2019)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Mulholland Drive.png"
+											alt="Mulholland Drive"
+											title="Mulholland Drive (2001)"
+											class="tenho"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/nausicaa.jpg"
+											alt="Nausicaä do Vale do Vento"
+											title="Nausicaä do Vale do Vento (1984)"
+										/>
+										<!-- <img
+											src="/assets/img/favoritos/series/nge.jpg"
+											alt="Neon Genesis Evangelion"
+											title="Neon Genesis Evangelion (1995-1996)"
+										/> -->
+										<img
+											src="/assets/img/favoritos/filmes/The Northman.png"
+											alt="The Northman"
+											title="The Northman (2022)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Occult.png"
+											alt="Occult"
+											title="Occult (2009)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Paris Texas.png"
+											alt="Paris, Texas"
+											title="Paris, Texas (1984)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Perfect Blue.png"
+											alt="Perfect Blue"
+											title="Perfect Blue (1997)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Princess Mononoke.png"
+											alt="Princesa Mononoke"
+											title="Princesa Mononoke (1997)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Rosemary's Baby.png"
+											alt="Rosemary's Baby"
+											title="Rosemary's Baby (1968)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Secretary.png"
+											alt="Secretary"
+											title="Secretary (2002)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/seinfeld.jpg"
+											alt="Seinfeld"
+											title="Seinfeld (1989-1998)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/lain.jpg"
+											alt="Serial Experiments Lain"
+											title="Serial Experiments Lain (1998)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/The Thing.png"
+											alt="The Thing"
+											title="The Thing (1982)"
+										/>
+										<img
+											src="/assets/img/favoritos/series/twin_peaks.jpg"
+											alt="Twin Peaks"
+											title="Twin Peaks (1990-1991; 2017)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Twin Peaks Fire Walk With Me.png"
+											alt="Twin Peaks: Fire Walk with Me"
+											title="Twin Peaks: Fire Walk with Me (1992)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/We're All Going to The World's Fair.png"
+											alt="We're All Going to the World's Fair"
+											title="We're All Going to the World's Fair (2021)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Where The Wild Things Are.png"
+											alt="Where the Wild Things Are"
+											title="Where the Wild Things Are (2009)"
+										/>
+										<img
+											src="/assets/img/favoritos/filmes/Youth.png"
+											alt="Youth"
+											title="Youth (2015)"
+										/>
+									</div>
+									<p>
+										<a
+											href="https://letterboxd.com/mozartsempiano/list/mozartsempiano/"
+											target="_blank"
+											>...mais no letterboxd</a
+										>
+									</p>
+								</div>
+
+								<div class="colecoes">
+									<div class="sub colecao-details">
+										<h2>dvds de filmes e séries</h2>
+										<div class="scroll">
+											<table class="full">
+												<thead>
+													<tr>
+														<th>Nº</th>
+														<th>Ano</th>
+														<th>Título</th>
+														<th>Diretor</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td>2011</td>
+														<td>50%</td>
+														<td>Jonathan Levine</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1979</td>
+														<td>Alien</td>
+														<td>Ridley Scott</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1979-1997</td>
+														<td>Alien Quadrilogia</td>
+														<td>Vários</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007-2011</td>
+														<td>Alvin e os Esquilos 1, 2 e 3</td>
+														<td>Vários</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1984</td>
+														<td>Amadeus</td>
+														<td>Milos Forman</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2000</td>
+														<td>Amnésia</td>
+														<td>Christopher Nolan</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2000</td>
+														<td>O Auto da Compadecida</td>
+														<td>Guel Arraes</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2009</td>
+														<td>Avatar</td>
+														<td>James Cameron</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1942</td>
+														<td>Bambi</td>
+														<td>David Hand</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2009</td>
+														<td>Bastardos Inglórios</td>
+														<td>Quentin Tarantino</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2005</td>
+														<td>Batman Begins</td>
+														<td>Christopher Nolan</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1982</td>
+														<td>Blade Runner</td>
+														<td>Ridley Scott</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Bruxa de Blair</td>
+														<td>Daniel Myrick, Eduardo Sánchez</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2011</td>
+														<td>Capitão América: O Primeiro Vingador</td>
+														<td>Joe Johnston</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Carandiru</td>
+														<td>Hector Babenco</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2008</td>
+														<td>Cavaleiro das Trevas</td>
+														<td>Christopher Nolan</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2010</td>
+														<td>Cisne Negro</td>
+														<td>Darren Aronofsky</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2004</td>
+														<td>Closer</td>
+														<td>Mike Nichols</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2008</td>
+														<td>Cloverfield</td>
+														<td>Matt Reeves</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Clube da Luta</td>
+														<td>David Fincher</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2000</td>
+														<td>Corpo Fechado</td>
+														<td>M. Night Shyamalan</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2017</td>
+														<td>Corra!</td>
+														<td>Jordan Peele</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2015</td>
+														<td>Demolição</td>
+														<td>Jean-Marc Vallée</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2012</td>
+														<td>Detona Ralph</td>
+														<td>Rich Moore</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1992</td>
+														<td>Drácula de Bram Stoker</td>
+														<td>Francis Ford Coppola</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2011</td>
+														<td>Drive</td>
+														<td>Nicolas Winding Refn</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2005</td>
+														<td>Elektra</td>
+														<td>Rob Bowman</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Encontros e Desencontros</td>
+														<td>Sofia Coppola</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2002</td>
+														<td>Era do Gelo</td>
+														<td>Chris Wedge</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2006</td>
+														<td>Era do Gelo 2</td>
+														<td>Carlos Saldanha</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2009</td>
+														<td>Era do Gelo 3</td>
+														<td>Carlos Saldanha</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Eu Sou a Lenda</td>
+														<td>Francis Lawrence</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1984</td>
+														<td>Exterminador do Futuro</td>
+														<td>James Cameron</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2019</td>
+														<td>O Farol</td>
+														<td>Robert Eggers</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1994</td>
+														<td>Forrest Gump</td>
+														<td>Robert Zemeckis</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2012</td>
+														<td>Fúria de Titãs 2</td>
+														<td>Jonathan Liebesman</td>
+													</tr>
+													<tr class="l-riscado">
+														<td></td>
+														<td>2000</td>
+														<td>Gladiador</td>
+														<td>Ridley Scott</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2014</td>
+														<td>Godzilla: Origens</td>
+														<td>Gareth Edwards</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1953</td>
+														<td>Guerra dos Mundos</td>
+														<td>Byron Haskin</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2005</td>
+														<td>Guerra dos Mundos</td>
+														<td>Steven Spielberg</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2013</td>
+														<td>Homem de Aço</td>
+														<td>Zack Snyder</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2008</td>
+														<td>Homem de Ferro</td>
+														<td>Jon Favreau</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2013</td>
+														<td>Homem de Ferro 3</td>
+														<td>Shane Black</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2002-2007</td>
+														<td>Homem-Aranha: A Trilogia</td>
+														<td>Sam Raimi</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Hulk</td>
+														<td>Ang Lee</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2014</td>
+														<td>Interstellar</td>
+														<td>Christopher Nolan</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Juno</td>
+														<td>Jason Reitman</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Kill Bill</td>
+														<td>Quentin Tarantino</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2004</td>
+														<td>Kill Bill 2</td>
+														<td>Quentin Tarantino</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2005</td>
+														<td>King Kong</td>
+														<td>Peter Jackson</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2008</td>
+														<td>Kung Fu Panda: Edição Master</td>
+														<td>Mark Osborne, John Stevenson</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1971</td>
+														<td>Laranja Mecânica</td>
+														<td>Stanley Kubrick</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1979</td>
+														<td>Mad Max</td>
+														<td>George Miller</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2015</td>
+														<td>Mad Max: Estrada da Fúria</td>
+														<td>George Miller</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Magnólia</td>
+														<td>Paul Thomas Anderson</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2006</td>
+														<td>Maria Antonieta</td>
+														<td>Sofia Coppola</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Matrix</td>
+														<td>Irmãs Wachowski</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Matrix Reloaded</td>
+														<td>Irmãs Wachowski</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Matrix Revolutions</td>
+														<td>Irmãs Wachowski</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1997</td>
+														<td>MiB: Homens de Preto</td>
+														<td>Barry Sonnenfeld</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1964</td>
+														<td>Minha Bela Dama</td>
+														<td>George Cukor</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Missão Impossível</td>
+														<td>Brian De Palma</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2001</td>
+														<td>Monstros S.A.</td>
+														<td>Pete Docter, David Silverman, Lee Unkrich</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2015</td>
+														<td>Mr. Robot: 1ª Temporada</td>
+														<td>Sam Esmail</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2016</td>
+														<td>Mr. Robot: 2ª Temporada</td>
+														<td>Sam Esmail</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2017</td>
+														<td>Mr. Robot: 3ª Temporada</td>
+														<td>Sam Esmail</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2005</td>
+														<td>No Direction Home: Bob Dylan</td>
+														<td>Martin Scorsese</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Notting Hill</td>
+														<td>Roger Michell</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2000</td>
+														<td>Náufrago</td>
+														<td>Robert Zemeckis</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2014</td>
+														<td>Operação Big Hero</td>
+														<td>Don Hall, Chris Williams</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2010</td>
+														<td>Origem</td>
+														<td>Christopher Nolan</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Pixar Short Films: Volume 1</td>
+														<td>Vários</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2011</td>
+														<td>Planeta dos Macacos: A Origem</td>
+														<td>Rupert Wyatt</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2002</td>
+														<td>Prenda-me Se For Capaz</td>
+														<td>Steven Spielberg</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2011</td>
+														<td>Princesa e o Piloto</td>
+														<td>Jun Shishido</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Procurando Nemo</td>
+														<td>Andrew Stanton, Lee Unkrich</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1994</td>
+														<td>Pulp Fiction</td>
+														<td>Quentin Tarantino</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Quarteto Fantástico e o Surfista Prateado</td>
+														<td>Tim Story</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2010</td>
+														<td>Rede Social</td>
+														<td>David Fincher</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2002</td>
+														<td>Retratos de uma Obsessão</td>
+														<td>Mark Romanek</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2011</td>
+														<td>Rio</td>
+														<td>Carlos Saldanha</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1987</td>
+														<td>RoboCop</td>
+														<td>Paul Verhoeven</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2016</td>
+														<td>Rogue One</td>
+														<td>Gareth Edwards</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1989-1990</td>
+														<td>Seinfeld: Volume 1</td>
+														<td>Larry David, Jerry Seinfeld</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1991-1992</td>
+														<td>Seinfeld: Volume 2</td>
+														<td>Larry David, Jerry Seinfeld</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1993-1994</td>
+														<td>Seinfeld: Volume 3</td>
+														<td>Larry David, Jerry Seinfeld</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2001</td>
+														<td>Shrek</td>
+														<td>Andrew Adamson, Vicky Jenson</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2004</td>
+														<td>Shrek 2</td>
+														<td>Andrew Adamson, Kelly Asbury, Conrad Vernon</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Shrek Terceiro</td>
+														<td>Chris Miller, Raman Hui</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1991</td>
+														<td>Silêncio dos Inocentes</td>
+														<td>Jonathan Demme</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1972</td>
+														<td>Snoopy: O Cachorro é Seu, Charlie Brown</td>
+														<td>Bill Melendez</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>South Park: Maior, Melhor e Sem Cortes</td>
+														<td>Trey Parker</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2006</td>
+														<td>Superman: O Retorno</td>
+														<td>Bryan Singer</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2012</td>
+														<td>Ted</td>
+														<td>Seth MacFarlane</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Turma da Mônica: Uma Aventura no Tempo</td>
+														<td>José Márcio Nicolosi</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2014</td>
+														<td>Uma Aventura Lego</td>
+														<td>Phil Lord, Christopher Miller</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1987</td>
+														<td>Uma Noite Alucinante 2</td>
+														<td>Sam Raimi</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2009</td>
+														<td>Up</td>
+														<td>Pete Docter, Bob Peterson</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2013</td>
+														<td>Wolverine Imortal</td>
+														<td>James Mangold</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="livros" class="tab-panel" style="display: none">
+							<div id="livros" class="midias-secao">
+								<div class="colecoes">
+									<div class="sub colecao-details">
+										<h2>livros</h2>
+										<div class="scroll">
+											<table class="full">
+												<tr>
+													<th>Nº</th>
+													<th>Título</th>
+													<th>Autor</th>
+													<th>Editora</th>
+												</tr>
+												<tr>
+													<td></td>
+													<td>1001 videogames para jogar antes de morrer</td>
+													<td>Tony Mott</td>
+													<td>Editora Sextante</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>A Girl on the Shore</td>
+													<td>Inio Asano</td>
+													<td>Vertical Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Akira - Vol. 1-2</td>
+													<td>Katsuhiro Otomo</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Alita Last Order - Vol. 1-2</td>
+													<td>Yukito Kishiro</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>All Over and Over</td>
+													<td>Tim Kinsella</td>
+													<td>Featherproof Books</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>All You Need is Kill - Vol. 1-2</td>
+													<td>Hiroshi Sakurazaka & Yoshitoshi ABe</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>O apanhador no campo de centeio</td>
+													<td>J. D. Salinger</td>
+													<td>Todavia</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Art at the Turn of the Millennium</td>
+													<td>Uta Grosenick & Burkhard Riemschneider</td>
+													<td>Taschen America LLC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Battle Angel Alita - Vol. 1-4</td>
+													<td>Yukito Kishiro</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Black Rock Shooter: The Game - Vol. 1-2</td>
+													<td>Sanami Suzuki</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Black Rock Shooter: Innocent Soul - Vol. 1-3</td>
+													<td>Huke & TNSK</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Box Calvin e Haroldo - Vol 1-7</td>
+													<td>Bill Watterson</td>
+													<td>Conrad</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Cidade da Luz</td>
+													<td>Inio Asano</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Coração Satânico</td>
+													<td>William Hjortsberg</td>
+													<td>Darkside</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Darling in the Franxx - Vol.1 (JP)</td>
+													<td>Kentaro Yabuki</td>
+													<td>Shueisha</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Death Note - Vol. 1-6</td>
+													<td>Tsugumi Ohba & Takeshi Obata</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Dementia 21</td>
+													<td>Shintaro Kago</td>
+													<td>Todavia</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Desvendando os quadrinhos</td>
+													<td>Scott McCloud</td>
+													<td>M.Books</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Donnie Darko</td>
+													<td>–</td>
+													<td>Darkside</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Dr. Slump - Vol. 1</td>
+													<td>Akira Toriyama</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Fragmentos do Horror</td>
+													<td>Junji Ito</td>
+													<td>Darkside</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Ghost in the Shell</td>
+													<td>Masamune Shirow</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Gigantomachia</td>
+													<td>Kentaro Miura</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Graphic Design For The 21st Century</td>
+													<td>Charlotte & Peter Fiell</td>
+													<td>Taschen America LLC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Gravity Falls: O Diário Perdido - Vol. 3</td>
+													<td>Alex Hirsch & Rob Renzetti</td>
+													<td>Universo dos Livros</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Guerra Civil</td>
+													<td>Mark Millar</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Guerra Secreta</td>
+													<td>Brian Michael Bendis</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Gunsmith Cats - Vol. 1-2</td>
+													<td>Kenichi Sonoda</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Invasão Secreta</td>
+													<td>Brian Michael Bendis</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Kill la Kill - Vol. 1-3</td>
+													<td>Nakashima Kazuki</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Madoka Magica: The Movie Rebellion - Vol. 1-3</td>
+													<td>Magica Quartet & HANOKAGE</td>
+													<td>NewPOP</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Mau Caminho</td>
+													<td>Simon Hanselmann</td>
+													<td>Veneta</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Maus</td>
+													<td>Art Spiegelman</td>
+													<td>Quadrinhos na Cia</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Msp 50 Novos Artistas</td>
+													<td>Mauricio de Sousa</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Msp + 50 Artistas</td>
+													<td>Mauricio de Sousa</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Neon Genesis Evangelion - Vol. 1</td>
+													<td>Hideaki Anno & Yoshiyuki Sadamoto</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Nijigahara Holograph</td>
+													<td>Inio Asano</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Osaka</td>
+													<td>–</td>
+													<td>Nissha Printing/Dentsu Advertising</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Oriko Magica - Vol. 1-2</td>
+													<td>Magica Quartet & Kuroe Mura</td>
+													<td>–</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Parasyte - Vol. 1-10</td>
+													<td>Hitoshi Iwaaki</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Oyasumi Punpun - Vol. 1</td>
+													<td>Inio Asano</td>
+													<td>Shogakukan</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Oyasumi Punpun - Vol. 1-3</td>
+													<td>Inio Asano</td>
+													<td>VIZ Media</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Oyasumi Punpun - Vol. 1-7</td>
+													<td>Inio Asano</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Scott Pilgrim Contra O Mundo - Vol. 1-3</td>
+													<td>Bryan Lee O'Malley</td>
+													<td>Quadrinhos na Cia</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>São as coisas que você não vê que nos separam</td>
+													<td>Nazareno Rodrigues Alves</td>
+													<td>–</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Solanin</td>
+													<td>Inio Asano</td>
+													<td>VIZ Media</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Sonic the Hedgehog - Vol. 1, 3-6</td>
+													<td>–</td>
+													<td>IDW Publishing</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Star Wars: O Código do Caçador de Recompensa</td>
+													<td>Ryder Windham & Daniel Wallace</td>
+													<td>Bertrand Brasil</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Street Fighter: Sakura Ganbaru! - Vol. 1</td>
+													<td>Masahiko Nakahira</td>
+													<td>NewPOP</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Suicide Club</td>
+													<td>Usamaru Furuya</td>
+													<td>NewPOP</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Taiho Shichauzo - Vol. 3 (JP)</td>
+													<td>Kōsuke Fujishima</td>
+													<td>Kodansha</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>The God's Lie</td>
+													<td>Kaori Ozaki</td>
+													<td>JBC</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>The Legend Of Zelda: Ocarina Of Time</td>
+													<td>Akira Himekawa</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Tokyo Ghoul:re - Vol. 1</td>
+													<td>Sui Ishida</td>
+													<td>Panini Comics</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Tomie - Vol. 1-2</td>
+													<td>Junji Ito</td>
+													<td>Pipoca e Nanquim</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Tubarão</td>
+													<td>Peter Benchley</td>
+													<td>Editora Nova Cultural</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Um Náufrago Que Ri</td>
+													<td>Rogério Menezes</td>
+													<td>Record</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Uzumaki</td>
+													<td>Junji Ito</td>
+													<td>Pipoca e Nanquim</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Zona de Crise</td>
+													<td>Simon Hanselmann</td>
+													<td>Veneta</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td>Zupi - Edição 53</td>
+													<td>–</td>
+													<td>–</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="musica" class="tab-panel" style="display: none">
+							<div id="musica" class="midias-secao">
+								<div class="favoritos">
+									<h2>favoritos</h2>
+									<div class="grid albuns">
+										<img
+											src="/assets/img/favoritos/albuns/Eversince - Bladee.png"
+											alt="Bladee - Eversince"
+											title="Bladee - Eversince"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/John Krasinski - Summer 2000.png"
+											alt="Summer 2000 - John Krasinski"
+											title="Summer 2000 - John Krasinski"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/III - Foxtails.png"
+											alt="Foxtails - III"
+											title="Foxtails - III"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/What It Takes To Move Forward - empire! empire! (i was a lonely estate).png"
+											alt="empire! empire! (i was a lonely estate) - What It Takes To Move Forward"
+											title="empire! empire! (i was a lonely estate) - What It Takes To Move Forward"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/summer death (anniversary edition) - Marietta.png"
+											alt="Marietta - summer death (anniversary edition)"
+											title="Marietta - summer death (anniversary edition)"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/American Football - American Football.png"
+											alt="American Football - American Football"
+											title="American Football - American Football"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/crybaby - Lil Peep.png"
+											alt="Lil Peep - crybaby"
+											title="Lil Peep - crybaby"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Diaries - Chestnut Bakery.png"
+											alt="Chestnut Bakery - Diaries"
+											title="Chestnut Bakery - Diaries"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Either Or - Elliott Smith.png"
+											alt="Elliott Smith - Either/Or"
+											title="Elliott Smith - Either/Or"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/LIL PEEP; PART ONE - Lil Peep.png"
+											alt="Lil Peep - LIL PEEP; PART ONE"
+											title="Lil Peep - LIL PEEP; PART ONE"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Psykos - Yung Lean.png"
+											alt="Yung Lean - Psykos"
+											title="Yung Lean - Psykos"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Tigers Jaw - Tigers Jaw.png"
+											alt="Tigers Jaw - Tigers Jaw"
+											title="Tigers Jaw - Tigers Jaw"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/what people call low self-esteem is really just seeing yourself the way that other people see you - awakebutstillinbed.png"
+											alt="awakebutstillinbed - what people call low self-esteem is really just seeing yourself the way that other people see you"
+											title="awakebutstillinbed - what people call low self-esteem is really just seeing yourself the way that other people see you"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/God Save The Animals - Alex G.png"
+											alt="Alex G - God Save The Animals"
+											title="Alex G - God Save The Animals"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Animals - TTNG.png"
+											alt="TTNG - Animals"
+											title="TTNG - Animals"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/They Drew Blood - If I Die First.png"
+											alt="If I Die First - They Drew Blood"
+											title="If I Die First - They Drew Blood"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/gluee - Bladee.png"
+											alt="Bladee - gluee"
+											title="Bladee - gluee"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/G-Sides - Gorillaz.png"
+											alt="Gorillaz - G-Sides"
+											title="Gorillaz - G-Sides"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/starry cat - starry cat.png"
+											alt="starry cat - starry cat"
+											title="starry cat - starry cat"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/The Magnolia Electric Co - Songs Ohia.png"
+											alt="Songs: Ohia - The Magnolia Electric Co."
+											title="Songs: Ohia - The Magnolia Electric Co."
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/DEATHMETAL - Panchiko.png"
+											alt="Panchiko - D>E>A>T>H>M>E>T>A>L"
+											title="Panchiko - D>E>A>T>H>M>E>T>A>L"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/RePorpoised Phantasies - Machine Girl.png"
+											alt="Machine Girl - RePorpoised Phantasies"
+											title="Machine Girl - RePorpoised Phantasies"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/I'm Wide Awake It's Morning - Bright Eyes.png"
+											alt="Bright Eyes - I'm Wide Awake, It's Morning"
+											title="Bright Eyes - I'm Wide Awake, It's Morning"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Charm - Clairo.png"
+											alt="Clairo - Charm"
+											title="Clairo - Charm"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Trick - Alex G.png"
+											alt="Alex G - Trick"
+											title="Alex G - Trick"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Who Are You - nothing,nowhere.png"
+											alt="nothing,nowhere. - Who Are You?"
+											title="nothing,nowhere. - Who Are You?"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Fawn - foxtails.png"
+											alt="foxtails - Fawn"
+											title="foxtails - Fawn"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Only God Can Judge Me and More - AJJ.png"
+											alt="AJJ - Only God Can Judge Me and More"
+											title="AJJ - Only God Can Judge Me and More"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Scotland, I Wish You Had Stayed - Flatsound.png"
+											alt="Flatsound - Scotland, I Wish You Had Stayed"
+											title="Flatsound - Scotland, I Wish You Had Stayed"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Gorillaz - Gorillaz.png"
+											alt="Gorillaz - Gorillaz"
+											title="Gorillaz - Gorillaz"
+											class="tenho"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Please Be Nice - Camping in Alaska.png"
+											alt="Camping in Alaska - Please Be Nice"
+											title="Camping in Alaska - Please Be Nice"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Artistic Vice - Daniel Johnston.png"
+											alt="Daniel Johnston - Artistic Vice"
+											title="Daniel Johnston - Artistic Vice"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Hourglass - idialedyournumber.png"
+											alt="idialedyournumber - Hourglass"
+											title="idialedyournumber - Hourglass"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/Excuses For Travellers - Mojave 3.png"
+											alt="Mojave 3 - Excuses For Travellers"
+											title="Mojave 3 - Excuses For Travellers"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/chaos takes the wheel and i am a passenger - awakebutstillinbed.png"
+											alt="awakebutstillinbed - chaos takes the wheel and i am a passenger"
+											title="awakebutstillinbed - chaos takes the wheel and i am a passenger"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/WLFGRL - Machine Girl.png"
+											alt="Machine Girl - WLFGRL"
+											title="Machine Girl - WLFGRL"
+										/>
+										<img
+											src="/assets/img/favoritos/albuns/ruiner - nothing,nowhere.png"
+											alt="nothing,nowhere. - ruiner"
+											title="nothing,nowhere. - ruiner"
+										/>
+									</div>
+									<p>
+										<a
+											href="https://www.last.fm/user/wrired/library/albums?date_preset=LAST_365_DAYS"
+											target="_blank"
+											>...mais no last.fm</a
+										>
+									</p>
+								</div>
+
+								<div class="colecoes">
+									<div class="sub colecao-details">
+										<h2>CDs de música</h2>
+										<div class="scroll">
+											<table class="full">
+												<thead>
+													<tr>
+														<th>Nº</th>
+														<th>Ano</th>
+														<th>Artista</th>
+														<th>Título</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td>2013</td>
+														<td>Arctic Monkeys</td>
+														<td>AM</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Arctic Monkeys</td>
+														<td>Favorite Worst Nightmare</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1989</td>
+														<td>The New American Orchestra</td>
+														<td>Blade Runner Soundtrack</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2006</td>
+														<td>Breaking Benjamin</td>
+														<td>Phobia</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2008</td>
+														<td>Crystal Castles</td>
+														<td>Crystal Castles</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2003</td>
+														<td>Evanescence</td>
+														<td>Fallen</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2001</td>
+														<td>Gorillaz</td>
+														<td>Gorillaz</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2018</td>
+														<td>Gorillaz</td>
+														<td>The Now Now</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1992</td>
+														<td>Iron Maiden</td>
+														<td>Fear of the Dark</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Looper</td>
+														<td>Up a Tree</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1991</td>
+														<td>Nirvana</td>
+														<td>Nevermind</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Pet Shop Boys</td>
+														<td>Bilingual</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Vários</td>
+														<td>Pokémon: The First Movie Soundtrack</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2002</td>
+														<td>SOKA GLORIA Wind Orchestra</td>
+														<td>RAVEL</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2009</td>
+														<td>Sean Kingston</td>
+														<td>Tomorrow</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2013</td>
+														<td>The 1975</td>
+														<td>The 1975</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Vários</td>
+														<td>
+															The Blair Witch Project: Josh's Blair Witch Mix
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2004</td>
+														<td>The Killers</td>
+														<td>Hot Fuss</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1992</td>
+														<td>Star Inc.</td>
+														<td>
+															The Most Spectacular Synthesizer Hits Of Vangelis,
+															Jean Michel Jarre & Jan Hammer
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2016</td>
+														<td>The Weeknd</td>
+														<td>Starboy</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="jogos" class="tab-panel" style="display: none">
+							<div id="jogos" class="midias-secao">
+								<div class="favoritos">
+									<h2>favoritos</h2>
+									<div class="grid jogos">
+										<img
+											src="/assets/img/favoritos/jogos/Bomb Rush Cyberfunk.png"
+											alt="Bomb Rush Cyberfunk"
+											title="Bomb Rush Cyberfunk"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Alien Isolation.png"
+											alt="Alien: Isolation"
+											title="Alien: Isolation"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Cyberpunk 2077.png"
+											alt="Cyberpunk 2077"
+											title="Cyberpunk 2077"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Emily Is Away Too.png"
+											alt="Emily Is Away Too"
+											title="Emily Is Away Too"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Fallout New Vegas.png"
+											alt="Fallout: New Vegas"
+											title="Fallout: New Vegas"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Fatum Betula.png"
+											alt="Fatum Betula"
+											title="Fatum Betula"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Hotline Miami.png"
+											alt="Hotline Miami"
+											title="Hotline Miami"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Inscryption.png"
+											alt="Inscryption"
+											title="Inscryption"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Klonoa Door to Phantomile.png"
+											alt="Klonoa: Door to Phantomile"
+											title="Klonoa: Door to Phantomile"
+											class="tenho"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Life is Strange.png"
+											alt="Life is Strange"
+											title="Life is Strange"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Pokémon Black 2.png"
+											alt="Pokémon Black 2"
+											title="Pokémon Black 2"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Slime Rancher.png"
+											alt="Slime Rancher"
+											title="Slime Rancher"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/The Wolf Among Us.png"
+											alt="The Wolf Among Us"
+											title="The Wolf Among Us"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Vampire Savior The Lord of Vampire.png"
+											alt="Vampire Savior: The Lord of Vampire"
+											title="Vampire Savior: The Lord of Vampire"
+										/>
+										<img
+											src="/assets/img/favoritos/jogos/Sonic Adventure 2.png"
+											alt="Sonic Adventure 2"
+											title="Sonic Adventure 2"
+										/>
+										<!-- <a href="/2kki.html"><img src="/assets/img/favoritos/jogos/Yume Nikki.png" alt="Yume Nikki" title="Yume Nikki" /></a> -->
+										<!-- <img src="/assets/img/favoritos/jogos" alt=""> -->
+									</div>
+									<p>
+										<a
+											href="https://backloggd.com/u/mozartsempiano/list/favoritos/"
+											target="_blank"
+											>...mais no backloggd</a
+										>
+									</p>
+								</div>
+
+								<div class="colecoes">
+									<div class="sub colecao-details">
+										<h2>cds de jogos</h2>
+										<div class="scroll">
+											<table class="full">
+												<thead>
+													<tr>
+														<th>Nº</th>
+														<th>Ano</th>
+														<th>Título</th>
+														<th>Plataforma</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<!-- Playstation 1 -->
+													<tr>
+														<td></td>
+														<td>2000</td>
+														<td>Bugs Bunny & Taz: Time Busters</td>
+														<td id="playstation1">
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Alien Trilogy</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Darkstalkers 3</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Final Doom</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2002</td>
+														<td>Final Fantasy Origins</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1997</td>
+														<td>Jersey Devil</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1997</td>
+														<td>Klonoa: Door to Phantomile</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Legend of Legaia</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Legend of Mana</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Marvel Comics X-Men Vs. Street Fighter</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1997</td>
+														<td>Marvel Super Heroes</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Marvel Vs. Capcom</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Mizzurna Falls</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Policenauts</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Resident Evil: Director's Cut</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Space Jam</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Spyro the Dragon</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2000</td>
+														<td>Spyro: Year of the Dragon</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Siphon Filter</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1999</td>
+														<td>Tarzan</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Tekken 3</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>1996</td>
+														<td>Tomb Raider</td>
+														<td>
+															<span class="icone ps1-icone"></span>Playstation 1
+														</td>
+													</tr>
+
+													<!-- Playstation 2 -->
+													<tr>
+														<td></td>
+														<td>?</td>
+														<td>Super Coleção SNES Station</td>
+														<td id="playstation2">
+															<span class="icone ps2-icone"></span>Playstation 2
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2008</td>
+														<td>Sonic Unleashed</td>
+														<td>
+															<span class="icone ps2-icone"></span>Playstation 2
+														</td>
+													</tr>
+
+													<!-- Dreamcast -->
+													<tr>
+														<td></td>
+														<td>1998</td>
+														<td>Sonic Adventure (JP)</td>
+														<td id="dreamcast">
+															<span class="icone dreamcast-icone"></span
+															>Dreamcast
+														</td>
+													</tr>
+
+													<!-- Nintendo DS -->
+													<tr>
+														<td></td>
+														<td>2010</td>
+														<td>Club Penguin: Herbert's Revenge</td>
+														<td id="nintendods">
+															<span class="icone nds-icone"></span>Nintendo DS
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Mario & Sonic at the Olympic Games (JP)</td>
+														<td id="nintendods">
+															<span class="icone nds-icone"></span>Nintendo DS
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2005</td>
+														<td>Mario Kart DS</td>
+														<td id="nintendods">
+															<span class="icone nds-icone"></span>Nintendo DS
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Mario Party DS</td>
+														<td id="nintendods">
+															<span class="icone nds-icone"></span>Nintendo DS
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2007</td>
+														<td>Star Wars LEGO: The Complete Saga</td>
+														<td id="nintendods">
+															<span class="icone nds-icone"></span>Nintendo DS
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td>2009</td>
+														<td>The Legend of Zelda: Spirit Tracks</td>
+														<td id="nintendods">
+															<span class="icone nds-icone"></span>Nintendo DS
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="web" class="tab-panel" style="display: none">
+							<div id="web">
+								<div class="web-flex">
+									<!-- Selos -->
+									<div class="selos">
+										<img src="/assets/img/stamps/aphex-twin.png" />
+										<img src="/assets/img/stamps/machine-girl.webp" />
+										<img src="/assets/img/stamps/panchiko.png" />
+										<img src="/assets/img/stamps/captcha.webp" />
+										<img src="/assets/img/stamps/cat-kiss.webp" />
+										<img src="/assets/img/stamps/cat-pc.webp" />
+										<img src="/assets/img/stamps/catgirl-lover.png" />
+										<img src="/assets/img/stamps/louis-wain.png" />
+										<img src="/assets/img/stamps/dog-pepsi.png" />
+										<img src="/assets/img/stamps/dolphin.png" />
+										<img src="/assets/img/stamps/dentes.gif" />
+										<img src="/assets/img/stamps/fish-swimming.webp" />
+										<img src="/assets/img/stamps/fu.png" />
+										<img src="/assets/img/stamps/grass.png" />
+										<img src="/assets/img/stamps/waves.webp" />
+										<img src="/assets/img/stamps/yes.png" />
+										<img src="/assets/img/stamps/biohazard.png" />
+										<img src="/assets/img/stamps/i-love-cmd.webp" />
+										<img src="/assets/img/stamps/im-a-robot.jpg" />
+										<img src="/assets/img/stamps/keyboard.gif" />
+										<img src="/assets/img/stamps/headphones.gif" />
+										<img src="/assets/img/stamps/quiet-zone.png" />
+										<img src="/assets/img/stamps/sanrio.png" />
+										<img src="/assets/img/stamps/smile.png" />
+										<img src="/assets/img/stamps/evangelion-asuka.png" />
+										<img src="/assets/img/stamps/evangelion-ayanami.png" />
+										<img src="/assets/img/stamps/kiki.gif" />
+										<img src="/assets/img/stamps/lain-01.webp" />
+										<img src="/assets/img/stamps/lain-02.webp" />
+										<img src="/assets/img/stamps/lucky-star-02.webp" />
+										<img src="/assets/img/stamps/panty-stocking.gif" />
+										<img src="/assets/img/stamps/yotsuba.webp" />
+										<img src="/assets/img/stamps/flcl.gif" />
+										<img src="/assets/img/stamps/punpun.png" />
+										<img src="/assets/img/stamps/nom-nom.gif" />
+										<img src="/assets/img/stamps/scott-pilgrim.gif" />
+										<img src="/assets/img/stamps/neko.png" />
+										<img src="/assets/img/stamps/old-web.png" />
+										<img src="/assets/img/stamps/glitch.png" />
+										<img src="/assets/img/stamps/pikachu.gif" />
+										<img src="/assets/img/stamps/froslass.png" />
+										<img src="/assets/img/stamps/pyro-tf2.gif" />
+										<img src="/assets/img/stamps/fallout.png" />
+										<img src="/assets/img/stamps/yume-nikki-stairs.gif" />
+										<img src="/assets/img/stamps/chao-fan.png" />
+										<img src="/assets/img/stamps/sonic-adventure.webp" />
+										<img src="/assets/img/stamps/sonic-ova.gif" />
+										<img src="/assets/img/stamps/sonic-riders.gif" />
+										<img src="/assets/img/stamps/super-sonic-x.gif" />
+										<img src="/assets/img/stamps/tails-tired.gif" />
+										<img src="/assets/img/stamps/neopets.webp" />
+										<img src="/assets/img/stamps/stick-of-truth.jpg" />
+									</div>
+
+									<!-- Blinkies -->
+									<div class="blinkies">
+										<img
+											src="/assets/img/150x20 blinkies/binary.gif"
+											alt="Binary"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/cmd.webp"
+											alt="CMD C:\"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/block.webp"
+											alt="Block"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/dvd-crazy.webp"
+											alt="DVD Crazy!"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/i-love-my-camera.webp"
+											alt="I love my camera!"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/i-wanna-be-a-cowboy.webp"
+											alt="I wanna be a cowboy"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/cinnamoroll.webp"
+											alt="Cinnamoroll"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/coca-cola.webp"
+											alt="Addicted to Coca-Cola"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/wikipedia.webp"
+											alt="Wikipedia"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/cryptozoology.webp"
+											alt="Cryptozoology"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/louis-wain.webp"
+											alt="Louis Wain"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/waiting.webp"
+											alt="*Waiting*"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/we-are-not-alone.webp"
+											alt="We are not alone."
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/surprised.webp"
+											alt="o_________O"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/time-in-on-my-side.gif"
+											alt="Time is on my side."
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/my-computer-never-sleeps.webp"
+											alt="My computer never sleeps."
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/open-24h.webp"
+											alt="Open 24 hours"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/ouroboros.webp"
+											alt="Ouroboros"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/right-here.webp"
+											alt="I'll always be right here"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/seal.webp"
+											alt="Seal He was forced to eat cement when he was 6"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/the-fly.webp"
+											alt="The Fly"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/friday-the-13th.webp"
+											alt="Friday the 13th"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/mononoke-hime-01.gif"
+											alt="Mononoke Hime 01"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/mononoke-hime-02.webp"
+											alt="Mononoke Hime 02"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/south-park.webp"
+											alt="South Park"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/marvin-love.webp"
+											alt="I love Marvin"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/machine-girl.webp"
+											alt="Machine Girl"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/nine-inch-nails.webp"
+											alt="Nine Inch Nails"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/panchiko.gif"
+											alt="Panchiko"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/elliott-smith.webp"
+											alt="I love Elliott Smith"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/death-cab-for-cutie.webp"
+											alt="Death Cab for Cutie"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/fish.webp"
+											alt="Webfishing"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/fallout.webp"
+											alt="Fallout"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/portal-2.gif"
+											alt="Portal 2"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/i-love-sonic.webp"
+											alt="I love Sonic"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/i-love-shadow.webp"
+											alt="I love Shadow"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/sonic-01.gif"
+											alt="Sonic Gotta go Fast"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/metal-sonic.webp"
+											alt="Metal Sonic"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/pokemon-master.webp"
+											alt="Pokémon Master"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/pokemon-n.webp"
+											alt="Pokémon N"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/froslass.webp"
+											alt="Froslass"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/lucario.webp"
+											alt="Lucario"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/dratini.webp"
+											alt="Dratini"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/corviknight.webp"
+											alt="Corviknight"
+										/>
+										<img
+											src="/assets/img/150x20 blinkies/beta-meowth.webp"
+											alt="Beta Meowth Never Forget"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/tabs.js"></script>
+		<script id="tabs-config" type="application/json">
+			{
+				"label": "Abas de coleções",
+				"default": "inicio",
+				"tabs": [
+					{ "id": "inicio", "label": "Início" },
+					{ "id": "filmes", "label": "Filmes e Séries" },
+					{ "id": "musica", "label": "Música" },
+					{ "id": "jogos", "label": "Jogos" },
+					{ "id": "livros", "label": "Livros" },
+					{ "id": "web", "label": "Web" }
+				]
+			}
+		</script>
+	</body>
+</html>

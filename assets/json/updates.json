@@ -1,0 +1,263 @@
+[
+	{
+		"date": "2026-01-16",
+		"items": [
+			"adicionado suporte para múltiplos temas, além do tema novo 'steam green', que pode ser ativado nas configurações"
+		]
+	},
+	{
+		"date": "2026-01-15",
+		"items": [
+			"página <a href=\"/agora.html\">/agora</a> criada",
+			"alterado visual da <a href=\"/pensamentos/index.html\">/pensamentos</a>",
+			"leves alterações na <a href=\"/changelog.html\">/changelog</a>",
+			"leves alterações na <a href=\"/links.html\">/links</a>",
+			"selos e blinkies movidos para a <a href=\"/sobre.html\">/sobre</a>",
+			"alterado visual dos links em geral, agora com uma animação de underline",
+			"cores do layout levemente alteradas",
+			"pequena animação adicionada nas horas do rodapé",
+			"maior consistência entre os tempos de transição, bordas, cores e efeitos do site"
+		]
+	},
+	{
+		"date": "2026-01-01",
+		"items": [
+			"página <a href=\"/curriculo.html\">/curriculo</a> adicionada",
+			"mais <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a> adicionadas",
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"alterações no visual das tags nas galerias",
+			"alterações no texto e ordem dos itens da caixa de configurações",
+			"diversas correções no css geral, organização dos códigos, e remoção de trechos e arquivos inutilizados"
+		]
+	},
+	{
+		"date": "2025-12-26",
+		"items": [
+			"remoção (temporária?) do guestbook e alterações na <a href=\"/home.html\">/home</a>",
+			"página atualizações adicionada de volta como <a href=\"/changelog.html\">/changelog</a>",
+			"maior uniformização do layout e diversos ícones alterados",
+			"mais <a href=\"/sonhos.html\">/sonhos</a> adicionados"
+		]
+	},
+	{
+		"date": "2025-12-17",
+		"items": [
+			"alterações na <a href=\"/2kki.html\">/2kki</a>, com maior uniformização no layout, ícones alterados e animações adicionadas"
+		]
+	},
+	{
+		"date": "2025-12-14",
+		"items": [
+			"as imagens nas <a href=\"/anotacoes.html\">/anotacoes</a> agora têm efeito de dither aplicado automaticamente, e mais anotações adicionadas",
+			"mais <a href=\"/sonhos.html\">/sonhos</a> adicionados",
+			"alterações na <a href=\"/sobre.html\">/sobre</a>"
+		]
+	},
+	{
+		"date": "2025-11-23",
+		"items": [
+			"sistema de tags e busca implementados e notificação de copiar corrigida na página <a href=\"/anotacoes.html\">/anotacoes</a>",
+			"mais <a href=\"/sonhos.html\">/sonhos</a> adicionados",
+			"correções no css da <a href=\"/home.html\">/home</a>",
+			"alterações na <a href=\"/portfolio/design/index.html\">/portfolio/design</a>",
+			"leves alterações no css geral"
+		]
+	},
+	{
+		"date": "2025-11-17",
+		"items": [
+			"rework da página <a href=\"/portfolio/arte/index.html\">/portfolio/arte</a>, mais artes adicionadas e artes digitais movidas para a página principal de arte",
+			"mais <a href=\"/sonhos.html\">/sonhos</a> adicionados",
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"páginas <a href=\"https://kaomoji.mozartsempiano.com\" target=\"_blank\">/kaomoji</a> e <a href=\"https://mozartsempiano.github.io/ascii-text-generator/\" target=\"_blank\">/gerador-ascii-texto</a> movidas para o github pages"
+		]
+	},
+	{
+		"date": "2025-11-01",
+		"items": [
+			"adicionada opção pra ativar/desativar blur em imagens NSFW no painel de configurações",
+			"alterações no efeito hover das imagens na <a href=\"/anotacoes.html\">/anotacoes</a> e mais anotações adicionadas"
+		]
+	},
+	{
+		"date": "2025-10-25",
+		"items": [
+			"página <a href=\"/sonhos.html\">/sonhos</a> adicionada",
+			"alterações na <a href=\"/akatsukigames.html\">/akatsukigames</a>",
+			"alterações no tema de halloween"
+		]
+	},
+	{
+		"date": "2025-10-23",
+		"items": [
+			"alterações no marquee dos designs na <a href=\"/home.html\">/home</a>",
+			"desabilitadas as animações de viewport"
+		]
+	},
+	{
+		"date": "2025-10-21",
+		"items": [
+			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas",
+			"alterações na <a href=\"/home.html\">/home</a>",
+			"correções na <a href=\"/links.html\">/links</a>"
+		]
+	},
+	{
+		"date": "2025-09-28",
+		"items": [
+			"página <a href=\"/doar.html\">/doar</a> adicionada",
+			"favoritos e coleções movidos para a nova página <a href=\"/inventario.html\">/inventário</a>",
+			"adicionado link pro bluesky nas redes sociais",
+			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas",
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"unificação das páginas favoritos e coleções na página <a href=\"/inventario.html\">/inventário</a>",
+			"temas de halloween, natal e aniversário adicionados, aplicados automaticamente em suas respectivas datas",
+			"alterações na <a href=\"/home.html\">/home</a>",
+			"alterações na <a href=\"/akatsukigames.html\">/akatsukigames</a>",
+			"leves alterações no css geral"
+		]
+	},
+	{
+		"date": "2025-09-21",
+		"items": [
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"alterações na <a href=\"/mplace/index.html\">/mplace</a>",
+			"alterações na <a href=\"/2kki.html\">/2kki</a>"
+		]
+	},
+	{ "date": "2025-09-13", "items": ["alterações no layout"] },
+	{
+		"date": "2025-09-11",
+		"items": ["rework do rodapé", "animações adicionadas em algumas páginas"]
+	},
+	{
+		"date": "2025-09-09",
+		"items": [
+			"rework das galerias e dos modals para suportarem mais mídias por item"
+		]
+	},
+	{
+		"date": "2025-09-07",
+		"items": [
+			"página <a href=\"/2kki.html\">/2kki</a> adicionada",
+			"alterações na <a href=\"/inventario.html\">/inventario</a>",
+			"mais <a href=\"/links.html\">/links</a> adicionados"
+		]
+	},
+	{
+		"date": "2025-09-04",
+		"items": ["alterações na <a href=\"/home.html\">/home</a>"]
+	},
+	{
+		"date": "2025-09-02",
+		"items": ["tema claro adicionado e switch do crt movido para um menu"]
+	},
+	{
+		"date": "2025-08-28",
+		"items": [
+			"rework da <a href=\"/home.html\">/home</a>",
+			"para melhor manutenção e organização, agora os itens do cabeçalho, rodapé e diversos scripts são importados de arquivos JS, sem precisar mexer em cada página individualmente",
+			"correção do fade-in e fade-out nas páginas",
+			"correção do textshadow no efeito crt"
+		]
+	},
+	{
+		"date": "2025-08-24",
+		"items": [
+			"página <a href=\"/akatsukigames.html\">/akatsukigames</a> criada",
+			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas e alteração no cabeçalho",
+			"mais <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a> adicionadas",
+			"mais <a href=\"/portfolio/design/index.html\">/portfolio/design</a> adicionados",
+			"mais itens adicionados nas <a href=\"/inventario.html\">/inventario</a>",
+			"sketchbooks agora divididos em duas páginas, <a href=\"/portfolio/arte/sketchbook-2019.html\">/portfolio/arte/sketchbook-2019</a> e <a href=\"/portfolio/arte/sketchbook-2022.html\">/portfolio/arte/sketchbook-2022</a>",
+			"rework da página de <a href=\"/portfolio/arte/index.html\">/portfolio/arte</a> pra usar o mesmo formato de galeria que as outras",
+			"adicionada animação fade-in nas outras páginas",
+			"alterações na página <a href=\"/sobre.html\">/sobre</a>",
+			"alterações no efeito CRT",
+			"alterações nos modals"
+		]
+	},
+	{
+		"date": "2025-08-16",
+		"items": [
+			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas",
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"leves alterações na página <a href=\"/sobre.html\">/sobre</a>",
+			"modificações de tamanho de fonte e divs na <a href=\"/index.html\">/index</a>"
+		]
+	},
+	{
+		"date": "2025-08-04",
+		"items": [
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas",
+			"alterada a fonte do site"
+		]
+	},
+	{
+		"date": "2025-08-02",
+		"items": [
+			"página <a href=\"/mplace/index.html\">/mplace</a> criada",
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"corrigido padding dos links na nav-atual"
+		]
+	},
+	{
+		"date": "2025-07-11",
+		"items": [
+			"mais <a href=\"/links.html\">/links</a> adicionados",
+			"leves alterações no css geral"
+		]
+	},
+	{
+		"date": "2025-06-22",
+		"items": [
+			"novo guestbook",
+			"criado botão 88x31",
+			"reorganização e mais fotos adicionadas à página <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a>",
+			"mais <a href=\"/anotacoes.html\">/anotacoes</a> adicionadas e leve alteração nas animações da página",
+			"livros adicionados à página <a href=\"/inventario.html\">/inventario</a>",
+			"uniformização das larguras dos conteúdos e dos tamanhos das fontes"
+		]
+	},
+	{
+		"date": "2025-06-13",
+		"items": [
+			"agora é possível filtrar os posts da página <a href=\"/pensamentos/index.html\">/pensamentos</a> pelas tags",
+			"rework de todas as galerias",
+			"rework da página <a href=\"/portfolio/design/index.html\">/portfolio/design</a>",
+			"rework da página <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a>",
+			"ajustes no css e rework das colunas da <a href=\"/anotacoes.html\">/anotacoes</a>",
+			"rework dos modals",
+			"leves alterações na <a href=\"/index.html\">/index</a>",
+			"leve reorganização da navegação",
+			"mais reorganização na página <a href=\"/links.html\">/links</a>"
+		]
+	},
+	{
+		"date": "2025-06-02",
+		"items": [
+			"página <a href=\"/inventario.html\">/inventario</a> criada",
+			"página <a href=\"/anotacoes.html\">/anotacoes</a> criada",
+			"adicionadas mais duas fotos às <a href=\"/portfolio/fotografia/index.html\">/portfolio/fotografia</a>",
+			"alterações na página <a href=\"/sobre.html\">/sobre</a>",
+			"reorganização da página <a href=\"/links.html\">/links</a>",
+			"agora a tag title de cada post na página <a href=\"/pensamentos/index.html\">/pensamentos</a> é o nome do post em questão",
+			"adicionada tooltip personalizada. créditos a <a href=\"https://manos.malihu.gr/style-my-tooltips-jquery-plugin/\">mailhu</a>",
+			"suavização do efeito crt",
+			"rework dos modals",
+			"diversos outros pequenos ajustes no css geral e mobile"
+		]
+	},
+	{
+		"date": "2025-05-25",
+		"items": [
+			"página de atualizações criada",
+			"adição de um cabeçalho pra mobile",
+			"ajustes no rodapé pra que fique sempre no fim da página",
+			"agora o scroll personalizado aparece no firefox",
+			"ajustes visuais no botão de ativar/desativar efeito CRT",
+			"diversos outros pequenos ajustes no css e animações adicionadas"
+		]
+	}
+]

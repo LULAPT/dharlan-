@@ -1,0 +1,1378 @@
+<!-- 
+  Créditos:
+  Ícones:
+    - Salvar: https://www.svgrepo.com/svg/512798/save-item-1411 - PD License
+    - Bordas: https://www.svgrepo.com/svg/488818/border-all - PD License
+    - Centralizar: https://www.svgrepo.com/svg/511646/center-1430 - PD License
+    - Download: https://www.svgrepo.com/svg/478985/download-2 - PD License
+    - Reiniciar: https://www.svgrepo.com/svg/502579/clear-circle - PD License
+  Paleta de cores:
+    - Baseada em: https://lospec.com/palette-list/shiny-16
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>mplace — mozartsempiano</title>
+
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+		<!-- <link rel="stylesheet" href="mplace.css" /> -->
+		<style>
+			@import url("/assets/css/fonts.css");
+			@import url("/assets/css/animations.css");
+
+			:root {
+				--clr-black-a0-a0: #1f1723;
+				--clr-purple-a30-a0: #844790;
+				--clr-purple-a30-a10: #b89ce9;
+				--clr-gray-a10: #8c7f90;
+				--clr-gray-a0: #bcb0b3;
+				--clr-white-a0: #e2e2e2;
+				--clr-orange-a40-old-a0: #d86830;
+				--clr-orange-a40-old-a10: #f09548;
+				--clr-yellow-a30-a0: #efd081;
+				--clr-red-a40-a0: #b22741;
+				--clr-red-a40-a10: #f5464c;
+				--clr-pink-a40-a0: #f79c88;
+				--clr-blue-a0: #4656a5;
+				--clr-blue-a10: #4995f3;
+				--clr-cyan-a0: #72deeb;
+				--clr-green-a0: #3ec54b;
+				--clr-green-a10: #b4e656;
+
+				--radius: 8px;
+				--radius-small: 4px;
+				--icon-size: 18px;
+				--icon-size-half: 9px;
+			}
+
+			* {
+				image-rendering: pixelated;
+				font-smooth: never;
+				-webkit-font-smoothing: none;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+				user-select: none;
+			}
+
+			body {
+				color: var(--clr-white-a0);
+				font-family: "DotGothic", "MS PGothic", sans-serif;
+				letter-spacing: 0.4px;
+				text-align: center;
+				font-size: 12px;
+			}
+
+			div#site-info {
+				margin: 0;
+				padding: 16px;
+				border-radius: var(--radius);
+				color: var(--clr-white-a0);
+			}
+
+			div#site-info h1 {
+				font-family: "Kraut", "MS PGothic", sans-serif;
+				margin: 0;
+				font-size: 1.5rem;
+			}
+
+			div#site-info p {
+				margin: 0;
+			}
+
+			canvas#pixel-canvas {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				z-index: 0;
+				display: block;
+			}
+
+			#floating-navbar {
+				position: fixed;
+				bottom: 8px;
+				left: 50%; /* Centraliza horizontalmente */
+				transform: translateX(-50%); /* Ajusta para o centro */
+				/* width: calc(100% - 16px); */
+				max-width: calc(1260px - 16px);
+				background-color: rgba(0, 0, 0, 0.8);
+				color: var(--clr-white-a0);
+				display: flex;
+				flex-wrap: wrap; /* Permite que o conteúdo quebre linha em telas menores */
+				justify-content: space-between;
+				padding: 12px;
+				box-sizing: border-box;
+				z-index: 1000;
+				border-radius: var(--radius);
+				margin: 0;
+				gap: 21px;
+			}
+
+			.navbar-secao {
+				display: flex;
+				align-items: center;
+				gap: 21px;
+				flex-direction: row;
+				/* background-color: green; */
+				margin: 0 auto;
+			}
+
+			#coords {
+				position: fixed;
+				top: 8px;
+				left: 8px;
+				background-color: rgba(0, 0, 0, 0.8);
+				color: var(--clr-white-a0);
+				padding: 4px 8px;
+				border-radius: var(--radius-small);
+				font-size: 0.8rem;
+				z-index: 1000;
+			}
+
+			#coord-info {
+				margin: 0 auto;
+			}
+
+			#palette {
+				margin: 0 auto;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				gap: 8px;
+				max-width: calc(10 * 32px + 9 * 8px);
+			}
+
+			button {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 32px;
+				font-size: 0.9rem;
+				border: var(--borda-padrao);
+				background: var(--clr-gray-a10);
+				color: var(--clr-white-a0);
+				cursor: pointer;
+				border-radius: var(--radius-small);
+				margin: 0;
+				white-space: nowrap;
+				transition: all 0.2s;
+			}
+
+			#palette button {
+				width: 32px;
+				height: auto;
+				aspect-ratio: 1 / 1; /* Garante que sejam sempre caixinhas */
+				border: none;
+				background-color: var(--clr-gray-a10);
+				cursor: pointer;
+				transition: transform 0.2s;
+			}
+
+			#palette button:hover {
+				transform: scale(1.1);
+			}
+
+			#botoes {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+			}
+
+			#botoes button {
+				/* min-width: 116px;
+  max-width: 200px; */
+				font-size: 0.9em;
+				padding: 8px;
+				width: auto;
+				/* padding: 0 18px; */
+				font-size: 0.9rem;
+				background: var(--clr-gray-a10);
+				color: var(--clr-white-a0);
+				cursor: pointer;
+				margin: 0;
+				transition: all 0.2s;
+				white-space: nowrap;
+			}
+
+			button:hover {
+				border: 1px solid var(--clr-white-a0);
+				color: var(--clr-white-a0);
+			}
+
+			button.selected {
+				box-shadow: 0 0 6px var(--clr-white-a0);
+			}
+
+			#botoes button,
+			#palette button {
+				border-radius: var(--radius-small);
+				cursor: pointer;
+				flex: 0 0 auto; /* Remove o comportamento de crescimento ou encolhimento */
+				width: auto;
+			}
+
+			#palette button {
+				width: 32px;
+				height: 32px;
+				aspect-ratio: 1 / 1;
+			}
+
+			#botoes button:hover {
+				background-color: var(--clr-gray-a10);
+			}
+
+			button#reset-btn {
+				background-color: var(--clr-red-a40-a0);
+				color: var(--clr-white-a0);
+				border-color: var(--clr-red-a40-a10);
+			}
+
+			button#reset-btn:hover {
+				background-color: var(--clr-red-a40-a0);
+				color: var(--clr-white-a0);
+				border-color: var(--clr-red-a40-a10);
+			}
+
+			div#botoes button {
+				width: 26px;
+				height: 26px;
+				border: none;
+				background: var(--clr-white-a0);
+				cursor: pointer;
+				transition: background-color 0.2s;
+			}
+
+			div#botoes button:hover {
+				background-color: var(--clr-gray-a10);
+			}
+
+			div#botoes button#save-btn {
+				-webkit-mask: url("icons/save-icon.svg") no-repeat center center / 24px
+					24px;
+				mask: url("icons/save-icon.svg") no-repeat center center / 24px 24px;
+			}
+
+			div#botoes button#toggle-borders-btn {
+				-webkit-mask: url("icons/border-icon.svg") no-repeat center center /
+					24px 24px;
+				mask: url("icons/border-icon.svg") no-repeat center center / 24px 24px;
+			}
+
+			div#botoes button#center-btn {
+				-webkit-mask: url("icons/center-icon.svg") no-repeat center center /
+					24px 24px;
+				mask: url("icons/center-icon.svg") no-repeat center center / 24px 24px;
+			}
+
+			div#botoes button#download-btn {
+				-webkit-mask: url("icons/download-icon.svg") no-repeat center center /
+					24px 24px;
+				mask: url("icons/download-icon.svg") no-repeat center center / 24px 24px;
+			}
+
+			div#botoes button#reset-btn {
+				-webkit-mask: url("icons/reset-icon.svg") no-repeat center center / 24px
+					24px;
+				mask: url("icons/reset-icon.svg") no-repeat center center / 24px 24px;
+				background: var(--clr-red-a40-a10);
+			}
+
+			div#botoes button#reset-btn:hover {
+				background: var(--clr-red-a40-a0);
+			}
+
+			div#botoes button#save-btn.saved {
+				background-color: var(--clr-green-a10);
+				transition: background-color 0.2s;
+			}
+
+			div#botoes button#toggle-borders-btn.active {
+				background-color: var(--clr-blue-a10);
+				transition: background-color 0.2s;
+			}
+
+			@media (max-width: 1240px) {
+				#floating-navbar {
+					flex-direction: column;
+					align-items: center;
+					/* width: calc(100% - 16px); */
+					max-width: none;
+					left: 50%;
+					transform: translateX(-50%);
+				}
+
+				.navbar-secao {
+					width: 100%;
+					text-align: center;
+					/* margin-bottom: 8px; */
+					display: flex;
+					justify-content: center;
+					flex-wrap: wrap;
+				}
+
+				#palette {
+					order: 1;
+					width: 100%;
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					/* margin-bottom: 8px; */
+				}
+
+				#botoes {
+					order: 2;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+				}
+
+				#coords {
+					order: 3;
+					text-align: center;
+				}
+
+				#palette button {
+					width: 24px;
+					height: 24px;
+				}
+			}
+			/* @media (max-width: 770px) {
+  #palette {
+    order: 1;
+  }
+
+  #botoes {
+    order: 2;
+  }
+
+  #coords {
+    order: 3;
+  }
+} */
+
+			/* Popup info styles */
+			.popup-info {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				background: rgba(31, 23, 35, 0.95);
+				color: var(--clr-white-a0);
+				padding: 20px;
+				border-radius: 10px;
+				border: 2px solid var(--clr-purple-a30-a0);
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+				max-width: 300px;
+				font-family: "DotGothic", "MS PGothic", sans-serif;
+				z-index: 999;
+				animation: slideIn 1s cubic-bezier(0.4, 0, 0.2, 1);
+				display: block;
+				text-align: left;
+			}
+
+			.popup-info h1 {
+				margin: 0 0 10px 0;
+				font-size: 18px;
+				color: var(--clr-purple-a30-a10);
+				font-family: "Kraut", "MS PGothic", sans-serif;
+			}
+
+			.popup-info p {
+				margin: 0;
+				font-size: 14px;
+				line-height: 1.4;
+			}
+
+			.close-btn {
+				position: absolute;
+				top: 8px;
+				right: 12px;
+				background: none;
+				border: none;
+				color: var(--clr-gray-a0);
+				font-size: 20px;
+				cursor: pointer;
+				padding: 0;
+				width: 20px;
+				height: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 999;
+				pointer-events: auto;
+			}
+
+			.close-btn:hover {
+				color: var(--clr-red-a40-a10);
+			}
+
+			@keyframes slideIn {
+				from {
+					transform: translateY(100%);
+					opacity: 0;
+				}
+				to {
+					transform: translateY(0);
+					opacity: 1;
+				}
+			}
+
+			@keyframes slideOut {
+				from {
+					transform: translateY(0);
+					opacity: 1;
+				}
+				to {
+					transform: translateY(100%);
+					opacity: 0;
+				}
+			}
+
+			.popup-info.hidden {
+				animation: slideOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+			}
+
+			.popup-info.removing {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="pixel-canvas"></canvas>
+		<div id="floating-navbar">
+			<div id="palette"></div>
+			<div id="botoes">
+				<button id="save-btn" title="Salvar"></button>
+				<button id="toggle-borders-btn" title="Alternar Bordas"></button>
+				<button id="center-btn" title="Centralizar"></button>
+				<button id="download-btn" title="Baixar Canvas"></button>
+				<button id="reset-btn" title="Reiniciar"></button>
+			</div>
+		</div>
+		<div id="coords">
+			<span id="coord-info"></span>
+		</div>
+		<div id="site-info" class="popup-info">
+			<button id="close-info-btn" class="close-btn">&times;</button>
+			<h1>mplace</h1>
+			<p>
+				Clique em uma cor e depois nos pixels para pintar.<br />
+				[Botão do meio do mouse] — mover a câmera<br />
+				[Botão direito do mouse] — apagar pixels<br />
+				Segurar [Barra de espaço] — pintar vários pixels de uma vez<br />
+				[G] — ativar/desativar grade<br /><br />
+				O estado da grade é salvo localmente no seu navegador.<br />
+			</p>
+		</div>
+		<script>
+			// Função utilitária p/ acessar variáveis CSS - deve vir primeiro
+			function getCSSVariable(name) {
+				const rootStyles = getComputedStyle(document.documentElement);
+				return rootStyles.getPropertyValue(name).trim();
+			}
+
+			// Configurações do mundo - expandido para ser mais similar ao OWOP
+			const WORLD_COLS = 2048; // Mundo muito maior
+			const WORLD_ROWS = 2048;
+			const CHUNK_SIZE = 32; // Sistema de chunks para performance
+			const CANVAS_BG_COLOR = getCSSVariable("--clr-white-a0"); // Canvas branco
+			const VOID_COLOR = getCSSVariable("--clr-black-a0-a0"); // Fundo preto (fora do canvas)
+			const HOVER_COLOR = getCSSVariable("--clr-gray-a0"); // Cor do hover
+			let PIXEL_SIZE = 16; // Zoom inicial maior
+
+			const PIXEL_SIZE_MIN = 6;
+			const PIXEL_SIZE_MAX = 64;
+
+			// Sistema de chunks para performance
+			const chunks = new Map(); // Map de chunks carregados
+			let renderQueue = new Set(); // Chunks que precisam ser re-renderizados
+
+			let panX = 0;
+			let panY = 0;
+
+			// Sistema de chunks - similar ao OWOP
+			class ChunkManager {
+				constructor() {
+					this.chunks = new Map();
+					this.loadedChunks = new Set();
+				}
+
+				getChunkKey(chunkX, chunkY) {
+					return `${chunkX},${chunkY}`;
+				}
+
+				getChunkCoords(worldX, worldY) {
+					return {
+						chunkX: Math.floor(worldX / CHUNK_SIZE),
+						chunkY: Math.floor(worldY / CHUNK_SIZE),
+					};
+				}
+
+				getChunk(chunkX, chunkY) {
+					const key = this.getChunkKey(chunkX, chunkY);
+					if (!this.chunks.has(key)) {
+						// Cria chunk vazio
+						const chunk = new Array(CHUNK_SIZE * CHUNK_SIZE).fill(
+							CANVAS_BG_COLOR
+						);
+						this.chunks.set(key, chunk);
+					}
+					return this.chunks.get(key);
+				}
+
+				setPixel(worldX, worldY, color) {
+					const { chunkX, chunkY } = this.getChunkCoords(worldX, worldY);
+					const chunk = this.getChunk(chunkX, chunkY);
+					const localX = worldX - chunkX * CHUNK_SIZE;
+					const localY = worldY - chunkY * CHUNK_SIZE;
+					const index = localY * CHUNK_SIZE + localX;
+					chunk[index] = color;
+				}
+
+				getPixel(worldX, worldY) {
+					const { chunkX, chunkY } = this.getChunkCoords(worldX, worldY);
+					const chunk = this.getChunk(chunkX, chunkY);
+					const localX = worldX - chunkX * CHUNK_SIZE;
+					const localY = worldY - chunkY * CHUNK_SIZE;
+					const index = localY * CHUNK_SIZE + localX;
+					return chunk[index];
+				}
+
+				getVisibleChunks(viewX, viewY, viewWidth, viewHeight, pixelSize) {
+					const startX = Math.floor((viewX - panX) / pixelSize / CHUNK_SIZE);
+					const endX = Math.ceil(
+						(viewX + viewWidth - panX) / pixelSize / CHUNK_SIZE
+					);
+					const startY = Math.floor((viewY - panY) / pixelSize / CHUNK_SIZE);
+					const endY = Math.ceil(
+						(viewY + viewHeight - panY) / pixelSize / CHUNK_SIZE
+					);
+
+					const visibleChunks = [];
+					for (let chunkY = startY; chunkY <= endY; chunkY++) {
+						for (let chunkX = startX; chunkX <= endX; chunkX++) {
+							visibleChunks.push({ chunkX, chunkY });
+						}
+					}
+					return visibleChunks;
+				}
+			}
+
+			const chunkManager = new ChunkManager();
+
+			// Carrega chunks salvos do localStorage
+			function loadSavedChunks() {
+				const savedChunks = localStorage.getItem("mplace-chunks");
+				if (savedChunks) {
+					try {
+						const chunksData = JSON.parse(savedChunks);
+						for (const [key, chunkData] of Object.entries(chunksData)) {
+							chunkManager.chunks.set(key, chunkData);
+						}
+						console.log(
+							`Carregados ${
+								Object.keys(chunksData).length
+							} chunks do localStorage`
+						);
+					} catch (e) {
+						console.error("Erro ao carregar chunks:", e);
+					}
+				}
+			}
+
+			// Inicializa chunks salvos
+			loadSavedChunks();
+
+			// Define fundo preto para toda a página (fora do canvas)
+			document.body.style.backgroundColor = VOID_COLOR;
+			const CENTER_COL = Math.floor(WORLD_COLS / 2);
+			const CENTER_ROW = Math.floor(WORLD_ROWS / 2);
+
+			// Centraliza a view no pixel (0,0)
+			function centerViewOnZeroZero() {
+				panX =
+					-CENTER_COL * PIXEL_SIZE +
+					Math.floor(canvas.width / 2 - PIXEL_SIZE / 2);
+				panY =
+					-CENTER_ROW * PIXEL_SIZE +
+					Math.floor(canvas.height / 2 - PIXEL_SIZE / 2);
+			}
+
+			// Performance melhorada com requestAnimationFrame
+			let animationFrameId = null;
+			let needsRender = true;
+
+			function scheduleRender() {
+				if (!needsRender) {
+					needsRender = true;
+					if (!animationFrameId) {
+						animationFrameId = requestAnimationFrame(() => {
+							renderCanvas();
+							animationFrameId = null;
+							needsRender = false;
+						});
+					}
+				}
+			}
+
+			let resizeTimeout = null; // Variável p/ controlar o debounce do resize
+
+			window.addEventListener("resize", () => {
+				resizeCanvas();
+				scheduleRender();
+
+				// Garante que o canvas seja centralizado após o redimensionamento
+				if (resizeTimeout) clearTimeout(resizeTimeout);
+				resizeTimeout = setTimeout(() => {
+					centerViewOnZeroZero();
+					scheduleRender();
+				}, 200);
+			});
+			// Paleta de cores
+			/* const colors = [
+        "#0C0C0E",
+        "#636e72",
+        "#7f8c8d",
+        "#f2ffe8",
+        "#DC3C22",
+        "#F564A9",
+        "#F4631E",
+        "#FFCC00",
+        "#2ecc71",
+        "#1abc9c",
+        "#3498db",
+        "#9b59b6",
+      ]; */
+
+			// Nova paleta de cores usando as variáveis CSS do root
+			const colors = [
+				"var(--clr-black-a0-a0)", // #1f1723
+				"var(--clr-purple-a30-a0)", // #844790
+				"var(--clr-purple-a30-a10)", // #b89ce9
+				"var(--clr-gray-a10)", // #8c7f90
+				"var(--clr-gray-a0)", // #bcb0b3
+				"var(--clr-white-a0)", // #e2e2e2
+				"var(--clr-orange-a40-old-a0)", // #d86830
+				"var(--clr-orange-a40-old-a10)", // #f09548
+				"var(--clr-yellow-a30-a0)", // #efd081
+				"var(--clr-red-a40-a0)", // #b22741
+				"var(--clr-red-a40-a10)", // #f5464c
+				"var(--clr-pink-a40-a0)", // #f79c88
+				"var(--clr-blue-a0)", // #4656a5
+				"var(--clr-blue-a10)", // #4995f3
+				"var(--clr-cyan-a0)", // #72deeb
+				"var(--clr-green-a0)", // #3ec54b
+				"var(--clr-green-a10)", // #b4e656
+			];
+			let selectedColor = colors[0];
+
+			// Palette simplificada
+			let paletteScrollOffset = 0;
+			const maxVisibleColors = 17; // Mostra todas as cores da nova paleta
+
+			// Renderiza paleta simples
+			const paletteDiv = document.getElementById("palette");
+			function renderPalette() {
+				paletteDiv.innerHTML = "";
+
+				colors.forEach((color, idx) => {
+					const btn = document.createElement("button");
+					btn.className =
+						"color-btn" + (color === selectedColor ? " selected" : "");
+					btn.style.background = color;
+					btn.title = color; // Tooltip simples com o código da cor
+					btn.onclick = () => {
+						document
+							.querySelectorAll(".color-btn")
+							.forEach((b) => b.classList.remove("selected"));
+						btn.classList.add("selected");
+						selectedColor = color;
+					};
+					paletteDiv.appendChild(btn);
+				});
+			}
+			renderPalette();
+
+			// Canvas de pixels com melhorias de performance
+			const canvas = document.getElementById("pixel-canvas");
+			let isPanning = false;
+			let panStart = { x: 0, y: 0 };
+			let panOrigin = { x: 0, y: 0 };
+
+			// FPS counter como no OWOP
+			let frameCount = 0;
+			let lastFPSTime = Date.now();
+			let currentFPS = 0;
+
+			function updateFPS() {
+				frameCount++;
+				const now = Date.now();
+				if (now - lastFPSTime >= 1000) {
+					currentFPS = Math.round((frameCount * 1000) / (now - lastFPSTime));
+					frameCount = 0;
+					lastFPSTime = now;
+					// Atualizar display de FPS se necessário
+				}
+			}
+
+			// Ajusta canvas p/ tela inteira
+			function resizeCanvas() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}
+			window.addEventListener("resize", resizeCanvas);
+			resizeCanvas();
+			centerViewOnZeroZero(); // Começar com o canvas centralizado no pixel (0,0)
+
+			// Eventos de mouse p/ pan e pintura
+			// Eventos de mouse melhorados - similar ao OWOP
+			canvas.addEventListener("mousedown", (e) => {
+				console.log("Mouse down - button:", e.button, "shiftKey:", e.shiftKey);
+
+				if (e.button === 1 || e.shiftKey) {
+					isPanning = true;
+					panStart = { x: e.clientX, y: e.clientY };
+					panOrigin = { x: panX, y: panY };
+					canvas.style.cursor = "grab";
+					return;
+				}
+				if (isPanning) return;
+
+				const coords = getWorldCoordsFromEvent(e);
+				console.log("Coords:", coords, "selectedColor:", selectedColor);
+				if (!coords) return;
+
+				if (e.button === 2) {
+					const bgColor = getCSSVariable("--clr-white-a0");
+					chunkManager.setPixel(coords.worldX, coords.worldY, bgColor);
+					console.log("Apagando pixel em", coords.worldX, coords.worldY);
+				} else {
+					// Resolve a variável CSS para o valor hexadecimal
+					const resolvedColor = selectedColor.startsWith("var(")
+						? getCSSVariable(selectedColor.replace("var(", "").replace(")", ""))
+						: selectedColor;
+					chunkManager.setPixel(coords.worldX, coords.worldY, resolvedColor);
+					console.log(
+						"Pintando pixel em",
+						coords.worldX,
+						coords.worldY,
+						"com cor",
+						resolvedColor
+					);
+				}
+				renderCanvas(); // Renderiza imediatamente ao pintar
+			});
+
+			let targetPixelSize = PIXEL_SIZE; // Tamanho alvo do pixel p/ zoom suave
+			let targetPanX = panX; // Posição alvo de pan horizontal
+			let targetPanY = panY; // Posição alvo de pan vertical
+
+			const SMOOTHING_FACTOR = 0.3; // Valor da velocidade (menor = mais lento, maior = mais rápido)
+
+			function animateCanvas() {
+				// Interpola suavemente o tamanho do pixel
+				PIXEL_SIZE += (targetPixelSize - PIXEL_SIZE) * SMOOTHING_FACTOR;
+
+				// Interpola suavemente o pan
+				panX += (targetPanX - panX) * SMOOTHING_FACTOR;
+				panY += (targetPanY - panY) * SMOOTHING_FACTOR;
+
+				// Re-renderiza o canvas
+				renderCanvas();
+
+				// Continua a animação enquanto houver diferença significativa
+				if (
+					Math.abs(targetPixelSize - PIXEL_SIZE) > 0.1 ||
+					Math.abs(targetPanX - panX) > 0.5 ||
+					Math.abs(targetPanY - panY) > 0.5
+				) {
+					requestAnimationFrame(animateCanvas);
+				}
+			}
+
+			// Ajusta o zoom suavemente
+			function setPixelSize(newSize, mouseX = null, mouseY = null) {
+				const oldSize = PIXEL_SIZE;
+				newSize = Math.round(
+					Math.max(PIXEL_SIZE_MIN, Math.min(PIXEL_SIZE_MAX, newSize))
+				);
+				if (mouseX !== null && mouseY !== null) {
+					const worldX = (mouseX - panX) / oldSize;
+					const worldY = (mouseY - panY) / oldSize;
+					PIXEL_SIZE = newSize;
+					const newPanX = mouseX - worldX * PIXEL_SIZE;
+					const newPanY = mouseY - worldY * PIXEL_SIZE;
+
+					// Ajusta panOrigin e panStart p/ evitar inconsistências durante o movimento
+					if (isPanning) {
+						const deltaX = newPanX - panX;
+						const deltaY = newPanY - panY;
+						panOrigin.x += deltaX;
+						panOrigin.y += deltaY;
+						panStart.x += deltaX;
+						panStart.y += deltaY;
+					}
+
+					panX = newPanX;
+					panY = newPanY;
+				} else {
+					PIXEL_SIZE = newSize;
+				}
+				renderCanvas(); // Renderização imediata para zoom responsivo
+			}
+
+			canvas.addEventListener("mousemove", (e) => {
+				if (isPanning) {
+					const deltaX = e.clientX - panStart.x;
+					const deltaY = e.clientY - panStart.y;
+					panX = panOrigin.x + deltaX;
+					panY = panOrigin.y + deltaY;
+
+					// Calcula a velocidade com base no movimento, mas limita o valor máximo
+					panVelocity = {
+						x: Math.min(Math.max(deltaX * 0.2, -10), 10), // Limita a velocidade entre -10 e 10
+						y: Math.min(Math.max(deltaY * 0.2, -10), 10),
+					};
+
+					renderCanvas(); // Renderiza durante o pan para responsividade
+					return;
+				}
+
+				// Pintura com space + movimento
+				const coords = getWorldCoordsFromEvent(e);
+				if (isSpacePressed && coords !== null) {
+					// Resolve a variável CSS para o valor hexadecimal
+					const resolvedColor = selectedColor.startsWith("var(")
+						? getCSSVariable(selectedColor.replace("var(", "").replace(")", ""))
+						: selectedColor;
+					chunkManager.setPixel(coords.worldX, coords.worldY, resolvedColor);
+					console.log(
+						"Pintando com space em",
+						coords.worldX,
+						coords.worldY,
+						"com cor",
+						resolvedColor
+					);
+					renderCanvas(); // Renderiza imediatamente ao pintar
+				}
+
+				const idx = getPixelIdxFromEvent(e);
+				if (hoveredIdx !== idx) {
+					hoveredIdx = idx;
+					renderCanvas(); // Renderiza imediatamente para mostrar hover
+				}
+				updateCoordInfo(idx);
+			});
+			canvas.addEventListener("mouseup", () => {
+				if (isPanning) {
+					isPanning = false;
+					canvas.style.cursor = "default";
+
+					// Inicia a animação de inércia apenas se a velocidade for significativa
+					if (
+						!isAnimatingPan &&
+						(Math.abs(panVelocity.x) > 0.5 || Math.abs(panVelocity.y) > 0.5)
+					) {
+						isAnimatingPan = true;
+						requestAnimationFrame(animatePan);
+					}
+				}
+			});
+			canvas.addEventListener("mouseleave", () => {
+				if (isPanning) {
+					isPanning = false;
+					canvas.style.cursor = "default";
+
+					// Inicia a animação de inércia apenas se a velocidade for significativa
+					if (
+						!isAnimatingPan &&
+						(Math.abs(panVelocity.x) > 0.5 || Math.abs(panVelocity.y) > 0.5)
+					) {
+						isAnimatingPan = true;
+						requestAnimationFrame(animatePan);
+					}
+				}
+				hoveredIdx = null;
+				renderCanvas();
+				updateCoordInfo(null);
+			});
+
+			let lastCoord = { col: 0, row: 0 };
+
+			// Função utilitária p/ atualizar o texto de coordSpan
+			function updateCoordText(col, row) {
+				coordSpan.textContent = `(${col}, ${row})`;
+			}
+
+			// Atualiza coordenada do cursor p/ considerar o centro como (0,0)
+			function updateCoordInfo(idx) {
+				if (idx === null) {
+					updateCoordText(lastCoord.col, lastCoord.row);
+					return;
+				}
+				const col = idx % WORLD_COLS;
+				const row = Math.floor(idx / WORLD_COLS);
+				// Coordenada relativa ao centro
+				const relCol = col - CENTER_COL;
+				const relRow = row - CENTER_ROW;
+				lastCoord = { col: relCol, row: relRow };
+				updateCoordText(relCol, relRow);
+			}
+
+			// Adiciona referência ao elemento coord-info do HTML
+			const coordSpan = document.getElementById("coord-info");
+
+			// Renderização otimizada por chunks - inspirada no OWOP
+			let hoveredIdx = null;
+			let bordersActive = false;
+
+			function renderCanvas() {
+				const ctx = canvas.getContext("2d");
+				updateFPS();
+
+				// Limpa canvas com fundo preto (fora da área desenhável)
+				ctx.fillStyle = VOID_COLOR;
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+				// Renderiza área desenhável (mundo) com fundo branco
+				const worldScreenX = panX;
+				const worldScreenY = panY;
+				const worldScreenWidth = WORLD_COLS * PIXEL_SIZE;
+				const worldScreenHeight = WORLD_ROWS * PIXEL_SIZE;
+
+				// Só renderiza se a área do mundo está visível
+				if (
+					worldScreenX < canvas.width &&
+					worldScreenY < canvas.height &&
+					worldScreenX + worldScreenWidth > 0 &&
+					worldScreenY + worldScreenHeight > 0
+				) {
+					// Preenche área do mundo com branco
+					ctx.fillStyle = CANVAS_BG_COLOR;
+					ctx.fillRect(
+						worldScreenX,
+						worldScreenY,
+						worldScreenWidth,
+						worldScreenHeight
+					);
+				}
+
+				// Desativa antialiasing para pixels nítidos
+				ctx.imageSmoothingEnabled = false;
+
+				// Calcula chunks visíveis
+				const visibleChunks = chunkManager.getVisibleChunks(
+					0,
+					0,
+					canvas.width,
+					canvas.height,
+					PIXEL_SIZE
+				);
+
+				// Renderiza apenas chunks visíveis
+				for (const { chunkX, chunkY } of visibleChunks) {
+					renderChunk(ctx, chunkX, chunkY);
+				}
+
+				// Renderiza grade otimizada se bordas estão ativas
+				if (bordersActive && PIXEL_SIZE > 4) {
+					renderGrid(ctx);
+				}
+
+				// Renderiza hover
+				if (hoveredIdx !== null) {
+					const col = hoveredIdx % WORLD_COLS;
+					const row = Math.floor(hoveredIdx / WORLD_COLS);
+					const x = Math.round(panX + col * PIXEL_SIZE);
+					const y = Math.round(panY + row * PIXEL_SIZE);
+
+					ctx.strokeStyle = HOVER_COLOR;
+					ctx.lineWidth = 2;
+					ctx.strokeRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+				}
+			}
+
+			// Função otimizada para renderizar grade
+			function renderGrid(ctx) {
+				const worldScreenX = panX;
+				const worldScreenY = panY;
+				const worldScreenWidth = WORLD_COLS * PIXEL_SIZE;
+				const worldScreenHeight = WORLD_ROWS * PIXEL_SIZE;
+
+				ctx.strokeStyle = "#666666";
+				ctx.lineWidth = 1;
+				ctx.setLineDash([]);
+
+				// Linhas verticais
+				const startX =
+					Math.max(0, Math.floor(-worldScreenX / PIXEL_SIZE)) * PIXEL_SIZE +
+					worldScreenX;
+				const endX = Math.min(canvas.width, worldScreenX + worldScreenWidth);
+				for (let x = startX; x <= endX; x += PIXEL_SIZE) {
+					if (x >= 0 && x <= canvas.width) {
+						ctx.beginPath();
+						ctx.moveTo(x, Math.max(0, worldScreenY));
+						ctx.lineTo(
+							x,
+							Math.min(canvas.height, worldScreenY + worldScreenHeight)
+						);
+						ctx.stroke();
+					}
+				}
+
+				// Linhas horizontais
+				const startY =
+					Math.max(0, Math.floor(-worldScreenY / PIXEL_SIZE)) * PIXEL_SIZE +
+					worldScreenY;
+				const endY = Math.min(canvas.height, worldScreenY + worldScreenHeight);
+				for (let y = startY; y <= endY; y += PIXEL_SIZE) {
+					if (y >= 0 && y <= canvas.height) {
+						ctx.beginPath();
+						ctx.moveTo(Math.max(0, worldScreenX), y);
+						ctx.lineTo(
+							Math.min(canvas.width, worldScreenX + worldScreenWidth),
+							y
+						);
+						ctx.stroke();
+					}
+				}
+			}
+
+			function renderChunk(ctx, chunkX, chunkY) {
+				const chunk = chunkManager.getChunk(chunkX, chunkY);
+				const chunkScreenX = panX + chunkX * CHUNK_SIZE * PIXEL_SIZE;
+				const chunkScreenY = panY + chunkY * CHUNK_SIZE * PIXEL_SIZE;
+
+				// Só renderiza se o chunk está visível na tela
+				if (
+					chunkScreenX + CHUNK_SIZE * PIXEL_SIZE < 0 ||
+					chunkScreenY + CHUNK_SIZE * PIXEL_SIZE < 0 ||
+					chunkScreenX > canvas.width ||
+					chunkScreenY > canvas.height
+				) {
+					return;
+				}
+
+				// Renderiza pixels do chunk
+				for (let localY = 0; localY < CHUNK_SIZE; localY++) {
+					for (let localX = 0; localX < CHUNK_SIZE; localX++) {
+						const pixelIndex = localY * CHUNK_SIZE + localX;
+						const color = chunk[pixelIndex];
+
+						if (color !== getCSSVariable("--clr-white-a0")) {
+							const screenX = Math.round(chunkScreenX + localX * PIXEL_SIZE);
+							const screenY = Math.round(chunkScreenY + localY * PIXEL_SIZE);
+
+							ctx.fillStyle = color;
+							ctx.fillRect(screenX, screenY, PIXEL_SIZE, PIXEL_SIZE);
+						}
+					}
+				}
+			}
+
+			// Sistema de coordenadas melhorado para chunk system
+			function getWorldCoordsFromEvent(e) {
+				const rect = canvas.getBoundingClientRect();
+				const canvasX = e.clientX - rect.left;
+				const canvasY = e.clientY - rect.top;
+
+				const worldX = Math.floor((canvasX - panX) / PIXEL_SIZE);
+				const worldY = Math.floor((canvasY - panY) / PIXEL_SIZE);
+
+				if (
+					worldX < 0 ||
+					worldX >= WORLD_COLS ||
+					worldY < 0 ||
+					worldY >= WORLD_ROWS
+				) {
+					return null;
+				}
+
+				return { worldX, worldY };
+			}
+
+			function getPixelIdxFromEvent(e) {
+				const coords = getWorldCoordsFromEvent(e);
+				if (!coords) return null;
+				return coords.worldY * WORLD_COLS + coords.worldX;
+			}
+
+			// Pintar/apagar pixel
+			// Previne menu do botão direito
+			canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+
+			// Alterna bordas dos pixels - otimizado
+			const toggleBordersButton = document.getElementById("toggle-borders-btn");
+			toggleBordersButton.onclick = function () {
+				bordersActive = !bordersActive; // Alterna o estado de 'bordersActive'
+
+				// Atualiza a classe do botão p/ refletir o estado
+				if (bordersActive) {
+					toggleBordersButton.classList.add("active");
+				} else {
+					toggleBordersButton.classList.remove("active");
+				}
+
+				renderCanvas(); // Renderiza imediatamente para feedback instantâneo
+			};
+
+			// Botão p/ centralizar a view no pixel (0,0)
+			document.getElementById("center-btn").onclick = function () {
+				centerViewOnZeroZero();
+				offsetX = 0;
+				offsetY = 0;
+				resizeCanvas();
+				scheduleRender();
+				// Atualiza coordenada exibida p/ (0,0)
+				lastCoord = { col: 0, row: 0 };
+				updateCoordText(0, 0);
+			};
+
+			// Salvar dados dos chunks no localStorage
+			const saveButton = document.getElementById("save-btn");
+			saveButton.onclick = function () {
+				// Salva apenas chunks que contém dados
+				const chunksData = {};
+				for (const [key, chunk] of chunkManager.chunks) {
+					// Só salva chunks que não estão completamente vazios
+					const bgColor = getCSSVariable("--clr-white-a0");
+					if (chunk.some((pixel) => pixel !== bgColor)) {
+						chunksData[key] = chunk;
+					}
+				}
+				localStorage.setItem("mplace-chunks", JSON.stringify(chunksData));
+
+				// Adiciona a classe p/ mudar a cor do botão
+				saveButton.classList.add("saved");
+
+				// Remove a classe dps de 2 segundos
+				setTimeout(() => {
+					saveButton.classList.remove("saved");
+				}, 2000);
+			};
+
+			// Botão p/ reiniciar o canvas
+			document.getElementById("reset-btn").onclick = function () {
+				if (confirm("Tem certeza de que deseja reiniciar o canvas?")) {
+					chunkManager.chunks.clear(); // Limpa todos os chunks
+					scheduleRender();
+				}
+			};
+
+			// Botão p/ baixar o canvas como PNG - otimizado para chunks
+			const downloadButton = document.getElementById("download-btn");
+			downloadButton.onclick = function () {
+				// Cria um canvas temporário p/ renderizar o mundo inteiro
+				const scaleFactor = 1; // Reduzido para evitar problemas de memória
+				const tempCanvas = document.createElement("canvas");
+				tempCanvas.width = WORLD_COLS * scaleFactor;
+				tempCanvas.height = WORLD_ROWS * scaleFactor;
+				const tempCtx = tempCanvas.getContext("2d");
+
+				// Preenche com cor de fundo
+				tempCtx.fillStyle = CANVAS_BG_COLOR;
+				tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+				// Renderiza apenas chunks que existem (otimização)
+				for (const [key, chunk] of chunkManager.chunks) {
+					const [chunkX, chunkY] = key.split(",").map(Number);
+
+					for (let localY = 0; localY < CHUNK_SIZE; localY++) {
+						for (let localX = 0; localX < CHUNK_SIZE; localX++) {
+							const pixelIndex = localY * CHUNK_SIZE + localX;
+							const color = chunk[pixelIndex];
+
+							const bgColor = getCSSVariable("--clr-white-a0");
+							if (color !== bgColor) {
+								const worldX = chunkX * CHUNK_SIZE + localX;
+								const worldY = chunkY * CHUNK_SIZE + localY;
+
+								if (
+									worldX >= 0 &&
+									worldX < WORLD_COLS &&
+									worldY >= 0 &&
+									worldY < WORLD_ROWS
+								) {
+									tempCtx.fillStyle = color;
+									tempCtx.fillRect(
+										worldX * scaleFactor,
+										worldY * scaleFactor,
+										scaleFactor,
+										scaleFactor
+									);
+								}
+							}
+						}
+					}
+				}
+
+				// Gera o link de download
+				const link = document.createElement("a");
+				link.download = "canvas.png";
+				link.href = tempCanvas.toDataURL("image/png");
+				link.click();
+			};
+
+			let isSpacePressed = false; // Indica se a barra de espaço tá pressionada
+
+			// Evento pra detectar quando a barra de espaço é pressionada
+			window.addEventListener("keydown", (e) => {
+				if (e.code === "Space") {
+					isSpacePressed = true;
+					canvas.style.cursor = "crosshair";
+					e.preventDefault(); // Previne o comportamento padrão da barra de espaço
+				}
+				if (e.code === "KeyG") {
+					// Alterna o grid com a tecla G
+					bordersActive = !bordersActive;
+					const toggleBordersButton =
+						document.getElementById("toggle-borders-btn");
+					if (bordersActive) {
+						toggleBordersButton.classList.add("active");
+					} else {
+						toggleBordersButton.classList.remove("active");
+					}
+					renderCanvas(); // Renderiza imediatamente para mostrar/esconder o grid
+					console.log(
+						"Grid",
+						bordersActive ? "ativado" : "desativado",
+						"com tecla G"
+					);
+				}
+			});
+			// Evento pra detectar quando a barra de espaço é solta
+			window.addEventListener("keyup", (e) => {
+				if (e.code === "Space") {
+					isSpacePressed = false;
+					canvas.style.cursor = "default";
+				}
+			});
+
+			// Ajusta o zoom diretamente no evento de roda do mouse
+			canvas.addEventListener(
+				"wheel",
+				(e) => {
+					e.preventDefault();
+					let newPixelSize = PIXEL_SIZE;
+					if (e.deltaY < 0) {
+						newPixelSize = PIXEL_SIZE + 2;
+					} else {
+						newPixelSize = PIXEL_SIZE - 2;
+					}
+					setPixelSize(newPixelSize, e.clientX, e.clientY);
+				},
+				{ passive: false }
+			);
+
+			let panVelocity = { x: 0, y: 0 }; // Velocidade do pan
+			let isAnimatingPan = false; // Indica se a animação de pan está ativa
+
+			function animatePan() {
+				// Aplica suavização ao pan
+				panX += panVelocity.x;
+				panY += panVelocity.y;
+
+				// Reduz gradualmente a velocidade (inércia)
+				panVelocity.x *= 0.9;
+				panVelocity.y *= 0.9;
+
+				renderCanvas(); // Renderiza durante a animação de inércia
+
+				// Continua a animação enquanto a velocidade for significativa
+				if (Math.abs(panVelocity.x) > 0.5 || Math.abs(panVelocity.y) > 0.5) {
+					requestAnimationFrame(animatePan);
+				} else {
+					isAnimatingPan = false; // Para a animação
+				}
+			}
+
+			// Inicializa o canvas
+			renderCanvas();
+
+			// Controle do popup de informações
+			const siteInfoPopup = document.getElementById("site-info");
+			const closeInfoBtn = document.getElementById("close-info-btn");
+
+			console.log("Popup elements:", siteInfoPopup, closeInfoBtn);
+
+			// Função para fechar o popup
+			function closeSiteInfo() {
+				console.log("Fechando popup...");
+				console.log("Classes antes:", siteInfoPopup.className);
+
+				// Adiciona a classe hidden para iniciar a animação de slide out
+				siteInfoPopup.classList.add("hidden");
+
+				// Após a animação terminar, esconde completamente o popup
+				setTimeout(() => {
+					siteInfoPopup.classList.add("removing");
+					console.log("Classes depois:", siteInfoPopup.className);
+					console.log(
+						"Display computado:",
+						window.getComputedStyle(siteInfoPopup).display
+					);
+				}, 500); // 500ms = duração da animação slideOut
+			}
+
+			// Evento do botão fechar
+			if (closeInfoBtn) {
+				closeInfoBtn.addEventListener("click", function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+					console.log("Botão X clicado");
+					closeSiteInfo();
+				});
+
+				// Backup: também adicionar o onclick
+				closeInfoBtn.onclick = function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+					console.log("Botão X clicado via onclick");
+					closeSiteInfo();
+				};
+			}
+
+			// Método alternativo: duplo clique no popup para fechar
+			if (siteInfoPopup) {
+				siteInfoPopup.addEventListener("dblclick", function (event) {
+					console.log("Duplo clique no popup");
+					closeSiteInfo();
+				});
+			}
+
+			// Fechar automaticamente após 30 segundos
+			setTimeout(function () {
+				console.log("Timeout de 30 segundos atingido");
+				closeSiteInfo();
+			}, 30000);
+
+			// Fechar com tecla Escape
+			window.addEventListener("keydown", (e) => {
+				if (
+					e.code === "Escape" &&
+					!siteInfoPopup.classList.contains("hidden")
+				) {
+					console.log("Tecla Escape pressionada");
+					closeSiteInfo();
+				}
+			});
+
+			// Mostrar o popup inicialmente (caso tenha alguma class hidden)
+			siteInfoPopup.classList.remove("hidden");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,204 @@
+h1 {
+	margin-top: 1em;
+}
+
+main div#col-centro h1:first-of-type:not(.sobre-meu-nome) {
+	font-size: 5em;
+	text-align: center;
+}
+
+#col-centro {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+#formas-de-doar {
+	display: flex;
+	flex-direction: row;
+	gap: 14px;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+#opcoes-de-doacao {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+	justify-content: center;
+	text-align: center;
+	margin: 2em 0;
+	background-color: var(--clr-black-a10);
+	padding: 58px 72px;
+	border: var(--borda-padrao);
+	border-radius: var(--b-radius);
+}
+
+.kofitext img.kofiimg {
+	height: 15px;
+	width: 22px;
+	display: initial;
+	animation: kofi-wiggle 3s infinite;
+	image-rendering: auto;
+}
+
+img.kofiimg {
+	display: initial;
+	vertical-align: middle;
+	height: 13px;
+	width: 20px;
+	content: url("https://storage.ko-fi.com/cdn/cup-border.png");
+}
+
+a.button {
+	background-color: var(--clr-main-a30);
+	color: white;
+	padding: 11px 16px;
+	border: none;
+	border-radius: 50px;
+	font-size: 1rem;
+	font-weight: 700;
+	font-family: var(--fonte-corpo);
+	text-align: center;
+	overflow-wrap: break-word;
+	line-height: 1em;
+	cursor: pointer;
+	letter-spacing: 0.1rem;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a.button:hover {
+	background-color: var(--clr-main-a40);
+	text-decoration: none;
+	color: white;
+	box-shadow: 0 0 8px var(--clr-main-a20);
+}
+
+a.button .inner {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.btn-container {
+	white-space: nowrap;
+	margin-bottom: 1.5em;
+}
+
+#agradecimento {
+	text-align: center;
+	font-size: 1.5rem;
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+#agradecimento p {
+	text-align: center;
+}
+
+#agradecimento span#kaomoji span.kaomoji-braco {
+	display: inline-block; /* allow transforms on the span */
+	transform-origin: center bottom; /* nicer pivot for vertical movement */
+	animation: braco 0.7s cubic-bezier(0, 0.9, 0.2, 1) infinite; /* rápido no começo, desacelera no fim */
+	display: inline-block;
+}
+
+@keyframes braco {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+/* centraliza os tamanhos para definir em um só lugar */
+.doacao-icones {
+	--doacao-btn-size: 36px;
+	--doacao-padding: 6px;
+	--doacao-logo-width: 90px;
+	--doacao-svg-height: 20px;
+
+	display: flex;
+	gap: 14px;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.doacao-icones a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--doacao-padding);
+	min-width: var(--doacao-btn-size);
+	height: var(--doacao-btn-size);
+	box-sizing: content-box;
+	text-decoration: none;
+	background: transparent;
+}
+
+.doacao-icones a:hover {
+	background-color: transparent;
+}
+
+.doacao-icones a:hover .doacao-logo {
+	transform: translateY(-3px);
+}
+
+.doacao-icones a .doacao-logo {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	overflow: visible;
+	transition: transform var(--transition-time-long);
+}
+
+.doacao-icones a .doacao-logo svg {
+	height: var(--doacao-svg-height);
+	width: auto;
+	display: inline-block;
+	vertical-align: middle;
+	fill: var(--clr-main-a30);
+}
+
+#pix-box {
+	border: inherit;
+	border-radius: inherit;
+	padding: 16px;
+	background-color: var(--clr-black-a0);
+}
+
+.pix-qrcode {
+	background-color: white;
+	padding: 1em;
+	display: inline-block;
+	border: var(--borda-padrao);
+	transition: transform var(--transition-time-long),
+		box-shadow var(--transition-time-long);
+	box-shadow: 0 6px 0 rgba(0, 0, 0, 0.8);
+	border-radius: calc(var(--b-radius) - 16px);
+}
+
+.pix-qrcode:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 16px 0 rgba(0, 0, 0, 0.8);
+}
+
+.pix-qrcode img {
+	width: 100%;
+	max-width: 190px;
+	height: auto;
+	image-rendering: auto;
+	display: block;
+	user-select: none;
+	-webkit-user-drag: none;
+	pointer-events: none;
+}

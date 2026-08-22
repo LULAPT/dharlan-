@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/sobre.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<span class="animate-flicker">guestbook</span>
+				</div>
+				<div id="col-centro" style="overflow: visible">
+					<h1>Guestbook</h1>
+					<div style="position: relative; min-height: 100vh">
+						<div
+							id="iframe-loader"
+							style="
+								display: flex;
+								align-items: flex-start;
+								justify-content: center;
+								min-height: 0;
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								z-index: 2;
+							"
+						>
+							<span style="font-size: 1.2em">Carregando...</span>
+						</div>
+						<div
+							style="
+								position: relative;
+								width: 100%;
+								height: 100vh;
+								overflow: hidden;
+							"
+						>
+							<iframe
+								id="guestbook-iframe"
+								src="https://mozartsempiano.atabook.org/"
+								width="100%"
+								style="
+									border: 0;
+									min-height: calc(100vh + 80px);
+									height: calc(100vh + 80px);
+									display: block;
+									opacity: 0; /* Inicialmente invisível */
+									transform: translateY(10px); /* Começa deslocado para baixo */
+									transition: opacity 0.75s ease, transform 0.75s ease; /* Transição suave */
+									position: absolute;
+									top: -80px;
+									left: 0;
+								"
+								scrolling="no"
+							></iframe>
+						</div>
+					</div>
+				</div>
+			</main>
+			<script>
+				const iframe = document.getElementById("guestbook-iframe");
+				const loader = document.getElementById("iframe-loader");
+
+				iframe.addEventListener("load", function () {
+					loader.style.display = "none"; // Esconde o loader
+					iframe.style.opacity = "1"; // Aplica o fade-in
+					iframe.style.transform = "translateY(0)"; // Move para a posição final
+				});
+			</script>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+	</body>
+</html>

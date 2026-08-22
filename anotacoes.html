@@ -1,0 +1,2708 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>mozartsempiano</title>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="/assets/img/icones/notebook.png"
+		/>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/anotacoes.css" />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<!-- SVG filter -->
+		<svg width="0" height="0">
+			<filter id="dither">
+				<feColorMatrix
+					type="matrix"
+					values="0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 1 0"
+					result="gray"
+				/>
+				<feImage
+					width="4"
+					height="4"
+					xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAKUlEQVQYV2NkYGBg+M+ABYwMDAwMDAw0MjIwsDAwMDA8P8Gq0AAAzH8K50AAAAASUVORK5CYII="
+					result="bayer"
+				/>
+				<feComposite
+					in="gray"
+					in2="bayer"
+					operator="arithmetic"
+					k1="0"
+					k2="1"
+					k3="0"
+					k4="0"
+					result="dithered"
+				/>
+				<feComponentTransfer color-interpolation-filters="sRGB" in="dithered">
+					<feFuncR type="discrete" tableValues="0.1176 0.8627" />
+					<feFuncG type="discrete" tableValues="0.1059 0.8392" />
+					<feFuncB type="discrete" tableValues="0.1294 0.6627" />
+				</feComponentTransfer>
+			</filter>
+		</svg>
+
+		<svg width="0" height="0">
+			<filter
+				id="dither2"
+				color-interpolation-filters="sRGB"
+				x="0"
+				y="0"
+				width="100%"
+				height="100%"
+			>
+				<!-- Máscara Bayer 4x4 -->
+				<feImage
+					width="4"
+					height="4"
+					xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAASElEQVR42gXBgQAAIAxFwW8QwhBCCCGEIYQQQgghhBBCCEMYwutOkphzYmbsvdG9l9YaEYG7o1or5xxKKay1UGYyxuC9R++dD7yGJkTj6F0HAAAAAElFTkSuQmCC"
+				/>
+				<feTile />
+				<feComposite
+					operator="arithmetic"
+					k1="0"
+					k2="1"
+					k3="1"
+					k4="-0.5"
+					in="SourceGraphic"
+				/>
+				<feComponentTransfer>
+					<!-- #1e1b21 escuro → 30,27,33 → 0.1176,0.1059,0.1294 -->
+					<!-- #dcd6a8 claro → 220,214,168 → 0.8627,0.8392,0.6588 -->
+					<feFuncR type="discrete" tableValues="0.1176 0.8627" />
+					<feFuncG type="discrete" tableValues="0.1059 0.8392" />
+					<feFuncB type="discrete" tableValues="0.1294 0.6588" />
+				</feComponentTransfer>
+			</filter>
+		</svg>
+
+		<!-- CSS -->
+		<style>
+			body section img {
+				filter: sepia(0) brightness(0.77) saturate(0) url(#dither);
+			}
+
+			#copy-notification {
+				background-color: var(--cor-texto-a40) !important;
+				color: var(--cor-fundo-a0) !important;
+				outline: 1px solid var(--cor-fundo-a0) !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page-loader">
+			<div class="progressive-loader">
+				<img
+					src="/assets/img/dogrun.gif"
+					alt="Carregando..."
+					class="progressive-img"
+				/>
+				<div class="progressive-mask"></div>
+			</div>
+		</div>
+		<main>
+			<div id="header">
+				<a href="/home.html">voltar</a>
+				<div class="espaçador"></div>
+				<pre>
+        ,8P'                                      ,d                                                               
+       d8"                                        88                                                               
+     ,8P'  ,adPPYYba,  8b,dPPYba,    ,adPPYba,  MM88MMM  ,adPPYYba,   ,adPPYba,   ,adPPYba,    ,adPPYba,  ,adPPYba,
+    d8"    ""     `Y8  88P'   `"8a  a8"     "8a   88     ""     `Y8  a8"     ""  a8"     "8a  a8P_____88  I8[    ""
+  ,8P'     ,adPPPPP88  88       88  8b       d8   88     ,adPPPPP88  8b          8b       d8  8PP"""""""   `"Y8ba,
+ d8"       88,    ,88  88       88  "8a,   ,a8"   88,    88,    ,88  "8a,   ,aa  "8a,   ,a8"  "8b,   ,aa  aa    ]8I
+8P'        `"8bbdP"Y8  88       88   `"YbbdP"'    "Y888  `"8bbdP"Y8   `"Ybbd8"'   `"YbbdP"'    `"Ybbd8"'  `"YbbdP"'
+        		</pre
+				>
+				<h1 id="titulo-peq">/anotacoes</h1>
+			</div>
+
+			<!-- SEARCH BAR & TAGS -->
+			<div id="search-bar-container">
+				<input id="search-input" type="text" placeholder="Buscar..." />
+				<div id="tags-container"></div>
+			</div>
+
+			<div class="anotacoes">
+				<section data-tags="">
+					<h1>Para ler todos os dias</h1>
+					<ul>
+						<li>Não usar o Twitter como um diário.</li>
+						<li>
+							Não importa o quão sedento você esteja, você não pode beber de um
+							poço envenenado.
+						</li>
+						<li>Foque onde há solo fértil. Não insista onde só tem pedra.</li>
+						<li>Aprenda a ouvir.</li>
+						<li>Não compartilhe demais e tão facilmente.</li>
+						<li>Não tem nada menos atraente que carência.</li>
+						<li>Nunca implore a ninguém por nada.</li>
+						<li>O amor NÃO vai ser a sua salvação.</li>
+						<li>Aprenda a dizer "não" e nunca se sinta culpado por isso.</li>
+						<li>Tire algo positivo de toda situação.</li>
+						<li>
+							Ser bom e ser bonzinho são coisas diferentes. Seja bom, mas não
+							seja bonzinho.
+						</li>
+						<li>
+							Sob essas circunstâncias, você fez o seu melhor, e eu tô orgulhoso
+							de você.
+						</li>
+						<li>
+							Pensar "O que aconteceria se isso desse certo?"; tá tudo bem
+							falhar.
+						</li>
+						<li>
+							Nenhuma rejeição vai ser mais dolorosa que o arrependimento que eu
+							vou sentir depois por não ter feito nada.
+						</li>
+						<li>"É esse quem eu quero ser?"</li>
+						<li>
+							Regra dos 5 segundos → No momento em que você tiver vontade de
+							fazer algo, você deve se mover fisicamente em até 5 segundos ou
+							seu cérebro vai te parar.
+						</li>
+						<li>
+							As pessoas sentem sobre mim o que eu sinto em relação a mim mesmo.
+						</li>
+						<li>
+							Mais do que tentar me mudar, eu devo buscar ficar confortável com
+							quem eu sou.
+						</li>
+						<li>Grande parte dos relacionamentos acabam, e tá tudo bem.</li>
+						<li>
+							Não entrar em um modo de pensar escasso → "dentre 8 bilhões de
+							pessoas eu só quero você" → eu acabo limitando minhas opções a fim
+							de confortar o meu ego → eu devo saber o meu valor.
+						</li>
+						<li>
+							É sempre melhor aprender a lidar sozinho com as adversidades da
+							vida do que desabafar com outra pessoa.
+						</li>
+					</ul>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Pergunte-se a cada momento: 'Isso é necessário?'. A maior parte das
+						coisas que dizemos e fazemos não é necessária; quem as eliminar da
+						própria vida será mais tranquilo e sereno."
+					</p>
+					<p>- Marco Aurélio</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/aim.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>
+						Quando algo for importante pra você, você vai atrás mesmo que todas
+						as chances estejam contra ti.
+					</p>
+				</section>
+
+				<section data-tags="">
+					<p>O significados da vida é dar significados à ela.</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Love is life. All, everything that I understand, I understand only
+						because I love. Everything is, everything exists, only because I
+						love. Everything is united by it alone. Love is God, and to die
+						means that I, a particle of love, shall return to the general and
+						eternal source."
+					</p>
+					<p>- Leo Tolstoy</p>
+				</section>
+
+				<section data-tags="ascii">
+					<pre>
+                  ⢀⣀⣤⡤⠤⠤⠤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠞⠋⠁⠀⠀⠀⠀⠀⠀⠀⠉⠛⢦⣤⠶⠦⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⠞⢋⡽⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣰⠟⠁⠀⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡀⠀⠀⠉⠓⠦⣤⣤⣤⣤⣤⣤⣄⣀⠀⠀⠀
+⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣷⡄⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣆⠀
+⠀⠀⣠⠞⠁⠀⠀⣀⣠⣏⡀⠀⢠⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⠿⡃⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡆
+⢀⡞⠁⠀⣠⠶⠛⠉⠉⠉⠙⢦⡸⣿⡿⠀⠀⠀⡄⢀⣀⣀⡶⠀⠀⠀⢀⡄⣀⠀⣢⠟⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃
+⡞⠀⠀⠸⠁⠀⠀⠀⠀⠀⠀⠀⢳⢀⣠⠀⠀⠀⠉⠉⠀⠀⣀⠀⠀⠀⢀⣠⡴⠞⠁⠀⠀⠈⠓⠦⣄⣀⠀⠀⠀⠀⣀⣤⠞⠁⠀
+⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⠁⠀⢀⣀⣀⡴⠋⢻⡉⠙⠾⡟⢿⣅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠉⠉⠀⠀⠀⠀
+⠘⣦⡀⠀⠀⠀⠀⠀⠀⣀⣤⠞⢉⣹⣯⣍⣿⠉⠟⠀⠀⣸⠳⣄⡀⠀⠀⠙⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⠙⠒⠒⠒⠒⠚⠋⠁⠀⡴⠋⢀⡀⢠⡇⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⢀⡾⠋⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⢸⡀⠸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⠀⠉⠋⠻⣄⠀⠀⠀⠀⠀⣀⣠⣴⠞⠋⠳⠶⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠦⢤⠤⠶⠋⠙⠳⣆⣀⣈⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+          </pre>
+				</section>
+
+				<section data-tags="listas">
+					<h1>animais fodas</h1>
+					<ul>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Tard%C3%ADgrado"
+								target="_blank"
+								>tardígrado</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Tigre-de-bengala"
+								target="_blank"
+								>tigre-de-bengala</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Tamandu%C3%A1-bandeira"
+								target="_blank"
+								>tamanduá-bandeira</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Hypsignathus_monstrosus"
+								target="_blank"
+								>morcego-cabeça-de-martelo</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Macaco-japon%C3%AAs"
+								target="_blank"
+								>macaco-japonês</a
+							>
+						</li>
+						<li>
+							<a href="https://pt.wikipedia.org/wiki/Tatu-bola" target="_blank"
+								>tatu-bola</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Macaco-dourado"
+								target="_blank"
+								>macaco-dourado</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Polvo-m%C3%ADmico"
+								target="_blank"
+								>polvo-mímico</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Bico-de-sapato"
+								target="_blank"
+								>bico-de-sapato</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Acerodon_jubatus"
+								target="_blank"
+								>morcego-dourado-filipino</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://pt.wikipedia.org/wiki/Raposa-voadora"
+								target="_blank"
+								>raposa-voadora</a
+							>
+						</li>
+						<li>
+							<a href="https://pt.wikipedia.org/wiki/Colugos" target="_blank"
+								>colugo</a
+							>
+						</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/ship.jpg" />
+				</section>
+
+				<section data-tags="cozinha">
+					<h1>Arroz</h1>
+					<ul>
+						<li>3 copos de arroz pra separar;</li>
+						<li>Ligar o fogão no fogo baixo;</li>
+						<li>1 colher de chá de alho com óleo na panela;</li>
+						<li>Colocar arroz na panela;</li>
+						<li>Mexer bem;</li>
+						<li>Colocar água até a panela estar quase cheia;</li>
+						<li>3 colheres de chá de sal;</li>
+						<li>Mudar para fogo alto;</li>
+						<li>Deixar a panela semi-tampada;</li>
+						<li>Mexer o arroz a cada 5 minutos, mais ou menos;</li>
+						<li>
+							Depois de 15 minutos, quando já tiver bem menos água, tampar a
+							panela;
+						</li>
+						<li>
+							Verificar de novo após mais 5 minutos, até secar completamente.
+						</li>
+					</ul>
+				</section>
+
+				<section data-tags="ascii">
+					<h1>caracteres</h1>
+					<pre>ً</pre>
+					<pre>○</pre>
+					<pre>〠ൠᴥ௵ஔ∰ጃ෴𒐫ᅘ༽໒✺𓍊𓋼𓍊𓋼𓍊☾༘⋆𔓘☾𓁹‿𓁹☾☼⭒✮🀣🀦🀧₊˚⊹♡☾</pre>
+				</section>
+
+				<section data-tags="listas">
+					<h1>
+						Coisas que eu
+						<a href="/inventario.html" target="_blank">coleciono</a>
+					</h1>
+					<ul>
+						<li>DVDs;</li>
+						<li>CDs;</li>
+						<li>Videogames;</li>
+						<li>Livros;</li>
+						<li>Latinhas.</li>
+					</ul>
+				</section>
+
+				<section data-tags="listas">
+					<h1>O que me faz bem</h1>
+					<ul>
+						<li>Silêncio e paz;</li>
+						<li>Escrever;</li>
+						<li>Ouvir música.</li>
+					</ul>
+					<h1>O que me faz mal</h1>
+					<ul>
+						<li>Muito barulho;</li>
+						<li>Muitas luzes;</li>
+						<li>Multidões;</li>
+						<li>Passar o dia com o cabelo sujo.</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/competition.jpg" />
+				</section>
+
+				<section data-tags="">
+					<h1>
+						<a href="https://github.com/valadaptive/ntsc-rs" target="_blank"
+							>NTSC-RS</a
+						>
+						Preset
+					</h1>
+					<h2>Mais fiel</h2>
+					<pre>
+{
+  "_composite_preemphasis": 0.8260000000000001,
+  "_vhs_out_sharpen": 2,
+  "_vhs_edge_wave": 3,
+  "_ringing": 0.34462,
+  "_ringing_power": 10,
+  "_ringing_shift": 0.0,
+  "_freq_noise_size": 0.00212,
+  "_freq_noise_amplitude": 0,
+  "_color_bleed_horiz": 1,
+  "_color_bleed_vert": 1,
+  "_video_chroma_noise": 0,
+  "_video_chroma_phase_noise": 10,
+  "_video_chroma_loss": 336,
+  "_video_noise": 573,
+  "_video_scanline_phase_shift": 180,
+  "_video_scanline_phase_shift_offset": 0,
+  "_head_switching_speed": 0,
+  "_vhs_head_switching": false,
+  "_color_bleed_before": true,
+  "_enable_ringing2": true,
+  "_composite_in_chroma_lowpass": true,
+  "_composite_out_chroma_lowpass": true,
+  "_composite_out_chroma_lowpass_lite": true,
+  "_emulating_vhs": true,
+  "_nocolor_subcarrier": false,
+  "_vhs_chroma_vert_blend": true,
+  "_vhs_svideo_out": true,
+  "_output_ntsc": true
+}</pre
+					>
+					<h2>Mais suave</h2>
+					<pre>
+{
+  "_composite_preemphasis": 0.8260000000000001,
+  "_vhs_out_sharpen": 2,
+  "_vhs_edge_wave": 2,
+  "_ringing": 0.34462,
+  "_ringing_power": 2,
+  "_ringing_shift": 0.0,
+  "_freq_noise_size": 0.00212,
+  "_freq_noise_amplitude": 0,
+  "_color_bleed_horiz": 1,
+  "_color_bleed_vert": 1,
+  "_video_chroma_noise": 0,
+  "_video_chroma_phase_noise": 11,
+  "_video_chroma_loss": 189,
+  "_video_noise": 86,
+  "_video_scanline_phase_shift": 180,
+  "_video_scanline_phase_shift_offset": 0,
+  "_head_switching_speed": 0,
+  "_vhs_head_switching": false,
+  "_color_bleed_before": true,
+  "_enable_ringing2": true,
+  "_composite_in_chroma_lowpass": true,
+  "_composite_out_chroma_lowpass": true,
+  "_composite_out_chroma_lowpass_lite": true,
+  "_emulating_vhs": false,
+  "_nocolor_subcarrier": false,
+  "_vhs_chroma_vert_blend": true,
+  "_vhs_svideo_out": true,
+  "_output_ntsc": true
+} </pre
+					>
+				</section>
+
+				<section data-tags="">
+					<p>
+						pra mim, uma das coisas mais difíceis da vida adulta tem sido
+						aceitar que eu não posso sustentar relações sozinho, e que o outro
+						tem que estar na mesma sintonia que eu, o que muitas vezes não
+						acontece. às vezes, só resta aceitar que acabou
+					</p>
+				</section>
+
+				<section data-tags="fotografia">
+					<img
+						src="/assets/img/anotacoes/kristina-rozhkova-01.jpg"
+						class="nsfw"
+					/>
+					<legend>
+						<a
+							href="https://www.instagram.com/strapon_svinopas/"
+							target="_blank"
+							>Kristina Rozhkova</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/kristina-rozhkova-02.jpg" />
+					<legend>
+						<a
+							href="https://www.instagram.com/strapon_svinopas/"
+							target="_blank"
+							>Kristina Rozhkova</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/kristina-rozhkova-03.jpg" />
+					<img src="/assets/img/anotacoes/kristina-rozhkova-05.jpg" />
+					<legend>
+						<a
+							href="https://www.vogue.com/article/the-bliss-of-girlhood-by-kristina-rozhkova"
+							target="_blank"
+							>"The Bliss of Girlhood"</a
+						>
+						-
+						<a
+							href="https://www.instagram.com/strapon_svinopas/"
+							target="_blank"
+							>Kristina Rozhkova</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="fotografia">
+					<img
+						src="/assets/img/anotacoes/kristina-rozhkova-04.jpg"
+						class="nsfw"
+					/>
+					<legend>
+						<a
+							href="https://www.instagram.com/strapon_svinopas/"
+							target="_blank"
+							>Kristina Rozhkova</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="espiritualidade">
+					<h1>Dokkōdō</h1>
+					<h2>1. Accept life, as it is.</h2>
+					<p>
+						People tend to often create stress for themselves by wishing that
+						things and circumstances were different than they are. Rather than
+						obsessing on why life should be different, accept it for what it is,
+						accept things as they are. Stress, worries and anxieties are a
+						natural part of life, and rather than attacking your natural
+						feelings, accept them and you will become stronger.
+					</p>
+					<h2>2. Do not seek pleasure for its own sake.</h2>
+					<p>
+						Humans tend to spend a large amount of their time on Earth chasing
+						fleeting pleasures, becoming slaves to their inner desires. Instead,
+						live in the moment, do not chase pleasure but rather appreciate it
+						when it comes naturally.
+					</p>
+					<h2>3. Do not act on impulsive emotions.</h2>
+					<p>
+						Musashi believed that sudden strong feelings should be regulated by
+						reason, before turning into action. When powerful feelings seek to
+						sway decisions, first engage in reason and have your decisions be
+						well thought out, not controlled by random impulses.
+					</p>
+					<h2>
+						4. Think lightly of yourself and deeply of the world. Don’t self
+						obsess.
+					</h2>
+					<p>
+						Too much of a focus on how we appear and on our ego causes us to
+						lose sight of what’s truly important in life. Realize that you are
+						deeper than yourself, and do not obsess over superficial things.
+					</p>
+					<h2>5. Let go of your desires.</h2>
+					<p>
+						By desiring for things which we do not have, we create suffering in
+						ourselves as we begin to feel that we lack something. The great
+						samurai taught you to not live wanting more than you have, but
+						rather let go of desire and all good things will come to you.
+					</p>
+					<h2>6. Never live in regret.</h2>
+					<p>
+						Musashi believed that everything happens for a reason, that
+						everything has a purpose and is part of our life path. The past
+						served a purpose and cannot be changed, so rather than stress over
+						or regret it, learn from it and let it prepare you for your future.
+					</p>
+					<h2>7. Jealousy should not be part of you.</h2>
+					<p>
+						Jealousy is a powerful form of hatred, and Miyamoto Musashi taught
+						that if we get stuck in a world of jealousy, we can easily destroy
+						ourselves. Instead, be grateful for what you already have, and you
+						will be blessed with true abundance.
+					</p>
+					<h2>8. Never let yourself be saddened by a separation.</h2>
+					<p>
+						Choosing to constantly think of or dwell on the sad departing of
+						friends and loved ones prevents us from moving forward with our
+						lives. Musashi believed that since there was no way to bring back
+						the dead, stay in the moment and choose to move on.
+					</p>
+					<h2>
+						9. Resentment and complaint are appropriate neither for oneself nor
+						others.
+					</h2>
+					<p>
+						People often tend to complain when problems arise, but Musashi’s
+						teaching was that this can damage our mental strength and keep us
+						stuck in the past. Rather than complain, let your troubles pass you
+						by as your mind keeps calm in the moment.
+					</p>
+					<h2>10. Do not let lust control your life.</h2>
+					<p>
+						Humans are sexual by nature, but many people spend their lives in a
+						state of constant desire. Musashi believed we should not seek for
+						lust, but rather seek for love and long lasting relationships, as in
+						the long run they are much more beneficial to one’s life.
+					</p>
+					<h2>11. Keep your options open.</h2>
+					<p>
+						Do not become narrow minded, and do not become stuck in only one
+						possible future. Stay open minded and allow for life’s
+						possibilities.
+					</p>
+					<h2>12. Don’t be a slave to the material world.</h2>
+					<p>
+						While society throughout the ages always teaches that material
+						possessions are the most important things in life, the reality is
+						that we cannot take any of these luxuries with us after our lives
+						have ended. Instead, build up things that truly matter in life; your
+						character, love, and an inner state of tranquility and calm.
+					</p>
+					<h2>13. Do not be gluttonous.</h2>
+					<p>
+						Miyamoto Musashi believed that food was fuel for the body, not an
+						object of unnatural cravings or desires. A warrior knows that food
+						is a tool to be utilized, not a pleasure to be abused.
+					</p>
+					<h2>14. Do not hold on to possessions you no longer need.</h2>
+					<p>
+						We do not need many things to be happy, in fact having less can
+						often make us the happiest as a simple life is stress-free. If you
+						have things you don’t need, get rid of them and travel light.
+					</p>
+					<h2>15. Do not believe in something just because you are told to.</h2>
+					<p>
+						Never believe anything unless it agrees with your own reason and
+						inner knowing. We must learn to form our own opinions and own
+						beliefs. Do not just follow the crowd.
+					</p>
+					<h2>
+						16. Do not collect weapons or practice with weapons beyond what is
+						useful.
+					</h2>
+					<p></p>
+					<h2>17. Do not fear death.</h2>
+					<p>
+						If we fear death, we cannot live fully. Live one day at a time, and
+						do not fear the outcome of each action you take. Be free from fear.
+					</p>
+					<h2>
+						18. Do not seek to possess either goods or fiefs for your old age.
+					</h2>
+					<p></p>
+					<h2>
+						19. Respect the gods, but do not rely solely on their guidance.
+					</h2>
+					<p>
+						Musashi believed that Gods should be praised, but never let that be
+						a cause for your own inaction. A person must forge their own path.
+					</p>
+					<h2>20. Protect your honor.</h2>
+					<p>
+						Musashi said we must stay true to ourselves and follow our own
+						beliefs. Live with integrity and honor, and do what you believe to
+						be morally right.
+					</p>
+					<h2>21. Never stray from the Way.</h2>
+				</section>
+
+				<section data-tags="">
+					<p>
+						não existe resposta melhor do que o silêncio, nem punição melhor do
+						que o perdão
+					</p>
+				</section>
+
+				<section data-tags="citacoes, espiritualidade">
+					<p>Mateus 7:6</p>
+					<p>
+						"Não deis aos cães o que é santo, nem lanceis aos porcos as vossas
+						pérolas, para não acontecer que as calquem aos pés e, voltando-se,
+						vos despedacem."
+					</p>
+				</section>
+
+				<section data-tags="listas">
+					<ul>
+						<li>
+							Se você trata uma pessoa como uma celebridade, ela vai te tratar
+							como um fã. Trate bem, mas de igual pra igual.
+						</li>
+						<li>Se você corre atrás, é porque o outro tá fugindo.</li>
+						<li>
+							Não priorizar a pessoa imediatamente sob as outras coisas na minha
+							vida.
+						</li>
+						<li>
+							Construir uma vida na qual essa pessoa não é o único ponto
+							positivo, e naturalmente eu farei a coisa mais atraente.
+						</li>
+						<li>Não se desesperar. Desespero não é atraente nem saudável.</li>
+						<li>Dar um espaço ao outro quando necessário.</li>
+						<li>
+							Carinho seguido de bloqueio ou sumiço sem uma explicação lógica
+							não é uma atitude aceitável em situação alguma. Aceitar isso é
+							abandonar a si mesmo.
+						</li>
+						<li>
+							Amor próprio é decidir quem controla a sua felicidade: você mesmo
+							ou os outros.
+						</li>
+						<li>
+							Viver com dignidade é, às vezes, escolher o caminho mais doloroso.
+							Dignidade vem com a dor.
+						</li>
+						<li>Às vezes, você ama a ideia que criou, não a pessoa real.</li>
+						<li>Ninguém vai ser a sua salvação a não ser você mesmo.</li>
+					</ul>
+				</section>
+
+				<section data-tags="citacoes, espiritualidade">
+					<p>Mateus 5:30</p>
+					<p>
+						"E, se a tua mão direita te escandalizar, corta-a e atira-a para
+						longe de ti, porque te é melhor que um dos teus membros se perca do
+						que seja todo o teu corpo lançado no inferno."
+					</p>
+				</section>
+
+				<section data-tags="listas">
+					<h1>palavras bonitas</h1>
+					<ul>
+						<li>cirurgia</li>
+						<li>raquete</li>
+						<li>meteoro</li>
+						<li>sauna</li>
+						<li>asfalto</li>
+						<li>estrela cadente</li>
+						<li>terminal</li>
+						<li>impressora</li>
+						<li>encefalógrafo</li>
+						<li>pedestal</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<p>
+						Nos últimos meses, venho sentindo de verdade que meu córtex
+						pré-frontal terminou de se desenvolver. Não tenho mais paciência pra
+						muita coisa e tô priorizando minha paz acima de tudo, acho que isso
+						é bom. Talvez eu só tenha me acostumado com a solitude e sei que vou
+						ficar bem sozinho, mas agora não tenho mais tanta dificuldade quanto
+						já tive pra cortar laços que me fazem mal. Pode ser também aquele
+						negócio de que "depois que você perde tudo, não tem mais nada a
+						perder". Eu só tô exausto de tudo. 2024 foi um ano muito diferente
+						pra mim. Eu fiz amizades ótimas, viajei e fiz coisas que queria
+						fazer há muito tempo, mas também aconteceu tanta merda que sinto que
+						não experienciava esse nível de depressão desde os meus 16 anos.
+						Agora, especialmente depois do que aconteceu no fim de ano passado,
+						tenho confiado muito mais na minha intuição, e acho que isso tem
+						ajudado a seguir um caminho que é melhor pra mim. Pelo menos
+						consegui tirar algo positivo de tanta dor, e é isso que eu sempre
+						tento fazer. Se minha intuição diz que alguém tem uma red flag, eu
+						tô ouvindo e me afastando, pela primeira vez na vida, por mais que
+						às vezes queira ficar. Talvez porque já sei que a dor de ficar
+						eventualmente vai ser pior do que a de me afastar. É um caminho
+						solitário, com certeza, mas esse deve ser o preço a se pagar pela
+						vida que quero um dia ter. Por anos, mantive perto amizades que
+						nunca retribuíram tudo que eu oferecia, por medo de ficar sozinho.
+						Sinto que tenho muito amor dentro de mim, e isso sempre só me trouxe
+						dor. Todo mundo parece ser muito insensível, pessimista e carecer de
+						empatia, e isso me chateia todo dia da minha vida. Ultimamente,
+						venho pensando muito em desaparecer da internet, mas não sei se isso
+						vem do amadurecimento ou da depressão, que com certeza piorou nos
+						últimos meses. Ter uma resposta mais concreta me ajudaria a tomar
+						uma decisão. Talvez eu nem precise desaparecer, mas só entrar menos
+						ou filtrar melhor o que vejo, e eu tô tentando fazer os dois, mas
+						não parece ajudar por muito tempo. Só tô cansado de tudo, e nada
+						mais parece me trazer felicidade.
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/blessings.jpg" />
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"It is very important to go out alone, to sit under a tree—not with
+						a book, not with a companion, but by yourself—and observe the
+						falling of a leaf, hear the lapping of the water, the fisherman's
+						song, watch the flight of a bird, and of your own thoughts as they
+						chase each other across the space of your mind. If you are able to
+						be alone and watch these things, then you will discover
+						extraordinary riches which no government can tax, no human agency
+						can corrupt, and which can never be destroyed."
+					</p>
+					<p>
+						-
+						<a
+							href="https://jkrishnamurti.org/content/chapter-12"
+							target="_blank"
+							>Jiddu Krishnamurti</a
+						>
+					</p>
+				</section>
+
+				<section data-tags="tecnologia">
+					<h1>Reparar arquivos de sistema corrompidos no Windows</h1>
+					<p>Abrir Powershell como Admin e digitar:</p>
+					<pre>DISM.exe /Online /Cleanup-image /Restorehealth</pre>
+					<p>Quando terminar, digitar:</p>
+					<pre>sfc /scannow</pre>
+					<p>Depois:</p>
+					<pre>chkdsk /f /r /b</pre>
+					<p>E aceitar digitando "y".</p>
+					<p>Reiniciar.</p>
+				</section>
+
+				<section data-tags="listas">
+					<h1>Atividades que me fazem sentir bem e que quero cultivar mais</h1>
+					<ul>
+						<li>Andar de bicicleta ou caminhar;</li>
+						<li>Tomar sol;</li>
+						<li>
+							Escrever pra mim mesmo ao invés de compartilhar com os outros;
+						</li>
+						<li>
+							Escrever mais, no geral, especialmente em um diário físico. Talvez
+							começar um novo sketchbook.
+						</li>
+					</ul>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>"Liberdade é o que você faz com aquilo que aconteceu com você."</p>
+					<p>- Jean-Paul Sartre</p>
+				</section>
+
+				<section data-tags="listas">
+					<h1>
+						<a href="https://cajunavenger.github.io/" target="_blank"
+							>Ultimate Favorite Pokémon Picker</a
+						>
+					</h1>
+					<pre>
+,FROSLASS,GLISCOR,MAWILE,&GIGALITH,&LUCARIO,CORVIKNIGHT,PIDOVE,PATRAT,&CATERPIE,DRAGONITE,MIMIKYU,UMBREON,TYRANTRUM,ZAPDOS_1,BLASTOISE_2,RESHIRAM,&MEW,XURKITREE,WALKINGWAKE,Dark,TimerBall,SPINDA,,,,,,,,,,,,RIOLU,FROSLASS,
+,FARFETCHD,&CHARIZARD,LAPRAS,&VENUSAUR,RAICHU,CLOYSTER,POLIWRATH,NIDOKING,CUBONE,DRAGONITE,HYPNO,BUTTERFREE,GOLEM,HAUNTER,DRAGONAIR,MISSINGNO_3,MAGNETON,CLEFAIRY,BULBASAUR,BLASTOISE_2,MEWTWO,DRAGONAIR,
+,AIPOM,QUILAVA,FERALIGATR,CELEBI,FLAAFFY,DELIBIRD,HERACROSS,ARIADOS,GLIGAR,LEDIAN,XATU,SCIZOR,LARVITAR,,,MURKROW,SKARMORY,TOGETIC,TOTODILE,HERACROSS_1,SUICUNE,GLIGAR,
+,ZANGOOSE,NUMEL,CRAWDAUNT,LOMBRE,&ELECTRIKE,GLALIE,HARIYAMA,SEVIPER,SWAMPERT,TROPIUS,&GARDEVOIR,SHEDINJA,AGGRON,BANETTE,&VIBRAVA,NUZLEAF,MAWILE,&KIRLIA,TREECKO,MAWILE_1,LATIOS,MAWILE_1,
+,&LOPUNNY,MONFERNO,EMPOLEON,SHAYMIN_1,LUXRAY,FROSLASS,LUCARIO,CROAGUNK,HIPPOWDON,GLISCOR,MESPRIT,MOTHIM,BASTIODON,&DRIFLOON,GARCHOMP,WEAVILE,LUCARIO,,CHIMCHAR,FROSLASS_1,GIRATINA_1,FROSLASS,
+,WATCHOG,EMBOAR,SAMUROTT,MARACTUS,GALVANTULA,CUBCHOO,SCRAFTY,SCOLIPEDE,KROOKODILE,LANDORUS_1,DARMANITAN_1,SHELMET,&GIGALITH,LITWICK,ZWEILOUS,ZORUA,BISHARP,WHIMSICOTT,OSHAWOTT,EMBOAR_1,RESHIRAM,RESHIRAM,
+,FLETCHLING,BRAIXEN,CLAWITZER,GOGOAT,,,PANCHAM,DRAGALGE,,NOIBAT,MEOWSTIC,,TYRANTRUM,PHANTUMP,GOODRA,GRENINJA,DOUBLADE,FLOETTE_3,FENNEKIN,KANGASKHAN_1,XERNEAS_1,PHANTUMP,
+,RATTATA_1,TURTONATOR,,EXEGGUTOR_1,XURKITREE,SANDSLASH_1,STUFFUL,MAREANIE,MUDSDALE,TRUMBEAK,ORANGURU,GOLISOPOD,LYCANROC_1,DECIDUEYE,JANGMOO,,CELESTEELA,MIMIKYU,ROWLET,MAROWAK_1,LUNALA,LUNALA,
+,WYRDEER,CENTISKORCH,CRAMORANT,FLAPPLE,&TOXEL,EISCUE,GRAPPLOCT,SNEASEL_1,URSALUNA,CRAMORANT,SLOWBRO_1,,ARCANINE_1,ZOROARK_1,DREEPY,NICKIT,CORVIKNIGHT,IMPIDIMP,DECIDUEYE_1,ZAPDOS_1,ZACIAN_1,CORVIKNIGHT,
+,MAUSHOLD,CERULEDGE,WALKINGWAKE,WOCHIEN,RAGINGBOLT,CHIENPAO,SLITHERWING,GRAFAIAI,TOEDSCRUEL,,ARMAROUGE,SLITHERWING,,GREAVARD,WALKINGWAKE,KINGAMBIT,TINKATON,FLUTTERMANE,SPRIGATITO,TOEDSCRUEL,CHIENPAO,ARMAROUGE,
+,&LOPUNNY,EMBOAR,SAMUROTT,MARACTUS,GALVANTULA,FROSLASS,LUCARIO,NIDOKING,GLIGAR,GLISCOR,HYPNO,SCIZOR,&GIGALITH,BANETTE,DRAGONAIR,WEAVILE,MAWILE,IMPIDIMP,OSHAWOTT,MAWILE_1,RESHIRAM,FROSLASS,
+spindaspots,13,3,16,6,6,6,6,8,
+          </pre>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/chao.jpg" />
+				</section>
+
+				<section data-tags="significados">
+					<p>
+						<a
+							href="https://en.wikipedia.org/wiki/Philosophical_zombie"
+							target="_blank"
+							>zumbis filosóficos</a
+						>: um ser hipotético idêntico a um humano em corpo, cérebro e
+						comportamento, mas sem qualquer experiência consciente interna.
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Agora, sou o homem mais infeliz que vive. Se o que sinto fosse
+						distribuído igualmente para toda a população humana, não haveria um
+						único rosto alegre na Terra. Se algum dia ficarei melhor, não sei
+						dizer; tenho um terrível pressentimento de que não. Permanecer como
+						estou é impossível; devo morrer ou melhorar, ao que me parece."
+					</p>
+					<p>- Abraham Lincoln</p>
+				</section>
+
+				<section data-tags="listas,tecnologia">
+					<h1>Visual Studio Code</h1>
+					<ul>
+						<li>Ctrl + K, Ctrl + F - Corrigir indentação</li>
+						<li>Ctrl + K, Ctrl + C - Comentar linha</li>
+						<li>Ctrl + K, Ctrl + 0 - Fechar todas as seções</li>
+						<li>Ctrl + , - Abrir configurações</li>
+					</ul>
+
+					<h2>CMD</h2>
+					<pre>python -m http.server 8000</pre>
+					<ul>
+						<li>Na pasta do site, abre servidor localhost:8000</li>
+					</ul>
+				</section>
+
+				<section data-tags="listas,tecnologia">
+					<h1>Atalhos Premiere</h1>
+					<ul>
+						<li>
+							Audio → Preferences → Timeline → Audio transition default duration
+							= 6 frames
+						</li>
+						<li>Sequence → Selection follows playhead</li>
+						<li>Shift + Del = Deleta e puxa</li>
+						<li>L = Acelera o preview</li>
+						<li>Q & W = Deleta atrás ou à frente da agulha de reprodução</li>
+						<li>Ctrl + Shift + D no corte = transição de áudio/cross fade</li>
+						<li>Alt + Arrastar Clipe = duplica clipe</li>
+					</ul>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Eu simplesmente quero viver; para não causar mal a ninguém além de
+						mim mesmo."
+					</p>
+					<p>- Leo Tolstoy</p>
+				</section>
+
+				<section data-tags="ascii">
+					<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⠁⠈⣿⠾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⣿⠃⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⡿⣧⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣻⣿⣼⠤⣤⠼⠵⣿⠟⠻⢿⢾⡿⠧⢽⣿⣿⣿⣿⡇⠙⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢿⣿⡟⣿⡏⢓⣟⣶⣶⣾⠗⠀⠀⠀⠄⠺⢿⣶⣶⡞⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣌⣇⠀⠈⠉⠉⠀⠀⢀⠠⠀⢀⠀⠈⠉⠉⠀⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠰⠻⣿⣿⣿⣄⠀⠀⠐⠀⠀⠂⠀⠠⠀⢀⠠⠀⠀⢠⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⡿⢿⡿⢧⡀⠄⠀⠁⢀⣙⣀⡁⠀⠀⢀⡼⠛⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠁⢰⣿⣶⣦⣄⣀⠀⠀⡀⣠⣼⣾⣷⠄⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠴⣾⣿⣿⣿⣿⣿⣶⣯⣷⣿⣿⣿⣿⣿⡗⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⣫⠦⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡷⣿⣿⡣⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⡠⠒⠉⠀⠀⢹⡜⡥⣚⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡙⣿⣿⠏⠀⠉⠢⢄⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡸⠤⠤⢤⣀⣀⡸⢎⡵⣘⠮⣝⣿⣿⣿⣿⣿⣿⣿⣿⡿⢥⢛⣼⡏⠀⢀⣠⠴⠊⠙⢄⠀⠀⠀⠀
+⠀⠀⢀⠎⠀⠰⣆⠀⠀⠈⠉⠚⡦⢷⢾⣔⣭⣿⣿⣿⣿⣿⣿⣟⣬⠷⢮⢾⠓⠊⠉⠀⠀⢠⠆⠘⡆⠀⠀⠀
+⠀⠀⡎⠀⠀⡀⠘⢆⠀⠀⠀⠄⠻⣜⠲⣎⢼⣿⣿⣿⣿⣿⣿⣿⣿⠠⠁⣾⠀⣼⠁⠀⠀⠠⠁⠀⠀⢳⠀⠀
+⠀⠀⡇⠀⠠⠀⠀⠈⢷⡀⠀⢀⠀⠹⡗⡜⣎⠶⣹⣿⣿⣿⣿⢎⡱⣋⡼⠃⠀⢀⠀⠀⣰⠃⢀⠠⢸⡄⠀⠀
+⠀⠀⡇⠀⠀⠄⠂⠀⠀⢳⠀⠀⠀⠀⠘⢷⡘⢮⣽⣿⣿⣿⣿⣌⢧⡝⠁⠀⠀⠄⠀⢠⠏⠀⠀⡀⠀⡇⠀⠀
+⠀⠀⡇⠀⠂⡀⠐⢀⠀⠘⡆⠀⠁⠀⠄⠀⠙⠛⠻⣿⣿⣿⠋⠛⠋⠀⠀⠈⠀⢀⠀⡞⠀⠀⠠⠀⠀⢳⠀⠀
+⠀⠀⡇⠀⠠⠀⢠⡀⠀⠀⢻⠀⠀⠁⡀⠌⠀⠀⠀⢿⣿⡟⠀⠀⠠⠀⠐⠀⠁⠀⡼⠁⠀⠠⠁⠀⠀⣹⠀⠀
+⠀⢠⠇⠀⠠⠀⠀⢣⡐⠀⠘⡇⠀⠐⠀⠀⠄⠀⠾⢿⣿⡇⢠⣤⠀⠀⠂⠀⡀⣸⠁⠀⠀⠂⠀⠁⠀⡜⠀⠀
+⠀⢸⠀⠀⠐⢀⠀⠈⣧⠀⠀⢻⡀⠀⠐⠀⠠⢀⠀⢸⣿⡇⠈⠁⠀⢀⠂⠀⢠⠏⠀⠠⠐⠀⠈⢠⠆⣛⠀⠀
+⠀⢸⠀⠈⢀⠀⠠⠀⠸⣆⠀⠈⣧⠐⠀⢈⠀⠀⡀⢼⣿⡇⣠⣀⠀⢀⠠⠀⡟⠀⠀⠠⠀⠠⢠⠎⡗⢸⠀⠀
+⠀⣼⠀⢁⠂⡀⠂⠠⠀⢻⡄⠀⠸⡇⠀⠀⠀⠻⠟⣿⣿⣿⠈⠋⠀⠀⡀⣼⢡⡇⠀⠀⠀⢤⠏⢸⠃⢸⡀⠀
+⠀⣯⠀⢂⠲⣄⠂⡁⠂⢈⣧⠀⢀⢻⡀⠂⢁⠠⢸⣿⣿⣿⣷⡀⣠⣀⠀⢻⣼⠀⠠⠀⣬⠏⢠⠏⠀⡈⡇⠀
+⠀⡇⡐⢀⠂⠌⢷⠀⠡⢀⠘⣇⠠⢸⡇⠈⠄⠠⣹⣿⣿⣿⣿⣷⣉⠡⠀⢢⠏⠀⢠⡼⠃⢀⡞⢀⠐⡀⢷⠀
+⠠⡗⡈⠷⣈⠰⢈⠻⣆⠂⠌⠹⣆⢼⢋⠐⡘⢛⣿⣿⣿⣿⣿⣿⣿⠠⠁⣾⠀⣼⠋⠄⡐⣸⠃⠄⠂⠌⢸⠀
+⠀⣷⡈⡔⠩⠳⣦⢈⠹⢿⣬⡐⠙⣾⢀⠣⠠⢭⣿⣿⣿⣿⣿⣿⣿⠻⢃⣧⠟⢡⠈⡐⣰⠏⡐⣈⠐⡨⣼⡀
+⠀⠸⡇⠬⣁⠣⡐⠢⢌⠢⡙⢿⣔⡹⣇⠴⠿⣿⣿⣿⣿⣿⣿⣿⣿⢡⣿⠁⢎⠠⡑⢠⡯⠐⡰⠀⠎⣡⣿⡇
+⠀⠀⠹⣦⡑⠢⢅⠣⡘⢦⣕⡊⠩⣷⣿⡆⡱⣿⣿⣿⣿⣿⣿⣿⣿⠣⣼⠃⡌⢒⣨⣽⢀⠣⢐⠩⣰⣿⣿⡇
+                    </pre
+					>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"I may think of you softly from time to time. But I’ll cut off my
+						hand before I ever reach for you again."
+					</p>
+					<p>- Arthur Miller</p>
+				</section>
+
+				<section data-tags="significados">
+					<h1>Misantropia</h1>
+					<h3>μῖσος (mísos, “ódio”) + ἄνθρωπος (ánthrōpos, “ser humano”)</h3>
+					<p>
+						A aversão, desconfiança ou desprezo em relação à humanidade como um
+						todo. Quem nutre esse sentimento é chamado de misantropo.
+					</p>
+				</section>
+
+				<section data-tags="significados">
+					<img src="/assets/img/anotacoes/the_worm_that_turned.jpg" />
+					<legend>
+						<a
+							href="https://en.wikipedia.org/wiki/Even_a_worm_will_turn"
+							target="_blank"
+							>"Even a worm will turn"</a
+						>: expressão que significa que até mesmo as criaturas aparentemente
+						dóceis ou passivas se revoltarão quando pressionadas ao extremo.
+					</legend>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Tentei durante muitos anos me adaptar ao mundo real; morri de
+						fome."
+					</p>
+					<p>- Anaïs Nin</p>
+				</section>
+
+				<section data-tags="tecnologia">
+					<h1>Ativar Windows 10</h1>
+					<p>Abrir o CMD e colar o seguinte código, com o código do serial:</p>
+					<pre>cscript slmgr.vbs /ipk [SERIAL]</pre>
+					<pre>cscript slmgr.vbs /skms kms.lotro.cc</pre>
+					<pre>cscript slmgr.vbs /ato</pre>
+					<hr />
+					<p>Home/Core</p>
+					<pre>TX9XD-98N7V-6WMQ6-BX7FG-H8Q99</pre>
+					<p>Home/Core (Country Specific)</p>
+					<pre>PVMJN-6DFY6-9CCP6-7BKTT-D3WVR</pre>
+					<p>Home/Core (Single Language)</p>
+					<pre>7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH</pre>
+					<p>Home/Core N</p>
+					<pre>3KHY7-WNT83-DGQKR-F7HPR-844BM</pre>
+					<p>Professional</p>
+					<pre>W269N-WFGWX-YVC9B-4J6C9-T83GX</pre>
+					<p>Professional N</p>
+					<pre>MH37W-N47XK-V7XM9-C7227-GCQG9</pre>
+					<p>Enterprise</p>
+					<pre>NPPR9-FWDCX-D2C8J-H872K-2YT43</pre>
+					<p>Enterprise N</p>
+					<pre>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4</pre>
+					<p>Education</p>
+					<pre>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2</pre>
+					<p>Education N</p>
+					<pre>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ</pre>
+					<p>Enterprise 2015 LTSB</p>
+					<pre>WNMTR-4C88C-JK8YV-HQ7T2-76DF9</pre>
+					<p>Enterprise 2015 LTSB N</p>
+					<pre>2F77B-TNFGY-69QQF-B8YKP-D69TJ</pre>
+					<p>Enterprise 2016 LTSB</p>
+					<pre>DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ</pre>
+					<p>Enterprise 2016 LTSB N</p>
+					<pre>QFFDN-GRT3P-VKWWX-X7T3R-8B639</pre>
+					<hr />
+					<p>Para resetar a ativação:</p>
+					<pre>slmgr -upk</pre>
+				</section>
+
+				<section data-tags="">
+					<p>
+						se memórias antigas ainda te fazem chorar, escreva-as cuidadosa e
+						completamente
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/grief.jpg" />
+				</section>
+
+				<section data-tags="listas">
+					<h1>No fim de todo dia pensar em...</h1>
+					<ul>
+						<li>Algo que me fez sorrir;</li>
+						<li>Algo pelo qual eu agradeço;</li>
+						<li>Algo que eu fiz bem.</li>
+					</ul>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"A riqueza não consiste em ter grandes posses, mas em ter poucas
+						necessidades. Há apenas um caminho para a felicidade e que é deixar
+						de se preocupar com coisas que estão além do poder da nossa
+						vontade."
+					</p>
+					<p>- Epicteto</p>
+				</section>
+
+				<section data-tags="tecnologia">
+					<h1>Atalhos Illustrator</h1>
+					<ul>
+						<li>Shape Builder - Shift + M</li>
+						<li>Width Tool - Shift + W</li>
+						<li>Eyedropper - I</li>
+						<li>Live Paint Bucket - K</li>
+					</ul>
+				</section>
+
+				<section data-tags="listas">
+					<h1>Pessoas que já disseram que parecem comigo</h1>
+					<ul>
+						<li>Justin Timberlake</li>
+						<li>Jean Carteiro Cósmico</li>
+						<li>Bill Gates mais novo</li>
+						<li>Tim Bernardes</li>
+						<li>Lipo do Bella e o Olmo da Bruxa</li>
+						<li>John Lennon</li>
+						<li>Kurt Cobain</li>
+						<!-- 06/08/25 -->
+					</ul>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"You cannot be happy alone and you cannot be happy together.
+						Mourning mourns the loss of a possible future, the not-yet that now
+						will never be. Everything ends, including you. Love is not eternal,
+						it is not even hardy. Accepting this takes a form and amount of
+						courage that nobody but you will see or appreciate. You can’t change
+						any of this; you have to live with it... Get up. Begin. Make your
+						way from the bed to the shower. Remember that this is the hardest
+						thing you will do all day."
+					</p>
+					<p>- Mark Kingwell</p>
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/jessie-and-the-deer.jpg" />
+					<legend>"Jessie and the Deer", 1985 - Sally Mann</legend>
+				</section>
+
+				<section data-tags="musica">
+					<p>
+						<a
+							href="https://www.youtube.com/watch?v=F5WkkSkEkqs&t=360s"
+							target="_blank"
+						>
+							"I am the shipwreck with its scattered and soaked wood littering
+							the ocean like a nest of roaches. The water smothers me patiently,
+							and it waits to feel my body on the ocean floor. I am the captain.
+							I stand on my ship, never leaving its side, for tonight I sleep in
+							a shark's stomach. The tears and rain both hit my face, as I lay
+							on the deck and wait to drown. I am the thunder, I am the storm.
+							Hear me roar as I deafen all. I conduct my orchestra as loud as
+							possible and conclude with a violent smash. I am washing the
+							splinters from within my heart and I scream as it pumps. I let my
+							lungs fill with water as the broken bath tub leaks."
+						</a>
+					</p>
+				</section>
+
+				<section data-tags="listas">
+					<h1>Valores que quero cultivar</h1>
+					<ul>
+						<li>Empatia;</li>
+						<li>Honestidade;</li>
+						<li>Gratidão;</li>
+						<li>Equilíbrio;</li>
+						<li>Disciplina;</li>
+						<li>Independência;</li>
+						<li>Respeito mútuo com quem amo.</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<p>
+						não permita que o tédio ou a solidão te mandem de volta pra aquele
+						lugar
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/care.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>
+						O cansaço é o resultado do seu cérebro calculando o tanto de
+						trabalho que realizar uma atividade vai dar. É uma estratégia do
+						cérebro pra conservar energia.
+					</p>
+					<p>
+						Refletir sobre o que nessa atividade faz eu me sentir cansado. Parar
+						pra pensar em como eu vou me sentir depois de concluir a atividade e
+						concluir que vou me sentir aliviado, realizado.
+					</p>
+					<p>
+						Dividir uma atividade em partes e concluir uma parte por vez. Se meu
+						objetivo diário for concluir uma única parte, vai ser mais fácil de
+						fazer tudo.
+					</p>
+					<p>"Once done, half done."</p>
+				</section>
+
+				<section data-tags="significados">
+					<h1>Termos que quero lembrar</h1>
+					<ul>
+						<li>
+							Waldeinsamkeit - A sensação de solitude e paz interior que se tem
+							quando se está sozinho em uma floresta;
+						</li>
+						<li>
+							Cavoli riscaldati - Literalmente "repolhos reaquecidos"; é usado
+							para se referir à tentativa de reatar um amor ou amizade do
+							passado, e em como quase nunca vai dar certo;
+						</li>
+						<li>
+							Koi No Yokan - "A premonição do amor"; o pressentimento, ao
+							conhecer alguém pela primeira vez, de que vocês estão destinados a
+							se apaixonar;
+						</li>
+						<li>
+							Anemoia - A sensação de nostalgia por um tempo que você nunca
+							viveu.
+						</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<p>eu durmo bem sabendo que, à noite, a gente olha pra mesma lua</p>
+				</section>
+
+				<section data-tags="listas,espiritualidade">
+					<h1>Números Angelicais</h1>
+					<ul>
+						<li>
+							111 – Início de um novo ciclo, manifestação, lembrete pra manter
+							pensamento positivo.
+						</li>
+						<li>
+							222 – Equilíbrio, harmonia, paciência e confiança no processo.
+						</li>
+						<li>
+							333 – Proteção espiritual, criatividade, apoio dos mestres
+							espirituais.
+						</li>
+						<li>
+							444 – Apoio dos anjos, estabilidade, força para superar desafios.
+						</li>
+						<li>555 – Mudanças grandes à vista, necessidade de se adaptar.</li>
+						<li>
+							666 – Necessidade de equilíbrio entre o material e o espiritual.
+						</li>
+						<li>
+							777 – Crescimento espiritual, sabedoria, conexão com o divino.
+						</li>
+						<li>
+							888 – Abundância, prosperidade e colheita dos esforços passados.
+						</li>
+						<li>999 – Fim de um ciclo, preparação para um novo começo.</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<p>
+						Acho que as pessoas que acham tudo "cringe", "brega" ou
+						"performático" tão só projetando um sentimento de inadequação,
+						talvez por não se permitirem encontrar alegria nas pequenas coisas
+						da vida.
+					</p>
+				</section>
+
+				<section data-tags="">
+					<p>
+						pessoas que não posso mais encontrar continuam sorrindo no meu
+						cartão SD
+					</p>
+				</section>
+
+				<section data-tags="espiritualidade">
+					<img src="/assets/img/anotacoes/bitter.jpg" />
+				</section>
+
+				<section data-tags="tecnologia">
+					<p>
+						<a href="https://github.com/Genymobile/scrcpy" target="_blank"
+							>scrcpy</a
+						>
+						- programa pra espelhar a tela do celular no computador
+					</p>
+				</section>
+
+				<section data-tags="significados,psicologia">
+					<p>
+						<a
+							href="https://en.wikipedia.org/wiki/Learned_helplessness"
+							target="_blank"
+							>desamparo aprendido (learned helplessness)</a
+						>: estado psicológico em que a pessoa, após repetidas experiências
+						de impotência, deixa de tentar reagir, acreditando que nenhuma ação
+						pode mudar a situação, mesmo quando poderia. é o comportamento
+						exibido por um sujeito após suportar estímulos aversivos repetidos
+						além de seu controle.
+					</p>
+				</section>
+
+				<section data-tags="significados,psicologia">
+					<p>
+						<a
+							href="https://pt.wikipedia.org/wiki/Liga%C3%A7%C3%A3o_traum%C3%A1tica"
+							target="_blank"
+							>ligação traumática (trauma bonding)</a
+						>: vínculo emocional intenso e persistente formado entre agressor e
+						vítima em contextos de abuso cíclico, sustentado pela alternância
+						entre violência e momentos de afeto, que gera confusão, dependência
+						e lealdade à fonte do trauma.
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"But the person who mocks others mocks himself, and it is not
+						meaningless but is rather a profound mockery of yourself, a tragic
+						proof of how flabby your soul is."
+					</p>
+					<p>- Søren Kierkegaard</p>
+				</section>
+
+				<section data-tags="tecnologia">
+					<h1>Guia rápido de instalação do Arch Linux</h1>
+					<h2>Links úteis</h2>
+					<a href="https://archlinux.org/" title="Arch Linux" target="_blank"
+						><img
+							src="/assets/img/88x31 banners/arch-linux.gif"
+							class="banner"
+							alt="Banner Arch Linux"
+							style="width: 88px !important; height: 31px !important"
+					/></a>
+					<ul>
+						<li>
+							<a
+								href="https://wiki.archlinux.org/title/Installation_guide"
+								target="_blank"
+								>Arch Wiki - Installation Guide</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://www.reddit.com/r/archlinux/comments/14dmm24/what_basic_applications_do_you_recommend_for_a/"
+								target="_blank"
+								>Reddit - Recomendações de apps</a
+							>
+						</li>
+					</ul>
+					<h2>Outros comandos úteis</h2>
+					<h3>Atualizar sistema</h3>
+					<pre>sudo pacman -Syu</pre>
+
+					<h3>Listar hardware</h3>
+					<pre>lspci -k</pre>
+					<pre>lsusb</pre>
+
+					<h2>Instalar YAY (AUR)</h2>
+					<pre>git clone https://aur.archlinux.org/yay.git</pre>
+					<pre>cd yay</pre>
+					<pre>makepkg -si</pre>
+
+					<h2>Drivers NVIDIA (com Vulkan)</h2>
+					<pre>
+sudo pacman -Syu nvidia nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader</pre
+					>
+					<p>Verificar se foi instalado:</p>
+					<pre>nvidia-smi</pre>
+
+					<hr />
+
+					<h1>Resumo passo a passo</h1>
+					<h3>1. Mudar teclado para português no ambiente live:</h3>
+					<pre>loadkeys br-abnt2</pre>
+
+					<h3>2. Verificar conexão com internet:</h3>
+					<pre>ping archlinux.org</pre>
+					<p>(Ctrl + C para sair)</p>
+
+					<h3>3. Verificar partições:</h3>
+					<pre>lsblk -f</pre>
+
+					<h3>4. Criar partições:</h3>
+					<pre>cfdisk /dev/sdX</pre>
+
+					<h3>5. Formatar partição root:</h3>
+					<pre>mkfs.ext4 /dev/sdXY</pre>
+
+					<h3>6. Montar partição root:</h3>
+					<pre>mount /dev/sdXY /mnt</pre>
+
+					<h3>7. Montar partição EFI (sem formatar):</h3>
+					<pre>mkdir -p /mnt/boot/efi</pre>
+					<pre>mount /dev/sdXZ /mnt/boot/efi</pre>
+
+					<h3>8. Instalar sistema base, rede, bootloader e sudo:</h3>
+					<pre>
+pacstrap /mnt base linux linux-firmware networkmanager grub efibootmgr sudo</pre
+					>
+
+					<h3>9. Gerar arquivo fstab:</h3>
+					<pre>genfstab -U /mnt >> /mnt/etc/fstab</pre>
+					<pre>cat /mnt/etc/fstab</pre>
+
+					<h3>10. Entrar no chroot:</h3>
+					<pre>arch-chroot /mnt</pre>
+
+					<h3>11. Configurar fuso horário:</h3>
+					<pre>ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime</pre>
+					<pre>hwclock --systohc</pre>
+
+					<h3>12. Configurar localidade:</h3>
+					<pre>nano /etc/locale.gen</pre>
+					<p>Descomente a linha: pt_BR.UTF-8 UTF-8</p>
+					<pre>locale-gen</pre>
+					<pre>echo "LANG=pt_BR.UTF-8" > /etc/locale.conf</pre>
+
+					<h3>13. Configurar senha root:</h3>
+					<pre>passwd</pre>
+
+					<h3>14. Criar usuário comum com permissões sudo:</h3>
+					<pre>useradd -m -G wheel -s /bin/bash nome_do_usuario</pre>
+					<pre>passwd nome_do_usuario</pre>
+
+					<h3>15. Permitir sudo para grupo wheel:</h3>
+					<pre>EDITOR=vim visudo</pre>
+					<p>Descomente a linha:</p>
+					<pre>%wheel ALL=(ALL) ALL</pre>
+
+					<h3>16. Ativar NetworkManager para iniciar automaticamente:</h3>
+					<pre>systemctl enable NetworkManager</pre>
+
+					<h3>17. Instalar e configurar GRUB para UEFI:</h3>
+					<pre>
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB</pre
+					>
+					<pre>grub-mkconfig -o /boot/grub/grub.cfg</pre>
+
+					<h3>18. Instalar Wayland e compositor Sway:</h3>
+					<pre>
+pacman -S sway xorg-xwayland wayland wayland-protocols foot wl-clipboard grim slurp</pre
+					>
+
+					<h3>19. Sair, desmontar, reiniciar:</h3>
+					<pre>exit</pre>
+					<pre>umount -R /mnt</pre>
+					<pre>reboot</pre>
+				</section>
+
+				<section data-tags="">
+					<p>
+						tem algo muito lindo no fato de que todos nós um dia passamos pela
+						experiência de perder alguém que a gente já amou, e por mais
+						distintos que os contextos sejam, o sentimento ainda é sempre o
+						mesmo
+					</p>
+				</section>
+
+				<section data-tags="listas">
+					<h1>Shows em que fui</h1>
+					<ul>
+						<li>15 & 16/01/2020 - Alex G - Sesc Pompéia</li>
+						<li>26/04/2025 - Machine Girl - Hangar 110</li>
+						<li>17/09/2025 - Boogarins - Sesc Bauru</li>
+					</ul>
+				</section>
+
+				<section data-tags="">
+					<p>
+						ser muito determinista em relação a sentimentos e aos outros só vai
+						te levar a ter relacionamentos fracassados e a ser inevitavelmente
+						infeliz
+					</p>
+				</section>
+
+				<section data-tags="ascii">
+					<pre>
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⣀⣠⣤⣄⠀⣤⣤⣤⣀⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⣶⣿⡋⢉⣿⣿⠽⣿⣗⡉⢹⣻⣦⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⠿⣿⣶⠿⢿⠷⠟⠛⠁⠀⠈⠙⠻⢾⠿⣿⣤⣄⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡟⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣁⣠⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⠿⢻⣧
+⠀⠀⠐⣶⢤⣀⡀⠀⠀⠀⢀⣿⠀⢾⡀⠀⠀⠀⢀⣀⡤⣶⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣘⣿⠿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣦⣘⣿
+⠀⠀⠀⢹⣴⡀⠹⣷⣤⣾⣿⣿⣧⣾⣿⣷⣤⢼⡿⠛⢡⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⡿⠟
+⠀⠀⠀⠀⠱⣽⣦⣈⣿⣻⣿⡿⢿⣿⣿⡟⣷⡋⢠⣶⣏⣀⡀⠀⣠⣤⣤⣤⣤⡀⣰⣿⣁⣰⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⣿⣷⡀
+⠀⠀⠀⠀⢠⣿⣿⣛⣵⣿⣿⣄⠀⠈⠻⣿⣮⣟⣿⣿⡫⢿⣿⢾⣿⣿⣉⣛⣿⣿⠛⠿⠾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⠃⢹⣿⠁
+⠀⣀⡤⠤⢾⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⣸⣿⣿⣿⢿⣿⣿⣧⣀⠉⠉⠋⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣸⣿⣿⡿⠃⠀
+⠙⠿⢶⣶⣶⣧⣿⣿⣿⣿⣿⣿⣦⣉⣻⣿⣿⣿⣿⣸⣄⣀⡩⠿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣄⣰⣿⣟⠛⠻⣿⣿⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⢹⣿⣿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⡟⠋⣿⣿⠋⠻⠿⠿⠟⠛⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⣿⡟⠻⣮⣿⣿⣿⣿⣿⣿⣟⣴⠛⢯⣯⡀⠀⠀⠀⠀⠀⠀⠀⠐⣶⠦⣄⡀⣀⣠⣶⣦⣼⣿⣿⡾⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⠎⠁⣠⢞⣽⣿⣿⣟⣛⣻⣿⣿⣿⣦⡀⠱⣿⡄⠀⠀⠀⠀⠀⠀⠀⠙⣷⣄⣽⠉⠻⣧⣽⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣾⣰⠿⠚⠉⠀⠉⠙⡏⢸⣿⠛⠉⠀⠈⠳⠦⣍⣷⡀⠀⠀⠀⠀⠀⠀⠀⣾⡉⢿⣯⣷⣈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⢻⣸⡟⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⣠⡾⠛⢻⣦⣀⣿⡄⠳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⢋⣼⣷⡾⠏⠉⠈⠛⠲⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡿⣫⣴⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡿⣫⣾⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡿⣯⣾⣿⣿⠿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⠿⣫⣾⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡟⣩⣾⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡟⣩⣾⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⡿⣡⣾⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⠟⣡⣾⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢿⣧⣻⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+		</pre
+					>
+					<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣄⣠⣤⣀⠀⠀
+⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⢶⠞⠗⠛⠉⠓⢿⣦⡀
+⠀⠰⡀⢄⣀⣼⣰⣀⣠⡤⡆⠀⠀⠀⠀⣨⡟⠉⠀⠀⠀⠀⠀⠈⢧⡇
+⠀⠀⢹⣮⣻⡟⠻⣟⣥⣾⣤⣴⡖⣦⢼⡵⠃⠀⠀⠀⠀⠀⠀⣰⢺⠆
+⠰⢦⣿⣿⣿⣿⣳⣾⣿⣟⡓⠮⠉⠁⠀⠀⠀⠀⢀⣀⣠⡴⢶⡟⠋⠀
+⠀⠀⢸⢟⣿⣿⣿⣿⠿⣏⠀⠀⠀⠠⡤⣀⡠⡴⠯⠟⠉⠉⠉⠀⠀⠀
+⠀⠠⠵⠛⠙⢛⡿⠋⠑⠨⠆⠀⠀⢀⣝⠷⡿⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⢀⣴⣫⡶⠋⠙⠒⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⢔⣵⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣖⣵⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+          </pre>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"You sensed that you should be following a different path, a more
+						ambitious one, you felt that you were destined for other things but
+						you had no idea how to achieve them and in your misery you began to
+						hate everything around you."
+					</p>
+					<p>- Fyodor Dostoyevsky</p>
+				</section>
+
+				<section data-tags="arte">
+					<img src="/assets/img/anotacoes/dog-and-bridge.jpg" />
+					<legend>"Dog and Bridge", 1976 - Alex Colville</legend>
+				</section>
+
+				<section data-tags="">
+					<p>O que se foi, se foi; o que restou, eu valorizo e preservo.</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Dearest Father, You asked me recently why I maintain that I am
+						afraid of you. As usual, I was unable to think of any answer to your
+						question, partly for the very reason that I am afraid of you, and
+						partly because an explanation of the grounds for this fear would
+						mean going into far more details than I could even approximately
+						keep in mind while talking. And if I now try to give you an answer
+						in writing, it will still be very incomplete."
+					</p>
+					<p>
+						<a
+							href="https://en.wikipedia.org/wiki/Letter_to_His_Father"
+							target="_blank"
+							>Letter to His Father - Franz Kafka</a
+						>
+					</p>
+				</section>
+
+				<section data-tags="significados">
+					<h1>
+						<a
+							href="https://en.wikipedia.org/wiki/Irony_poisoning"
+							target="_blank"
+							>Irony poisoning</a
+						>
+					</h1>
+					<p>
+						O processo ou estado alterado em que se tem uma capacidade reduzida
+						de distinguir entre as próprias crenças genuínas e as crenças
+						irônicas devido ao uso excessivo da ironia.
+					</p>
+				</section>
+
+				<section data-tags="fotografia">
+					<img
+						src="/assets/img/anotacoes/you-checked-your-texts-while-I-masturbated.jpg"
+						class="nsfw"
+					/>
+					<legend>
+						<a
+							href="https://anacuba.com/you-checked-your-texts-while-i-masturbated/"
+							target="_blank"
+							>You checked your texts while I masturbated - Ana Cuba</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="listas,tecnologia">
+					<h1>Alternativas para aplicativos e sites</h1>
+					<ul>
+						<li>
+							Gmail →
+							<a href="https://mail.proton.me" target="_blank">Proton Mail</a>
+						</li>
+						<li>
+							Google Calendar →
+							<a href="https://calendar.proton.me/" target="_blank"
+								>Proton Calendar</a
+							>
+						</li>
+						<li>
+							Google Chrome →
+							<a href="https://www.mozilla.org/firefox/" target="_blank"
+								>Firefox</a
+							>
+						</li>
+						<li>
+							Google Drive →
+							<a href="https://proton.me/drive" target="_blank">Proton Drive</a
+							>,
+							<a href="https://filebrowser.org/" target="_blank"
+								>File Browser</a
+							>
+						</li>
+						<li>
+							Google Keep →
+							<a href="https://obsidian.md/" target="_blank">Obsidian</a>,
+							<a href="https://joplinapp.org/" target="_blank">Joplin</a>
+						</li>
+						<li>
+							Google Search →
+							<a href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+						</li>
+						<li>
+							Google Translate →
+							<a href="https://www.deepl.com/translator" target="_blank"
+								>DeepL</a
+							>
+						</li>
+						<li>
+							WhatsApp →
+							<a href="https://signal.org/" target="_blank">Signal</a>
+						</li>
+					</ul>
+					<p><a href="https://switching.software/">switching.software</a></p>
+				</section>
+
+				<section data-tags="tecnologia">
+					<a href="https://www.beeper.com/" target="_blank">Beeper</a>
+				</section>
+
+				<section data-tags="">
+					<p>
+						marketing é genuinamente uma das áreas mais abomináveis que existem.
+						não tem paixão nenhuma por trás, só um desejo patético por vencer,
+						independentemente do custo. pessoas artificiais reproduzindo seu
+						artifício e estudando "dicas" pra atrair as pessoas usando
+						psicologia. é manipulador, exploratório e desalmado. se não vem do
+						coração, eu não quero.
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"After all, you are just not the person they're comfortable with.
+						You are your own person. Tell me, what the hell is wrong with that?
+						They fuck with your head and it's true. You fuck with your head as
+						well but that's another story. You have every right to do so. They
+						don't. They are terrified of their own insufficiency and would
+						gladly take it out on anyone around them. Why should you be
+						concerned with that? You will now, quite predictably, sit down and
+						overthink it. God damn it, just don't. Be perceptive. Know what your
+						heart is about. Mind your own business. Let them go drown in plain
+						stupidity. But do your thing. You can handle this."
+					</p>
+					<p>
+						- Albert Camus, "<a
+							href="https://en.wikipedia.org/wiki/Notebooks_1951%E2%80%931959"
+							target="_blank"
+							>Notebooks</a
+						>"
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>"I have spent all my life resisting the desire to end it."</p>
+					<p>- Franz Kafka, "Letters to Milena"</p>
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/cat-on-legs.jpg" />
+					<legend>"Cat on legs", 1940s - Michael Wolgensinger</legend>
+				</section>
+
+				<section data-tags="">
+					<p>God will bless you if you stop hating</p>
+				</section>
+
+				<section data-tags="citacoes,espiritualidade">
+					<p>Salmos 94:23</p>
+					<p>
+						"He who plans evil against Me, forfeits his own life. His mischief
+						will return upon his own head."
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						[When Vonnegut tells his wife he's going out to buy an envelope] Oh,
+						she says, well, you're not a poor man. You know, why don't you go
+						online and buy a hundred envelopes and put them in the closet? And
+						so I pretend not to hear her. And go out to get an envelope because
+						I'm going to have a hell of a good time in the process of buying one
+						envelope. I meet a lot of people. And, see some great looking babes.
+						And a fire engine goes by. And I give them the thumbs up. And, and
+						ask a woman what kind of dog that is. And, and I don't know. The
+						moral of the story is, is we're here on Earth to fart around. And,
+						of course, the computers will do us out of that. And, what the
+						computer people don't realize, or they don't care, is we're dancing
+						animals. You know, we love to move around. And, we're not supposed
+						to dance at all anymore.
+					</p>
+				</section>
+
+				<section data-tags="manga">
+					<img src="/assets/img/anotacoes/Yume Nikki Manga.jpg" />
+					<legend>
+						<a
+							href="https://yumenikki.fandom.com/wiki/Official_Manga"
+							target="_blank"
+							>Yume Nikki Manga (ゆめにっき)</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="citacoes,cinema">
+					<p>
+						<a
+							href="https://www.aspentimes.com/news/mucking-with-movies-poor-things/"
+							target="_blank"
+							>One of the worst thematic trends of the past fifteen years has
+							been an obsession with naturalistic lighting. Every light needs a
+							precise source with the idea that the audience needs to understand
+							every beam’s origin. We don’t. One time during a screening for
+							“Lord of the Rings 2,” star Sean Astin asked the late lighting
+							director Andrew Lesnie “Where is the light coming from?” Lesnie
+							replied “The same place as the music.”</a
+						>
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Men are the devils of the earth, and the animals are the tormented
+						souls."
+					</p>
+					<p>- Arthur Schopenhauer</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Find meaning. Distinguish melancholy from sadness. Go out for a
+						walk. It doesn’t have to be a romantic walk in the park, spring at
+						its most spectacular moment, flowers and smells and outstanding
+						poetical imagery smoothly transferring you into another world. It
+						doesn’t have to be a walk during which you’ll have multiple life
+						epiphanies and discover meanings no other brain ever managed to
+						encounter. Do not be afraid of spending quality time by yourself.
+						Find meaning or don’t find meaning but 'steal' some time and give it
+						freely and exclusively to your own self. Opt for privacy and
+						solitude. That doesn’t make you antisocial or cause you to reject
+						the rest of the world. But you need to breathe. And you need to be."
+					</p>
+					<p>- Albert Camus, "Notebooks 1951-1959"</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/sonic-toast.jpg" />
+				</section>
+
+				<section data-tags="significados">
+					<p>
+						<a href="https://pt.wikipedia.org/wiki/Anacronismo" target="_blank"
+							>anacronismo</a
+						>: utilizar os conceitos, costumes e ideias de uma época para
+						analisar os fatos de outro tempo em que não existiam.
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Never, never tell them. Try and remember that. Never tell anyone
+						anything ever. Never tell anyone anything again."
+					</p>
+					<p>- Ernest Hemingway, The Garden of Eden</p>
+				</section>
+
+				<section data-tags="">
+					<h1>Lavagem de roupas</h1>
+
+					<h2>Roupas íntimas</h2>
+					<ul>
+						<li>Tempo: 20 a 30 minutos</li>
+						<li>Centrifugação: Baixa</li>
+						<li>Água: Morna (elimina melhor as bactérias)</li>
+						<li>Ciclo delicado</li>
+						<li>
+							Sabão neutro, sem amaciante, pra não comprometer a elasticidade
+							das peças
+						</li>
+						<li>Usar sacos protetores</li>
+					</ul>
+					<p>
+						Também dá pra lavar as claras e escuras separadamente: as claras com
+						água morna e as escuras com água fria, pra não desbotar.
+					</p>
+
+					<h2>Toalhas</h2>
+					<ul>
+						<li>Tempo: 40 a 60 minutos</li>
+						<li>Centrifugação: Alta</li>
+						<li>Água: Quente ou morna (desinfeta melhor)</li>
+						<li>
+							Usar amaciante, mas com moderação pra não reduzir a absorção do
+							tecido
+						</li>
+						<li>
+							Se possível, lavar sozinhas, porque soltam fiapos e acumulam
+							umidade
+						</li>
+					</ul>
+
+					<h2>Roupas escuras</h2>
+					<ul>
+						<li>Tempo: 30 a 40 minutos</li>
+						<li>Centrifugação: Média (evita que as roupas amassem muito)</li>
+						<li>Água: Fria (evita desbotamento)</li>
+						<li>Virar as peças do avesso</li>
+					</ul>
+
+					<h2>Roupas claras</h2>
+					<ul>
+						<li>Tempo: 30 a 40 minutos</li>
+						<li>Centrifugação: Média a alta</li>
+						<li>Água: Fria ou morna (quente pode fixar manchas)</li>
+						<li>
+							Pra camisetas lisas: adicionar alvejante sem cloro pra manter a
+							brancura;
+						</li>
+						<li>
+							Pra camisetas com estampa: 1 colher de sopa de bicarbonato de
+							sódio.
+						</li>
+						<li>1/2 copo de vinagre branco.</li>
+					</ul>
+				</section>
+
+				<section data-tags="arte">
+					<img src="/assets/img/anotacoes/Paul Klee Forgetful Angel.jpg" />
+					<legend>"Forgetful Angel", 1939 - Paul Klee</legend>
+				</section>
+
+				<section data-tags="arte">
+					<img src="/assets/img/anotacoes/athens-is-burning.jpg" />
+					<legend>
+						<a
+							href="https://www.artchive.com/artwork/athens-is-burning-the-school-of-athens-and-the-fire-in-the-borgo-salvador-dali-1979-1980/"
+							target="_blank"
+							>Athens Is Burning! The School of Athens and the Fire in the
+							Borgo, 1979 – 1980 - Salvador Dali</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="citacoes,espiritualidade">
+					<p>Mateus 6:34</p>
+					<p>
+						"Portanto, não se preocupem com o amanhã, pois o amanhã trará as
+						suas próprias preocupações. Basta a cada dia o seu próprio mal."
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/i-love-public-transport.jpg" />
+				</section>
+
+				<section data-tags="significados">
+					<p>
+						<a
+							href="https://en.wikipedia.org/wiki/Unexpected_hanging_paradox"
+							target="_blank"
+							>paradoxo do enforcamento inesperado</a
+						>: paradoxo que envolve as expectativas de uma pessoa sobre o
+						momento de um evento futuro anunciado como inesperado; ao tentar
+						prever logicamente quando ocorrerá, conclui-se que não poderia ser
+						surpreendido, mas o evento ocorre de forma inesperada.
+					</p>
+				</section>
+
+				<section data-tags="fotografia">
+					<img
+						src="/assets/img/anotacoes/giovanni-battista-sambuelli.jpg"
+						class="nsfw"
+					/>
+					<legend>
+						Giovanni Battista Sambuelli, 2009 - from The New Erotic Photography
+						- Dian Hanson
+					</legend>
+				</section>
+
+				<section data-tags="">
+					<p>que deus o acompanhe, pois ninguém mais o fará</p>
+				</section>
+
+				<section data-tags="significados">
+					<p>
+						<a
+							href="https://pt.wikipedia.org/wiki/N%C3%BAmero_de_Dunbar"
+							target="_blank"
+							>número de dunbar</a
+						>: teoria que sugere que o número máximo de relacionamentos sociais
+						que um ser humano pode manter é entre 100 e 300 pessoas.
+					</p>
+					<img src="/assets/img/anotacoes/dunbar.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>
+						quanto mais o tempo passa, mais eu me convenço de que ninguem nunca
+						vai ser digno do meu amor
+					</p>
+				</section>
+
+				<section data-tags="significados">
+					<p>
+						<a href="https://www.dicio.com.br/bon-vivant/" target="_blank"
+							>bon-vivant</a
+						>: pessoa que entende que a vida é feita de momentos efêmeros e que
+						cada um deles deve ser aproveitado ao máximo, desfrutando dos
+						prazeres dela.
+					</p>
+				</section>
+
+				<section data-tags="significados">
+					<p>
+						<a
+							href="https://pt.wikipedia.org/wiki/Neuroplasticidade"
+							target="_blank"
+							>neuroplasticidade</a
+						>: capacidade do cérebro de se reorganizar e formar novas conexões
+						neurais ao longo da vida.
+					</p>
+				</section>
+
+				<section data-tags="cinema">
+					<img src="/assets/img/anotacoes/mononoke-quote.jpg" />
+					<legend>Princess Mononoke (もののけ姫)</legend>
+				</section>
+
+				<section data-tags="">
+					<p>
+						é minha missão tornar o mundo um lugar melhor até o momento da minha
+						morte
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"The desire to be loved is the last illusion. Give it up and you
+						will be free.
+					</p>
+					<p>- Margaret Atwood, "Selected Poems II: 1976- 1986"</p>
+				</section>
+
+				<section data-tags="tecnologia">
+					<p>
+						<a
+							href="https://en.wikipedia.org/wiki/Printer_tracking_dots"
+							target="_blank"
+							>Printer tracking dots</a
+						>: padrão quase invisível de pontos amarelos que algumas impressoras
+						a laser coloridas adicionam às páginas impressas, que codificam
+						informações como o número de série da impressora e a data e hora da
+						impressão.
+					</p>
+				</section>
+
+				<section data-tags="">
+					<p>
+						se eles gostarem de você, você vai saber. se não gostarem, você vai
+						se sentir confuso.
+					</p>
+				</section>
+
+				<section data-tags="citacoes,espiritualidade">
+					<p>Mateus 6:34</p>
+					<p>
+						"Portanto, não se preocupem com o amanhã, pois o amanhã trará as
+						suas próprias preocupações. Basta a cada dia o seu próprio mal."
+					</p>
+				</section>
+
+				<section data-tags="">
+					<p>
+						As pessoas vão tolerar até um certo ponto a autocrítica, porque
+						mostra que você tem consciência de si, mas o ódio a si mesmo é só
+						sabotagem contínua.
+					</p>
+					<p>
+						Você tem que fazer o possível pra se manter otimista, esperançoso e
+						forte com relação a essas emoções na sua vida.
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>"That you overslept is surely a sign of good health."</p>
+					<p>- Franz Kafka, 1914</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"The Byronic hero, incapable of love, or capable only of an
+						impossible love, suffers endlessly. He is solitary, languid, his
+						condition exhausts him. If he wants to feel alive, it must be in the
+						terrible exaltation of a brief and destructive action."
+					</p>
+					<p>- Albert Camus, The Rebel</p>
+				</section>
+
+				<section data-tags="espiritualidade,citacoes">
+					<p>Efésios 4:31,32</p>
+					<p>
+						"Livrem-se de toda amargura, indignação e ira, gritaria e calúnia,
+						bem como de toda maldade.<br />Sejam bondosos e compassivos uns para
+						com os outros, perdoando-se mutuamente, assim como Deus perdoou
+						vocês em Cristo."
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/my_notes_app.jpg" />
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"I was surprised, as always, by how easy the act of leaving was, and
+						how good it felt. The world was suddenly rich with possibility."
+					</p>
+					<p>- Jack Kerouac, On the Road</p>
+				</section>
+
+				<section data-tags="">
+					<p>
+						a única maneira de realmente me redimir é me tornando a pessoa que
+						você sempre me disse que eu poderia ser
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/guide_self_improvement.jpg" />
+				</section>
+
+				<section data-tags="manga,citacoes">
+					<img src="/assets/img/anotacoes/shooting_stars.jpg" />
+					<legend>Oyasumi Punpun (おやすみプンプン)</legend>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/time_will_pass.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>você vai se lembrar do que fez comigo pelo resto da sua vida</p>
+				</section>
+
+				<!-- <section data-tags="videogames">
+          <img src="/assets/img/anotacoes/refined_mental_healh.jpg" />
+        </section> -->
+
+				<section data-tags="photography">
+					<img src="/assets/img/anotacoes/monke.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>eu te perdoaria se você me desse a oportunidade</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/perceived.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>você deve eliminar a palavra cringe do seu vocabulário</p>
+				</section>
+
+				<section data-tags="">
+					<h1>Red Flags</h1>
+					<p>
+						Talvez a pessoa tenha sido tão machucada no passado que,
+						inconscientemente, ela acaba tendo muito medo de se conectar
+						verdadeiramente com alguém. Eu posso ter empatia e compaixão com
+						ela, mas ainda devo impor limites e decidir o que é melhor pra mim,
+						a fim de evitar um relacionamento tóxico no futuro. Honestidade,
+						vulnerabilidade e consideração são fundamentais pra mim, e eu não
+						devo aceitar entrar em um relacionamento que me ofereça menos que
+						isso.
+					</p>
+
+					<p style="font-style: italic">"kindness, compassion, growth"</p>
+
+					<h2>Nível baixo:</h2>
+					<p>
+						Red Flags que provavelmente são indicativos de problemas maiores,
+						mas não necessariamente. São circunstanciais.
+					</p>
+
+					<ol>
+						<li>
+							Sempre coloca o celular na mesa com a tela pra baixo. → Pode ser
+							só um hábito da pessoa, mas, quando acompanhado de outros
+							comportamentos, como sempre esconder o celular quando eu me
+							aproximo ou evitar compartilhar o celular pra fazer uma ligação,
+							por exemplo, pode indicar que a pessoa tá escondendo algo.
+						</li>
+
+						<li>
+							Eu não gosto dos amigos dela. → Normalmente, as pessoas são amigas
+							de pessoas parecidas com elas, e, se eu não gosto dos amigos dela,
+							provavelmente não vou gostar de quem ela é de verdade. Ainda
+							assim, nem sempre é o caso. Talvez ela só tenha dificuldade de
+							fazer amizades novas ou tem carinho por amizades do seu passado.
+						</li>
+
+						<li>
+							A pessoa não espera vc entrar na sua casa depois de te deixar, ou
+							entrar no Uber e o motorista sair dirigindo. → Pode ser só
+							desatenção ou ingenuidade, mas também indicam falta de cuidado e
+							de consideração comigo.
+						</li>
+
+						<li>
+							Tem muita conta alt em rede social; constantemente cria contas
+							novas pra "fazer uma limpa". → Pode ser um sinal de instabilidade
+							emocional (a pessoa quer fugir do próprio passado), insegurança
+							(tem coisas das quais se envergonha) ou de dificuldades com
+							autopercepção.
+						</li>
+
+						<li>
+							Se auto-intitula "maluca", como se fosse algo pra se orgulhar.
+						</li>
+					</ol>
+
+					<h2>Nível intermediário:</h2>
+					<p>
+						Red Flags que são mais difíceis de conversar sobre, mas ainda são
+						negociáveis. Depende do contexto e se a pessoa tá disposta a
+						conversar sobre.
+					</p>
+
+					<ol>
+						<li>
+							Não me elogia muito; minimiza meus elogios ou as próprias atitudes
+							carinhosas. → Indica insegurança e desinteresse. → A pessoa
+							minimizar o que eu faço ou evitar reconhecer gestos carinhosos
+							pode indicar que ela tem dificuldade em se expressar
+							emocionalmente.
+						</li>
+
+						<li>
+							Trata mal ou com indiferença garçons e atendentes. → Reflete
+							traços de caráter, como falta de empatia e cortesia. → Reflete
+							como ela pode me tratar no futuro, especialmente em momentos de
+							conflito. → Por outro lado, dependendo do contexto, pode ser
+							também ansiedade social ou timidez.
+						</li>
+
+						<li>
+							Nada impressiona ou alegra a pessoa; ela parece não apreciar nada.
+							→ Reflete apatia, desinteresse ou anedonia, e isso pode dificultar
+							muito a construção de um relacionamento. → Por outro lado,
+							dependendo do contexto, pode ser um indicativo de depressão, que é
+							uma questão tratável e não necessariamente uma falha fundamental
+							no relacionamento. Mas eu também não devo me sentir responsável
+							pela felicidade da pessoa.
+						</li>
+
+						<li>
+							Tem medo de comprometimento; fica nervosa, resistente ou
+							preocupada demais quando eu demonstro que quero algo sério. → Pode
+							surgir de traumas passados não-resolvidos e inseguranças. Indica
+							que a pessoa tá incerta em relação a mim ou que ela não tá pronta
+							pra um relacionamento sério. → Por outro lado, dependendo do
+							contexto, talvez a pessoa tenha um ritmo diferente do meu.
+							Entretanto, é importante prestar atenção se ela continua sendo
+							recíproca, mesmo que num ritmo mais lento.
+						</li>
+
+						<li>
+							Parece não valorizar o nosso tempo juntos: fica no celular; não
+							inicia conversas e só responde; dorme no meio do date; não parece
+							animada pra me ver ou conversar comigo. → Reflete desinteresse e
+							desrespeito com o meu tempo.
+						</li>
+
+						<li>
+							Me deixa de lado quando saímos com outras pessoas; não é
+							tranquilizadora ou atenciosa; não parece se importar se eu tô
+							preocupado. → Indica desinteresse, falta de empatia e falta de
+							habilidade de equilibrar atenção em ambientes sociais.
+						</li>
+
+						<li>
+							Não faz questão de esclarecer quando a gente vai se ver de novo;
+							parece incerta se quer me ver (reflete desinteresse) ou tá
+							excessivamente confortável/condescendente.
+						</li>
+
+						<li>
+							Fala muito dos ex-namorados. → Provavelmente ainda não superou
+							relacionamentos passados e pode ser bem difícil construir um novo
+							relacionamento a partir dos destroços de um anterior.
+						</li>
+
+						<li>
+							Diz que todos os seus ex eram malucos e nunca divide a
+							responsabilidade pelos próprios términos ou diz que aprendeu algo
+							com eles. → Indica imaturidade emocional e ausência de
+							autocrítica.
+						</li>
+
+						<li>
+							Não compartilha experiências em relacionamentos passados. → Indica
+							que a pessoa tem vergonha do próprio passado ou tá tentando
+							manipular a minha percepção dela. → Não tá sendo aberta e honesta.
+						</li>
+					</ol>
+
+					<h2>Nível alto:</h2>
+					<p>
+						Red Flags que não são negociáveis e, no primeiro sinal delas, dar no
+						pé. Ficar por mais tempo do que deveria vai acabar piorando a
+						situação.
+					</p>
+
+					<ol>
+						<li>
+							Não investe em mim tanto quanto eu invisto nela; é distante ou
+							inconsistente. Não me manda mensagem a menos que eu mande antes. →
+							Indica desinteresse ou acomodação. → (Não é a mesma coisa que ter
+							ritmos e tempos diferentes.)
+						</li>
+
+						<li>
+							Se eu sinto necessidade de constantemente buscar por confirmação
+							de que a pessoa gosta de mim tanto quanto eu gosto dela, seja
+							vendo conversas antigas ou analisando as nossas interações
+							anteriores, dá no pé. → Não quero estar em um relacionamento no
+							qual eu preciso questionar se a pessoa sequer gosta de mim. → A
+							pessoa ou não gosta de mim mesmo, ou não sabe demonstrar os
+							próprios sentimentos ou apreciação a mim.
+						</li>
+
+						<li>
+							Diz que quer levar as coisas num ritmo mais lento ou que não quer
+							comprometimento agora, MAS continua dando sinais de que quer algo
+							sério ou continua alimentando minhas esperanças de algo sério; dá
+							sinais mistos. → Apesar de não querer comprometimento, me
+							apresenta pra amigos ou familiares, ou me convida pra eventos
+							importantes na vida dela. → Indica que a pessoa não é confiável ou
+							decidida.
+						</li>
+
+						<li>
+							Se algo me chateia, a pessoa invalida ou diminui o que eu senti,
+							ao invés de tentar entender o meu lado e dividir a culpa. Me chama
+							de "dramático". → Ou ainda, depois de um conflito, não se
+							responsabiliza por ter estado errada ou por ter me machucado,
+							mesmo que não tenha tido a intenção de fazê-lo. A pessoa não
+							consegue pedir desculpa. → Indica falta de empatia, orgulho e
+							egoísmo.
+						</li>
+
+						<li>
+							Tem medo de intensidade e de demonstrar vulnerabilidade. → Quer só
+							a intensidade do lado positivo de um relacionamento mas não
+							consegue lidar com a intensidade do lado negativo. → Não tá
+							buscando se conectar de forma real.
+						</li>
+
+						<li>
+							Tá constantemente pulando de um relacionamento pra outro, ou,
+							depois de um término, não demonstra consideração com o ex e, em
+							menos de algumas semanas, começa a fazer posts sugestivos ou
+							flertar com outras pessoas, especialmente publicamente em rede
+							social. → Demonstra falta de autorreflexão e responsabilidade
+							afetiva, e que a pessoa não suporta ficar sozinha. → Se eu entrar
+							em um relacionamento com ela, eu posso ser só mais uma transição.
+						</li>
+
+						<li>
+							Se eu não me sinto valorizado e sinto necessidade de demonstrar
+							menos em algum momento, dar no pé.
+						</li>
+					</ol>
+				</section>
+
+				<section data-tags="">
+					<p>todas as vezes em que naufraguei, acabei em um lugar mais alto</p>
+				</section>
+
+				<section data-tags="">
+					<p>impondo dominância cumprimentando as pessoas no elevador</p>
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/Bella Newman.jpg" />
+					<legend>
+						<a href="https://no.inc/photo#/bella-newman/" target="_blank"
+							>Self Portrait No. 391, 2024 - Bella Newman</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="">
+					<p>
+						algo que me convence de que eu realmente vivo em um mundo diferente
+						das outras pessoas é o fato de que existem pessoas que genuinamente
+						se entretém assistindo vídeos gerados por inteligência artificial e
+						não veem problema algum em passar o dia no celular vendo isso
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/fassod.jpg" />
+				</section>
+
+				<section data-tags="">
+					<p>
+						às vezes, as pessoas te odeiam, mas na realidade elas só tão tristes
+					</p>
+				</section>
+
+				<section data-tags="">
+					<p>
+						acho que não tenho mais idade pra festa. eu quero ir a lugares
+						completamente opostos: com pouco barulho, poucas pessoas, sem luz
+						piscando e que eu não precise beber pra suportar ficar ali
+					</p>
+				</section>
+
+				<section data-tags="">
+					<p>empatia irrestrita é autodestruição</p>
+				</section>
+
+				<section data-tags="">
+					<p>
+						percebi que eu deveria simplesmente ir a todo lugar sozinho, fazer
+						tudo sozinho, viver minha vida sozinho e morrer sozinho também
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/fiona_haunting_ground.jpg" />
+					<legend>
+						<a
+							href="https://en.wikipedia.org/wiki/Haunting_Ground"
+							target="_blank"
+							>Haunting Ground</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="">
+					<p>
+						se faculdade não fosse tão cara, eu estudaria umas coisas só por
+						diversão. gosto muito de psicologia, filosofia e letras, e adoraria
+						aprender mais sobre cada um.
+					</p>
+					<p>
+						é desumano como a nossa sociedade nos obriga a decidir tão cedo o
+						que queremos fazer pelo resto das nossas vidas. eu absolutamente não
+						me conhecia tanto a esse ponto aos dezoito anos de idade. na
+						verdade, arrisco dizer que não me conhecia nada. agora tô condenado
+						eternamente a passar a minha vida em frente a um computador, porque
+						escolhi não só T.I., como também design gráfico.
+					</p>
+					<p>
+						eu queria era ser um fazendeiro, morando em um lugar bem distante
+						com alguns animais, e não precisar me importar com nada disso. quem
+						sabe um dia.
+					</p>
+				</section>
+
+				<section data-tags="citacoes">
+					<img src="/assets/img/anotacoes/lain_gods_quote.jpg" />
+				</section>
+
+				<section data-tags="citacoes">
+					<p>
+						"Quanto menos se comer, beber, comprar livros, for ao teatro ou a
+						bailes, ou ao botequim, e quanto menos se pensar, amar, doutrinar,
+						cantar, pintar, esgrimir, etc., tanto mais se poderá economizar e
+						maior se tornará o tesouro imune à ferrugem e às traças - o capital.
+						Quanto menos se for, quanto menos se exprimir nossa vida, tanto mais
+						se terá, tanto maior será nossa vida alienada e maior será a
+						economia de nosso ser alienado."
+					</p>
+					<p>
+						-
+						<a
+							href="https://web.archive.org/web/20140427164146/https://www.marxists.org/portugues/marx/1844/manuscritos/cap05.htm"
+							target="_blank"
+							>Karl Marx, Manuscritos Econômico-Filosóficos de 1844</a
+						>
+					</p>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/lain_room.jpg" />
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/derek-ridgers.jpg" />
+					<legend>
+						<a
+							href="https://web.archive.org/web/20171117180127/https://www.dazeddigital.com/art-photography/article/37579/1/derek-ridgers-tells-the-unknown-story-behind-his-1981-photo"
+							target="_blank"
+							>Derek Ridgers, 1981</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="fotografia">
+					<img src="/assets/img/anotacoes/the_box.jpg" class="nsfw" />
+					<legend>
+						<a
+							href="https://www.erickellermanphotography.com/gallery-thebox.html"
+							target="_blank"
+							>The Box - Eric Kellerman</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/2838_Sonic.jpg" />
+					<legend>
+						<a
+							href="https://theotaku.com/quizzes/view/2838/what_sonic-x_character_are_you%3F"
+							>What Sonic-X Character Are You?</a
+						>
+					</legend>
+				</section>
+
+				<section data-tags="">
+					<img src="/assets/img/anotacoes/3760_Coodere.jpg" />
+					<legend>
+						<a
+							href="https://theotaku.com/quizzes/view/3760/what_type_of_dere_are_you%3F_"
+							>What Type Of Dere Are You?
+						</a>
+					</legend>
+				</section>
+
+				<!-- <section data-tags="">
+          <h1>O que levar em uma viagem</h1>
+          <ul>
+            <li>Toalha de banho</li>
+            <li>Roupa de banho</li>
+            <li>Chinelo</li>
+            <li>Pijama</li>
+            <li>Camisetas</li>
+            <li>Blusa</li>
+            <li>Calça</li>
+            <li>Roupa íntima</li>
+            <li>Meias</li>
+            <li>Guarda-chuva</li>
+            <li>Pente</li>
+            <li>Lâmina, espuma de barbear e pós-barba</li>
+            <li>Desodorante</li>
+            <li>Hidratante</li>
+            <li>Shampoo</li>
+            <li>Condicionador</li>
+            <li>Sabonete líquido</li>
+            <li>Escova de dente</li>
+            <li>Pasta de dente</li>
+            <li>Carregador de celular</li>
+            <li>Fone de ouvido</li>
+            <li>Câmera</li>
+            <li>Água</li>
+            <li>Dinheiro físico</li>
+          </ul>
+        </section> -->
+			</div>
+
+			<!-- <footer></footer> -->
+		</main>
+
+		<script>
+			window.DISABLE_CRT_TOGGLE = true;
+		</script>
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/copiar-clipboard.js"></script>
+		<script>
+			document
+				.querySelectorAll("section pre")
+				.forEach((pre) => pre.classList.add("copiavel"));
+		</script>
+		<script>
+			window.addEventListener("DOMContentLoaded", function () {
+				setTimeout(function () {
+					document.getElementById("page-loader").classList.add("fade-out");
+					setTimeout(function () {
+						document.getElementById("page-loader").style.display = "none";
+						var conteudo = document.getElementById("conteudo");
+						conteudo.style.display = "";
+						void conteudo.offsetWidth;
+						conteudo.classList && conteudo.classList.add("visible");
+					}, 700); // igual ao tempo do animation
+				}, 5500);
+			});
+
+			// Efeito hover para mostrar imagem original e click para abrir
+			// Processa dither apenas quando imagens entram no viewport
+			document.addEventListener("DOMContentLoaded", function () {
+				const hoverImages = document.querySelectorAll("section img");
+
+				// IntersectionObserver para detectar quando imagem entra no viewport
+				const imageObserver = new IntersectionObserver(
+					function (entries, observer) {
+						entries.forEach(function (entry) {
+							if (entry.isIntersecting) {
+								const img = entry.target;
+
+								// Se já foi processada, só restaura o dithered e para
+								if (img.hasAttribute("data-dithered-src")) {
+									img.src = img.getAttribute("data-dithered-src");
+									return;
+								}
+
+								// Para de observar esta imagem após primeiro processamento
+								observer.unobserve(img);
+
+								// Adiciona classes para processar com dither duotone
+								img.classList.add("dither", "duotone");
+
+								// Aguarda o processamento do dither
+								const checkProcessed = setInterval(() => {
+									if (img.hasAttribute("data-duotone-processed")) {
+										clearInterval(checkProcessed);
+
+										// Guarda o src original e a versão dithered
+										const ogSrc = img.getAttribute("data-original-src");
+										const ditheredSrc = img.src;
+
+										// Armazena blob dithered permanentemente
+										img.setAttribute("data-dithered-src", ditheredSrc);
+
+										// Força o src para dithered (evita piscar)
+										img.src = ditheredSrc;
+
+										// Hover: mostra versão original
+										img.addEventListener("mouseenter", function () {
+											img.src = ogSrc;
+											img.style.imageRendering = "auto";
+										});
+
+										img.addEventListener("mouseleave", function () {
+											const dithered = img.getAttribute("data-dithered-src");
+											img.src = dithered;
+											img.style.imageRendering = "pixelated";
+										});
+
+										// Click: abre versão original em nova aba (se não estiver dentro de um link)
+										const parentLink = img.closest("a");
+										if (!parentLink) {
+											img.style.cursor = "pointer";
+											img.addEventListener("click", function () {
+												window.open(ogSrc, "_blank");
+											});
+										}
+									}
+								}, 100);
+
+								// Timeout de segurança de 10 segundos
+								setTimeout(() => clearInterval(checkProcessed), 10000);
+							}
+						});
+					},
+					{
+						// Começa a processar quando 10% da imagem está visível
+						threshold: 0.1,
+						// Começa a processar 200px antes da imagem entrar no viewport
+						rootMargin: "200px",
+					}
+				);
+
+				hoverImages.forEach(function (img) {
+					const ogSrc = img.src;
+
+					// Armazena o src original como data attribute para referência futura
+					img.setAttribute("data-original-src", ogSrc);
+
+					// Observa a imagem para processar dither quando entrar no viewport
+					imageObserver.observe(img);
+				});
+			});
+
+			// SISTEMA DE SEARCH E TAGS
+			(function () {
+				const searchInput = document.getElementById("search-input");
+				const tagsContainer = document.getElementById("tags-container");
+				const sections = Array.from(
+					document.querySelectorAll(".anotacoes > section")
+				);
+				let allTags = new Set();
+				let selectedTags = new Set();
+
+				// Adiciona tag "imagens" automaticamente às seções que contêm <img>
+				sections.forEach((section) => {
+					const hasImages = section.querySelector("img:not(.banner)");
+					if (hasImages) {
+						const currentTags = section.getAttribute("data-tags") || "";
+						const tagsArray = currentTags
+							.split(",")
+							.map((t) => t.trim())
+							.filter(Boolean);
+						if (!tagsArray.includes("imagens")) {
+							tagsArray.push("imagens");
+							section.setAttribute("data-tags", tagsArray.join(", "));
+						}
+					}
+				});
+
+				// Coleta todas as tags e mostra visualmente em cada seção
+				sections.forEach((section) => {
+					if (!section.querySelector(".section-tags")) {
+						const div = document.createElement("div");
+						div.className = "section-tags";
+						section.appendChild(div);
+					}
+					const tagsAttr = section.getAttribute("data-tags");
+					const tagDiv = section.querySelector(".section-tags");
+					if (tagsAttr && tagsAttr.trim() !== "") {
+						const tags = tagsAttr
+							.split(",")
+							.map((t) => t.trim())
+							.filter(Boolean);
+						tags.forEach((tag) => allTags.add(tag));
+						// Mostra as tags na seção
+						if (tagDiv) {
+							tagDiv.innerHTML = tags
+								.map((tag) => `<span class="tag">${tag}</span>`)
+								.join("");
+						}
+					} else if (tagDiv) {
+						tagDiv.remove();
+					}
+				});
+
+				// Cria botões de tags
+				const sortedTags = Array.from(allTags).sort((a, b) =>
+					a.localeCompare(b, "pt")
+				);
+				sortedTags.forEach((tag) => {
+					const btn = document.createElement("a");
+					btn.textContent = tag;
+					btn.className = "tag-btn";
+					btn.addEventListener("click", () => {
+						if (selectedTags.has(tag)) {
+							selectedTags.delete(tag);
+							btn.classList.remove("selected");
+						} else {
+							selectedTags.add(tag);
+							btn.classList.add("selected");
+						}
+						filterSections();
+					});
+					tagsContainer.appendChild(btn);
+				});
+
+				// Filtro por texto e tags
+				function filterSections() {
+					const query = searchInput.value.trim().toLowerCase();
+					sections.forEach((section) => {
+						const text = section.textContent
+							.toLowerCase()
+							.normalize("NFD")
+							.replace(/[\u0300-\u036f]/g, "");
+						const normalizedQuery = query
+							.normalize("NFD")
+							.replace(/[\u0300-\u036f]/g, "");
+						const matchesText =
+							!normalizedQuery || text.includes(normalizedQuery);
+
+						const tagsAttr = section.getAttribute("data-tags") || "";
+						const tags = tagsAttr
+							.split(",")
+							.map((t) => t.trim().toLowerCase())
+							.filter(Boolean);
+
+						// Filtro por tags (todas as tags selecionadas devem estar presentes)
+						const matchesTags =
+							selectedTags.size === 0 ||
+							Array.from(selectedTags).every((tag) =>
+								tags.includes(tag.toLowerCase())
+							);
+
+						section.hidden = !(matchesText && matchesTags);
+					});
+				}
+
+				searchInput.addEventListener("input", filterSections);
+
+				// Inicializa filtro
+				filterSections();
+			})();
+		</script>
+	</body>
+</html>

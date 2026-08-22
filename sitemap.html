@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>mozartsempiano</title>
+		<link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<style>
+			main div.sitemap ul.lvl1 li a:link,
+			main div.sitemap ul.lvl1 li a:visited,
+			main div.sitemap ul.lvl1 li a:active,
+			main div.sitemap p a:link,
+			main div.sitemap p a:visited,
+			main div.sitemap p a:active,
+			main div.sitemap ul.lvl2 li a:link,
+			main div.sitemap ul.lvl2 li a:visited,
+			main div.sitemap ul.lvl2 li a:active,
+			main div.sitemap ul.lvl3 li a:link,
+			main div.sitemap ul.lvl3 li a:visited,
+			main div.sitemap ul.lvl3 li a:active {
+				color: var(--clr-white);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a> >
+					<span class="animate-flicker">sitemap</span>
+				</div>
+				<div id="col-centro">
+					<div class="sitemap">
+						<!-- Sitemap gerado com o conteúdo de js/sitemap-build.js -->
+					</div>
+					<script type="module" src="/assets/js/sitemap-build.js"></script>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+	</body>
+</html>

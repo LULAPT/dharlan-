@@ -1,0 +1,50 @@
+<!-- Reusable meta tags snippet for SEO and social sharing
+
+Usage: include the relevant tags in your <head> for each page.
+Replace {{TITLE}}, {{DESCRIPTION}}, {{URL}}, {{IMAGE}}, {{SITE_NAME}}, {{LOCALE}} as needed.
+-->
+
+<!-- Basic -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Search engines -->
+<meta name="description" content="{{DESCRIPTION}}" />
+<meta name="keywords" content="blog, personal, art, music, portfolio" />
+<meta name="author" content="Mozart Mattar" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="{{URL}}" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{TITLE}}" />
+<meta property="og:description" content="{{DESCRIPTION}}" />
+<meta property="og:url" content="{{URL}}" />
+<meta property="og:site_name" content="{{SITE_NAME}}" />
+<meta property="og:image" content="{{IMAGE}}" />
+<meta property="og:locale" content="{{LOCALE}}" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{TITLE}}" />
+<meta name="twitter:description" content="{{DESCRIPTION}}" />
+<meta name="twitter:image" content="{{IMAGE}}" />
+
+<!-- Mobile / theme -->
+<meta name="theme-color" content="#000000" />
+
+<!-- Optional structured data (JSON-LD) -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{SITE_NAME}}",
+    "url": "{{URL}}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{URL}}?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+</script>

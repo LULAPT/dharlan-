@@ -1,0 +1,151 @@
+.chart {
+	width: 100%;
+	image-rendering: auto;
+	transition: transform var(--transition-time);
+}
+
+.grid {
+	display: flex;
+	grid-gap: 16px;
+	justify-content: left;
+	text-align: center;
+	margin: 0 0 24px 0;
+	width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 10px 5px 10px 5px;
+}
+
+.grid {
+	scrollbar-width: thin;
+}
+
+.grid img {
+	image-rendering: pixelated;
+	outline: 1px solid var(--clr-gray-a20);
+	border-radius: var(--b-radius);
+	transition: box-shadow var(--transition-time-long);
+	transform-style: preserve-3d;
+}
+
+body.rounded .grid img {
+	border-radius: 3px;
+}
+
+.grid img:hover {
+	box-shadow: 0 0 0 3px var(--clr-main-a30);
+}
+
+.grid.albuns img {
+	width: 154px;
+	height: 154px;
+}
+
+.grid.filmes img {
+	width: auto;
+	height: 180px;
+}
+
+.grid .placeholder {
+	background: var(--clr-black-a10);
+	outline: var(--borda-padrao);
+	display: block;
+}
+
+body.rounded .grid .placeholder {
+	border-radius: 3px;
+}
+
+.grid.jogos img {
+	width: 120px;
+	height: 160px;
+}
+
+.midias-secao {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+div.midias-secao div.favoritos h2 {
+	--clr-texto: var(--clr-gray-a50);
+
+	color: var(--clr-white);
+	border-bottom: 1px solid var(--clr-gray-a40);
+	font-family: var(--fonte-corpo);
+	font-size: 1em;
+	padding-bottom: 0.35em;
+	text-transform: uppercase;
+	margin: 0;
+}
+
+div.midias-secao div.favoritos p {
+	margin: 0;
+	font-size: 0.9em;
+}
+
+div.midias-secao div.favoritos p a {
+	text-decoration: none;
+}
+
+.favoritos {
+	padding: 16px;
+	border: var(--borda-padrao);
+	border-radius: var(--b-radius);
+}
+
+.colecoes {
+	counter-reset: rowNumber;
+}
+
+.colecoes tbody tr {
+	counter-increment: rowNumber;
+}
+
+.colecoes tbody tr td:first-child::before {
+	content: counter(rowNumber, decimal-leading-zero);
+}
+
+.colecoes {
+	width: 100%;
+	/* background-color: red; */
+	overflow: visible;
+}
+
+.colecoes img {
+	transition: all var(--transition-time);
+	z-index: 0;
+	border-radius: var(--b-radius);
+}
+
+.colecoes.filmes img {
+	width: 120px;
+	height: auto;
+}
+
+.colecoes .favs img:hover {
+	/* filter: grayscale() brightness(0.8); */
+	transform: scale(1.2) rotate(2deg);
+	z-index: 10;
+}
+
+.colecao-details {
+	padding: 0;
+	border: var(--borda-padrao);
+	height: 420px;
+	overflow: hidden;
+}
+
+div.midias-secao div.colecoes div.sub.colecao-details div.scroll {
+	max-height: 373px;
+}
+
+.colecoes .sub {
+	margin-top: 10px;
+	border: var(--borda-padrao);
+	border-radius: var(--b-radius) var(--b-radius) 0 0;
+}
+
+.colecoes .sub h2 {
+	padding: 0px 10px 0 10px;
+}
