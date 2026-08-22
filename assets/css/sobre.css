@@ -80,7 +80,7 @@ a#curriculo-btn:hover {
 	padding: var(--padding-btn);
 
 	border: var(--borda-padrao);
-	border-radius: 50px;
+	border-radius: var(--b-radius);
 
 	transition: var(--transition-time);
 }
@@ -390,5 +390,9 @@ body.rounded .skill-bar {
 @media (max-width: 770px) {
 	.img-main {
 		margin-top: -52px;
+	}
+
+	.social-links .cont-texto {
+		display: none;
 	}
 }
