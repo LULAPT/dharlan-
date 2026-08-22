@@ -363,9 +363,9 @@ export function carregarNavbar() {
 			label: "Save",
 			href: "/Save/index.html",
 			children: [
-        { label: "/w/", href: "Save/w.html" },
-				{ label: "/pfp/", href: "Save/pfp.html" },
-				{ label: "/b/", href: "Save/b.html" },
+        { label: "/w/", href: "/Save/w.html" },
+				{ label: "/pfp/", href: "/Save/pfp.html" },
+				{ label: "/b/", href: "/Save/b.html" },
 			],
 		},
 		outros: {
