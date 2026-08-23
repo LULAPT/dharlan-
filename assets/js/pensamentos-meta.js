@@ -8,7 +8,7 @@
 	if (!postTitle) return;
 
 	// Atualiza o <title>
-	document.title = postTitle.textContent.trim() + " · mozartsempiano";
+	document.title = postTitle.textContent.trim() + " · dharlan ˄";
 
 	function setMeta(name, content, property) {
 		var selector = property ? `meta[property='${property}']` : `meta[name='${name}']`;
@@ -25,8 +25,8 @@
 	// Descrição: primeiro parágrafo ou título
 	var desc = postText ? postText.textContent.trim() : postTitle.textContent.trim();
 	var url = location.origin + location.pathname;
-	var siteName = "mozartsempiano";
-	var img = postImg ? postImg.src : "/assets/img/favicon.png";
+	var siteName = "dharlan";
+	var img = postImg ? postImg.src : "/assets/img/favicon.gif";
 	var imgAlt = postImg ? postImg.alt || postTitle.textContent.trim() : siteName;
 	var ogLocale = "pt_BR";
 	var ogType = "article";
