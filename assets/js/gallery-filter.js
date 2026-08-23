@@ -721,7 +721,7 @@ function setupGalleryFilter({
 				const medias = getMedias(d);
 				// pega a primeira imagem, mesmo que seja thumbOnly
 				const thumb = medias.find((m) => m.type === "image") || null;
-				const thumbSrc = thumb ? thumb.src : "";
+				const thumbSrc = thumb ? thumb.thumb || thumb.src : "";
 				const totalMedias = medias.filter((m) => !m.thumbOnly).length;
 
 				// Mostra o botão de play se tiver uma thumbnail (primeira mídia como thumbOnly)
@@ -741,7 +741,7 @@ function setupGalleryFilter({
           <div class="filter-gallery-item" tabindex="0">
             <div class="filter-gallery-content">
               <div class="filter-gallery-thumb">
-                <img src="${thumbSrc}" alt="${getTitle(d) || ""}">
+                <img src="${thumbSrc}" alt="${getTitle(d) || ""}" loading="lazy" decoding="async">
                 ${overlays}
               </div>
               <div class="filter-gallery-tags">${tags}</div>
@@ -961,7 +961,7 @@ function setupGalleryFilter({
 						if (m.type === "image" && !m.thumbOnly) {
 							const thumb = document.createElement("div");
 							thumb.className = "modal-thumb";
-							thumb.style.backgroundImage = `url("${m.src}")`;
+							thumb.style.backgroundImage = `url("${m.thumb || m.src}")`;
 
 							thumb.onclick = (ev) => {
 								ev.stopPropagation();
