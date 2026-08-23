@@ -11,6 +11,7 @@ import { initSettingsPanel } from "/assets/js/settings-panel.js";
 // import { setupViewportAnimations } from "/assets/js/viewport-animations.js";
 import { wavyText } from "/assets/js/wavy-text.js";
 import { setPageTitle } from "/assets/js/page-title.js";
+import { animateFavicon } from "/assets/js/animated-favicon.js";
 
 function isDate(month1to12, day) {
 	const n = new Date();
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	carregarNavbar();
 	carregarFooter();
 	setPageTitle();
+	animateFavicon();
 	toggleCrt();
 	fadeIn();
 	enableTooltips();

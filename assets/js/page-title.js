@@ -1,4 +1,4 @@
-// Prefixa o <title> com o caminho da página atual, ex: "/home/ — dharlan ˄"
+// Prefixa o <title> com o caminho da página atual, ex: "/home/ — dharlan"
 const SEM_BREADCRUMB = {
 	"/": ["index"],
 	"/index.html": ["index"],

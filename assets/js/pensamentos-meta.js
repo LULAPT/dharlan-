@@ -8,7 +8,7 @@
 	if (!postTitle) return;
 
 	// Atualiza o <title>
-	document.title = postTitle.textContent.trim() + " · dharlan ˄";
+	document.title = postTitle.textContent.trim() + " · dharlan";
 
 	function setMeta(name, content, property) {
 		var selector = property ? `meta[property='${property}']` : `meta[name='${name}']`;
