@@ -375,6 +375,7 @@ export function carregarNavbar() {
 				{ label: "Anotações", href: "/anotacoes.html" },
 				{ label: "Inventário", href: "/inventario.html" },
 				{ label: "Links", href: "/links.html" },
+				{ label: "Agora", href: "/agora.html" },
 			],
 		},
 		// doar: { label: "Doar", href: "/doar.html" }, // desativado - reativar removendo o comentário
