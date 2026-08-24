@@ -370,6 +370,7 @@ export function carregarNavbar() {
 		},
 		outros: {
 			label: "Outros",
+			href: "/outros.html",
 			children: [
 				{ label: "Pensamentos", href: "/pensamentos/index.html" },
 				{ label: "Anotações", href: "/anotacoes.html" },
@@ -379,6 +380,7 @@ export function carregarNavbar() {
 		},
 		utils: {
 			label: "Utils",
+			href: "/utils.html",
 			children: [
 				{ label: "Links", href: "/links.html" },
 				{ label: "Kaomojis", href: "/kaomojis.html" },
