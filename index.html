@@ -15,6 +15,7 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css" />
 		<link rel="stylesheet" href="/assets/css/index.css" />
+		<link rel="stylesheet" href="/assets/css/boot-terminal.css" />
 
 		<!-- Fontes Externas -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,6 +26,41 @@
 	</head>
 
 	<body>
+		<div id="human-verify">
+			<div class="verify-box">
+				<label class="verify-check">
+					<input type="checkbox" id="verify-checkbox" />
+					<span class="verify-box-visual">
+						<span class="verify-spinner"></span>
+						<svg class="verify-checkmark" viewBox="0 0 24 24">
+							<path d="M9 16.2 4.8 12l-1.4 1.4L9 19 20.6 7.4l-1.4-1.4z" />
+						</svg>
+					</span>
+					<span class="verify-label">Verify you are human</span>
+				</label>
+				<div class="verify-footer">dharlan.world &middot; segurança e desempenho</div>
+			</div>
+		</div>
+
+		<div id="boot-terminal">
+			<div class="crt">
+				<div class="scanline"></div>
+			</div>
+			<div class="terminal-container">
+				<div class="terminal">
+					<div id="boot-output"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			// Se o boot já rodou nessa sessão (voltas intencionais pro index, tipo
+			// o ascii "dharlan" da /home), pula direto sem mostrar de novo.
+			if (sessionStorage.getItem("bootTerminalSeen")) {
+				document.getElementById("human-verify").remove();
+				document.getElementById("boot-terminal").remove();
+			}
+		</script>
+
 		<!-- <div class="crt-grain"></div> -->
 		<div id="preloader" style="display: none">
 			<div class="loading-wheel"></div>
@@ -83,6 +119,7 @@
 		</div>
 
 		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/boot-terminal.js"></script>
 
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {

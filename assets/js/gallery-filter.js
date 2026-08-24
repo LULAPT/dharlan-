@@ -371,10 +371,44 @@ styleSheet.textContent = `
   border-radius: var(--b-radius);
 }
 
+#modal-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 #modal-title {
   font-weight: normal;
   text-transform: uppercase;
   font-size: 1.25em;
+}
+
+#modal-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.9em;
+  height: 1.9em;
+  padding: 0;
+  border: var(--borda-padrao);
+  border-radius: var(--b-radius);
+  color: var(--clr-white);
+  cursor: pointer;
+  transition: color var(--transition-time), border-color var(--transition-time), background-color var(--transition-time);
+}
+
+#modal-download-btn:hover {
+  color: var(--clr-black-a0);
+  border-color: var(--clr-main-a30);
+  background-color: var(--clr-main-a40);
+}
+
+#modal-download-btn svg {
+  width: 1.05em;
+  height: 1.05em;
+  fill: currentColor;
 }
 
 .modal-type,
@@ -632,6 +666,7 @@ function setupGalleryFilter({
 	getPrograms = (d) => d && d.programs,
 	getTags = (d) => (d && d.tags) || [],
 	getCamera = (d) => d && d.camera,
+	enableDownload = true,
 } = {}) {
 	if (!Array.isArray(items)) items = [];
 
@@ -775,16 +810,36 @@ function setupGalleryFilter({
 				const modalInfo = modal.querySelector("#modal-info");
 				const modalThumbs = modal.querySelector("#modal-thumbs");
 				const modalMedia = modal.querySelector("#modal-media");
+				let downloadBtn = null;
 
 				function renderModalInfo(d) {
 					modalInfo.innerHTML = "";
+
+					const titleRow = document.createElement("div");
+					titleRow.id = "modal-title-row";
 
 					const title = d.title && d.title.trim() ? d.title : "Sem título";
 					const titleEl = document.createElement("div");
 					titleEl.id = "modal-title";
 					titleEl.className = "modal-title";
 					titleEl.textContent = d.year ? `${title} / ${d.year}` : title;
-					modalInfo.appendChild(titleEl);
+					titleRow.appendChild(titleEl);
+
+					// Botão de download ao lado do título. Desativado em algumas galerias
+					// (ver a chamada de setupGalleryFilter de cada página) passando
+					// enableDownload: false — não removido, só desligado ali.
+					if (enableDownload) {
+						downloadBtn = document.createElement("a");
+						downloadBtn.id = "modal-download-btn";
+						downloadBtn.title = "Baixar";
+						downloadBtn.target = "_blank";
+						downloadBtn.rel = "noopener";
+						downloadBtn.innerHTML =
+							'<svg viewBox="0 0 24 24"><path d="M20.71 9.29l-6-6a1 1 0 0 0-.32-.21A1.09 1.09 0 0 0 14 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-8a1 1 0 0 0-.29-.71zM9 5h4v2H9zm6 14H9v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1zm4-1a1 1 0 0 1-1 1h-1v-3a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.41l4 4z"/></svg>';
+						titleRow.appendChild(downloadBtn);
+					}
+
+					modalInfo.appendChild(titleRow);
 
 					if (d.type) {
 						const typeEl = document.createElement("div");
@@ -906,9 +961,32 @@ function setupGalleryFilter({
 				const firstIdx = medias.findIndex((m) => !m.thumbOnly);
 				const defaultIdx = firstIdx !== -1 ? firstIdx : 0;
 
+				function updateDownloadButton(m) {
+					if (!downloadBtn) return;
+
+					const downloadableSrc =
+						m && (m.type === "image" || (m.type === "video" && m.src.endsWith(".mp4"))) ? m.src : null;
+
+					if (!downloadableSrc) {
+						downloadBtn.style.display = "none";
+						return;
+					}
+
+					downloadBtn.style.display = "";
+					downloadBtn.href = downloadableSrc;
+					let filename = downloadableSrc.split("/").pop();
+					try {
+						filename = decodeURIComponent(filename);
+					} catch (e) {
+						/* mantém o nome cru se não der pra decodificar */
+					}
+					downloadBtn.download = filename;
+				}
+
 				function renderModalMedia(idx) {
 					modalMedia.innerHTML = "";
 					const m = medias[idx];
+					updateDownloadButton(m);
 					if (!m) return;
 
 					if (m.type === "image") {
