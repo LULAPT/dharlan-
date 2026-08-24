@@ -4,6 +4,21 @@
 	margin: 0 auto;
 }
 
+/* No tema claro, segue a mesma lógica dos botões da /sobre: texto/ícone
+   rosa por padrão, e invertido (fundo rosa, texto/ícone claro) no hover.
+   Escopado só nesse tema — nos outros o navegador usa o estilo nativo
+   (ButtonFace), que já fica ok nesses temas mais escuros. */
+:root[data-theme="light"] #avatar-app button {
+	color: var(--clr-main-a40);
+	background-color: var(--clr-black-a10);
+	border-color: var(--clr-borda);
+}
+
+:root[data-theme="light"] #avatar-app button:hover {
+	color: var(--clr-black-a10);
+	background-color: var(--clr-main-a40);
+}
+
 #avatar-app {
 	display: flex;
 	flex-direction: column;

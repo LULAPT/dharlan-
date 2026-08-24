@@ -334,7 +334,7 @@
 		var(--clr-black-a0) 0 12px,
 		var(--clr-black-a0) 12px 24px
 	);
-	animation: progressive-reveal 5s steps(2) forwards;
+	animation: progressive-reveal 3.5s steps(2) forwards;
 	pointer-events: none;
 	z-index: 2;
 }
