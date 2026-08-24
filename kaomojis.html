@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<script src="/assets/js/no-inspect.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="darkreader-lock" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan</title>
+		<link rel="icon" type="image/gif" href="/assets/img/favicon.gif" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/kaomojis.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main class="full">
+				<div id="nav-atual">
+					<a href="/home.html">home</a>
+					>
+					<span class="animate-flicker">kaomojis</span>
+				</div>
+
+				<div id="col-centro-kaomoji">
+					<div id="container-kaomoji">
+						<div id="content">
+							<div id="left-col">
+								<div id="title">
+									<h1>Kaomoji</h1>
+									<h1 class="kaomoji-jp">顔文字</h1>
+									<h2 class="subtitle">Emoticons Japoneses</h2>
+								</div>
+
+								<div id="filters">
+									<button
+										id="btn-filter"
+										class="btn-filter"
+										aria-haspopup="dialog"
+										aria-expanded="false"
+										aria-controls="popup-filters"
+										type="button"
+									>
+										<span class="typography-title-sm">Filtro</span>
+										<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+											<path
+												d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+												style="fill: currentColor"
+											></path>
+										</svg>
+									</button>
+
+									<button
+										id="btn-clear"
+										class="btn-clear"
+										type="button"
+										aria-disabled="true"
+										disabled
+									>
+										Limpar filtros
+									</button>
+
+									<div
+										id="popup-filters"
+										class="popup-filters"
+										role="region"
+										aria-hidden="true"
+										aria-labelledby="btn-filter"
+										hidden
+									>
+										<div class="popup-search-container">
+											<svg
+												class="popup-search-icon"
+												viewBox="0 0 24 24"
+												aria-hidden="true"
+											>
+												<path
+													d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+												/>
+											</svg>
+											<input
+												type="text"
+												class="popup-search-input"
+												placeholder="Buscar categorias..."
+												aria-label="Buscar categorias"
+											/>
+											<button class="popup-search-clear" aria-label="Limpar busca" hidden>
+												<svg viewBox="0 0 24 24" aria-hidden="true">
+													<path
+														d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+													/>
+												</svg>
+											</button>
+										</div>
+										<div class="popup-filters-list" data-e2eid="category-filter"></div>
+									</div>
+								</div>
+
+								<div class="kaomoji-hero" aria-hidden="true"></div>
+							</div>
+
+							<div id="left-col-mobile">
+								<div id="title">
+									<h1>Kaomoji 顔文字</h1>
+								</div>
+
+								<div id="filters">
+									<button
+										id="btn-filter"
+										class="btn-filter"
+										aria-haspopup="dialog"
+										aria-expanded="false"
+										aria-controls="popup-filters"
+										type="button"
+									>
+										<span class="typography-title-sm">Filtro</span>
+										<svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+											<path
+												d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+												style="fill: currentColor"
+											></path>
+										</svg>
+									</button>
+
+									<button
+										id="btn-clear"
+										class="btn-clear"
+										type="button"
+										aria-disabled="true"
+										disabled
+									>
+										Limpar filtros
+									</button>
+
+									<div
+										id="popup-filters"
+										class="popup-filters"
+										role="region"
+										aria-hidden="true"
+										aria-labelledby="btn-filter"
+										hidden
+									>
+										<div class="popup-search-container">
+											<svg
+												class="popup-search-icon"
+												viewBox="0 0 24 24"
+												aria-hidden="true"
+											>
+												<path
+													d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+												/>
+											</svg>
+											<input
+												type="text"
+												class="popup-search-input"
+												placeholder="Buscar categorias..."
+												aria-label="Buscar categorias"
+											/>
+											<button class="popup-search-clear" aria-label="Limpar busca" hidden>
+												<svg viewBox="0 0 24 24" aria-hidden="true">
+													<path
+														d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+													/>
+												</svg>
+											</button>
+										</div>
+										<div class="popup-filters-list" data-e2eid="category-filter"></div>
+									</div>
+								</div>
+							</div>
+
+							<div id="right-col">
+								<div id="kaomoji-generator">
+									<svg
+										id="dice-overlay"
+										xmlns="http://www.w3.org/2000/svg"
+										xml:space="preserve"
+										viewBox="0 0 512 512"
+									>
+										<path
+											d="M454.608 111.204 280.557 6.804a47.733 47.733 0 0 0-49.114-.007L57.392 111.204a47.679 47.679 0 0 0-13.555 12.192l207.902 124.707a8.269 8.269 0 0 0 8.518 0L468.16 123.396a47.654 47.654 0 0 0-13.552-12.192zM177.16 131.738c-12.056 8.371-31.302 8.16-42.984-.49-11.684-8.65-11.382-22.463.678-30.842 12.056-8.386 31.304-8.16 42.992.482 11.679 8.651 11.374 22.456-.686 30.85zm199.143 2.388c-12.056 8.38-31.306 8.16-42.992-.49-11.68-8.65-11.378-22.462.685-30.841 12.053-8.38 31.302-8.168 42.985.482 11.683 8.651 11.378 22.455-.678 30.849zm-130.167 124.24L38.004 133.523a47.72 47.72 0 0 0-3.794 18.62v208.084a47.76 47.76 0 0 0 23.182 40.946l174.051 104.392A47.712 47.712 0 0 0 250.157 512V265.464a8.273 8.273 0 0 0-4.021-7.098zM75.845 369.736c-12.052-6.571-21.829-21.671-21.829-33.728 0-12.056 9.777-16.502 21.829-9.931 12.056 6.57 21.826 21.671 21.826 33.728 0 12.056-9.769 16.501-21.826 9.931zm0-121.867c-12.052-6.578-21.829-21.678-21.829-33.728 0-12.056 9.777-16.501 21.829-9.931 12.056 6.571 21.826 21.671 21.826 33.728 0 12.048-9.769 16.502-21.826 9.931zm60.934 94.145c-12.056-6.571-21.826-21.671-21.826-33.728s9.769-16.502 21.826-9.931c12.056 6.571 21.829 21.671 21.829 33.728 0 12.048-9.773 16.502-21.829 9.931zm60.937 94.144c-12.056-6.571-21.83-21.671-21.83-33.727 0-12.049 9.773-16.495 21.83-9.924 12.056 6.57 21.826 21.67 21.826 33.72-.001 12.057-9.77 16.502-21.826 9.931zm0-121.866c-12.056-6.57-21.83-21.671-21.83-33.727 0-12.056 9.773-16.502 21.83-9.931 12.056 6.571 21.826 21.671 21.826 33.727-.001 12.056-9.77 16.502-21.826 9.931zm276.276-180.769L265.864 258.366a8.272 8.272 0 0 0-4.02 7.098V512a47.723 47.723 0 0 0 18.714-6.435l174.051-104.392a47.76 47.76 0 0 0 23.182-40.946V152.143a47.678 47.678 0 0 0-3.799-18.62zm-152.76 129.409c12.053-6.571 21.826-2.125 21.826 9.931 0 12.049-9.773 27.149-21.826 33.72-12.06 6.571-21.83 2.125-21.83-9.924 0-12.055 9.77-27.156 21.83-33.727zm0 185.803c-12.06 6.57-21.83 2.125-21.83-9.931s9.77-27.15 21.83-33.728c12.053-6.571 21.826-2.118 21.826 9.931 0 12.057-9.773 27.157-21.826 33.728zm1.304-71.072c-12.056 6.571-21.83 2.117-21.83-9.939 0-12.048 9.773-27.149 21.83-33.72 12.056-6.57 21.826-2.125 21.826 9.931s-9.77 27.15-21.826 33.728zm104.784 8.74c-12.056 6.571-21.826 2.125-21.826-9.931s9.769-27.156 21.826-33.72c12.056-6.578 21.829-2.133 21.829 9.924 0 12.056-9.773 27.157-21.829 33.727zm0-71.071c-12.056 6.563-21.826 2.125-21.826-9.931s9.769-27.157 21.826-33.728c12.056-6.571 21.829-2.125 21.829 9.931 0 12.049-9.773 27.157-21.829 33.728zm0-71.079c-12.056 6.57-21.826 2.125-21.826-9.924 0-12.056 9.769-27.157 21.826-33.728 12.056-6.571 21.829-2.125 21.829 9.931 0 12.05-9.773 27.15-21.829 33.721z"
+										/>
+									</svg>
+									<h2>Gerador de Kaomoji</h2>
+									<div id="generator-wrapper">
+										<div id="generator-inputs"></div>
+										<div id="kaomoji-preview">
+											<pre title="Clique para copiar"></pre>
+											<button id="generate-random">Aleatório</button>
+										</div>
+									</div>
+								</div>
+
+								<div id="kaomoji-list"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script type="module" src="/assets/js/kaomoji/kaomoji.js"></script>
+	</body>
+</html>

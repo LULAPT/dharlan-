@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<script src="/assets/js/theme-init.js"></script>
+		<script src="/assets/js/no-inspect.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="darkreader-lock" />
+		<!--<meta http-equiv="Cache-Control" content="no-cache">-->
+		<meta name="author" content="Mozart Mattar" />
+
+		<title>dharlan</title>
+		<link rel="icon" type="image/gif" href="/assets/img/favicon.gif" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/cropper.min.css" />
+		<link rel="stylesheet" href="/assets/css/avatar.css" />
+
+		<!-- Fontes Externas -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<header id="header-compacta"></header>
+			<header id="header-mobile"></header>
+
+			<main>
+				<div id="nav-atual">
+					<a href="/home.html">home</a>
+					>
+					<span class="animate-flicker">avatar</span>
+				</div>
+
+				<div id="col-centro-avatar">
+					<h1>Avatar</h1>
+					<p>Recorte uma imagem quadrada pra usar como foto de perfil.</p>
+
+					<div class="espaçador" style="height: 20px"></div>
+
+					<div id="avatar-app">
+						<div id="avatar-canvas-wrap">
+							<img id="avatar-image" alt="" />
+
+							<div id="avatar-dropzone">
+								<svg viewBox="0 0 24 24">
+									<path
+										d="M19 13a1 1 0 0 0-1 1v.38l-1.48-1.48a2.79 2.79 0 0 0-3.93 0l-.7.7l-2.48-2.48a2.85 2.85 0 0 0-3.93 0L4 12.6V7a1 1 0 0 1 1-1h7a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5a1 1 0 0 0-1-1zM5 20a1 1 0 0 1-1-1v-3.57l2.9-2.9a.79.79 0 0 1 1.09 0l3.17 3.17l4.3 4.3zm13-1a.89.89 0 0 1-.18.53L13.31 15l.7-.7a.77.77 0 0 1 1.1 0L18 17.21zm4.71-14.71l-3-3a1 1 0 0 0-.33-.21a1 1 0 0 0-.76 0a1 1 0 0 0-.33.21l-3 3a1 1 0 0 0 1.42 1.42L18 4.41V10a1 1 0 0 0 2 0V4.41l1.29 1.3a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42z"
+									/>
+								</svg>
+
+								<p>
+									Arraste uma imagem aqui, cole com Ctrl+V ou
+									<label for="avatar-file-input">escolha um arquivo</label>.
+								</p>
+
+								<input type="file" id="avatar-file-input" accept="image/*" hidden />
+
+								<span class="avatar-or">ou</span>
+
+								<div class="avatar-url-row">
+									<input
+										type="text"
+										id="avatar-url-input"
+										placeholder="https://..."
+										autocomplete="off"
+									/>
+									<button id="avatar-url-button" title="Carregar da URL" type="button">
+										<svg viewBox="0 0 24 24" style="width: 1.1em; height: 1.1em; fill: currentColor">
+											<path
+												d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11H4z"
+											/>
+										</svg>
+									</button>
+								</div>
+
+								<div id="avatar-error"></div>
+							</div>
+						</div>
+
+						<div id="avatar-previews" class="hidden"></div>
+
+						<div id="avatar-toolbar" class="disabled">
+							<div class="avatar-tool-group">
+								<span class="avatar-tool-label">Rotação</span>
+								<div class="avatar-tool-buttons">
+									<button data-action="rotate-left" title="Girar à esquerda" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M13 4.07V1L8.45 5.55L13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93M7.1 18.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32M6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47m1.02-4.47L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47z"
+											/>
+										</svg>
+									</button>
+									<button data-action="rotate-right" title="Girar à direita" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M16.89 15.5l1.42 1.39c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.5M13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03m6.93-6.9a7.906 7.906 0 0 0-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47m-2.36-5.45L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45z"
+											/>
+										</svg>
+									</button>
+								</div>
+							</div>
+
+							<div class="avatar-tool-group">
+								<span class="avatar-tool-label">Espelhar</span>
+								<div class="avatar-tool-buttons">
+									<button data-action="flip-horizontal" title="Espelhar horizontalmente" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M15 21h2v-2h-2m4-10h2V7h-2M3 5v14c0 1.1.9 2 2 2h4v-2H5V5h4V3H5c-1.1 0-2 .9-2 2m16-2v2h2c0-1.1-.9-2-2-2m-8 20h2V1h-2m8 16h2v-2h-2M15 5h2V3h-2m4 10h2v-2h-2m0 10c1.1 0 2-.9 2-2h-2z"
+											/>
+										</svg>
+									</button>
+									<button data-action="flip-vertical" title="Espelhar verticalmente" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M3 15v2h2v-2m10 4v2h2v-2m2-16H5c-1.1 0-2 .9-2 2v4h2V5h14v4h2V5c0-1.1-.9-2-2-2m2 16h-2v2c1.1 0 2-.9 2-2M1 11v2h22v-2M7 19v2h2v-2m10-4v2h2v-2m-10 4v2h2v-2M3 19c0 1.1.9 2 2 2v-2z"
+											/>
+										</svg>
+									</button>
+								</div>
+							</div>
+
+							<div class="avatar-tool-group">
+								<span class="avatar-tool-label">Zoom</span>
+								<div class="avatar-tool-buttons">
+									<button data-action="zoom-out" title="Diminuir zoom" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 0 0 9.5 3A6.5 6.5 0 0 0 3 9.5A6.5 6.5 0 0 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5l1.5-1.5l-5-5m-6 0C7 14 5 12 5 9.5S7 5 9.5 5S14 7 14 9.5S12 14 9.5 14M7 9h5v1H7V9z"
+											/>
+										</svg>
+									</button>
+									<button data-action="zoom-in" title="Aumentar zoom" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M15.5 14l5 5l-1.5 1.5l-5-5v-.79l-.27-.28A6.471 6.471 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.57 4.23l.28.27h.79m-6 0C12 14 14 12 14 9.5S12 5 9.5 5S5 7 5 9.5S7 14 9.5 14m2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"
+											/>
+										</svg>
+									</button>
+								</div>
+							</div>
+
+							<div class="avatar-tool-group">
+								<span class="avatar-tool-label">Posição</span>
+								<div class="avatar-tool-buttons">
+									<button data-action="maximize" title="Maximizar área de corte" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M9.5 13.09l1.41 1.41l-4.5 4.5H10v2H3v-7h2v3.59l4.5-4.5m1.41-3.59L9.5 10.91L5 6.41V10H3V3h7v2H6.41l4.5 4.5m3.59 3.59l4.5 4.5V14h2v7h-7v-2h3.59l-4.5-4.5l1.41-1.41M13.09 9.5l4.5-4.5H14V3h7v7h-2V6.41l-4.5 4.5l-1.41-1.41z"
+											/>
+										</svg>
+									</button>
+									<button data-action="center" title="Centralizar área de corte" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m7 10h-4v2h4a2 2 0 0 0 2-2v-4h-2m0-12h-4v2h4v4h2V5a2 2 0 0 0-2-2M5 5h4V3H5a2 2 0 0 0-2 2v4h2m0 6H3v4a2 2 0 0 0 2 2h4v-2H5v-4z"
+											/>
+										</svg>
+									</button>
+									<button data-action="reset" title="Resetar" type="button">
+										<svg viewBox="0 0 24 24">
+											<path
+												d="M12 3a9 9 0 0 0-9 9H0l4 4l4-4H5a7 7 0 0 1 7-7a7 7 0 0 1 7 7a7 7 0 0 1-7 7c-1.5 0-2.91-.5-4.06-1.3L6.5 19.14A9.115 9.115 0 0 0 12 21a9 9 0 0 0 9-9a9 9 0 0 0-9-9m2 9a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2z"
+											/>
+										</svg>
+									</button>
+								</div>
+							</div>
+
+							<div class="avatar-tool-group avatar-tool-group-primary">
+								<button id="avatar-open-btn" title="Abrir imagem" type="button">
+									<svg viewBox="0 0 24 24">
+										<path
+											d="M6.1 10L4 18V8h17a2 2 0 0 0-2-2h-7l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h15c.9 0 1.7-.6 1.9-1.5l2.3-8.5H6.1M19 18H6l1.6-6h13L19 18z"
+										/>
+									</svg>
+									Abrir
+								</button>
+								<button id="avatar-download-btn" class="button" title="Baixar recorte" type="button">
+									<svg viewBox="0 0 24 24">
+										<path
+											d="M20.71 9.29l-6-6a1 1 0 0 0-.32-.21A1.09 1.09 0 0 0 14 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-8a1 1 0 0 0-.29-.71zM9 5h4v2H9zm6 14H9v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1zm4-1a1 1 0 0 1-1 1h-1v-3a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.41l4 4z"
+										/>
+									</svg>
+									Baixar
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<footer></footer>
+		</div>
+
+		<script type="module" src="/assets/js/main.js"></script>
+		<script src="/assets/js/cropper.min.js"></script>
+		<script src="/assets/js/avatar/avatar.js"></script>
+	</body>
+</html>

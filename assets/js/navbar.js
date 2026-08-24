@@ -374,8 +374,15 @@ export function carregarNavbar() {
 				{ label: "Pensamentos", href: "/pensamentos/index.html" },
 				{ label: "Anotações", href: "/anotacoes.html" },
 				{ label: "Inventário", href: "/inventario.html" },
-				{ label: "Links", href: "/links.html" },
 				{ label: "Agora", href: "/agora.html" },
+			],
+		},
+		utils: {
+			label: "Utils",
+			children: [
+				{ label: "Links", href: "/links.html" },
+				{ label: "Kaomojis", href: "/kaomojis.html" },
+				{ label: "Avatar", href: "/avatar.html" },
 			],
 		},
 		// doar: { label: "Doar", href: "/doar.html" }, // desativado - reativar removendo o comentário
