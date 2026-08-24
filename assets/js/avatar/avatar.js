@@ -151,22 +151,63 @@ async function loadFromUrl(url) {
 	}
 }
 
-function download() {
+function downloadViaAnchor(canvas, filename) {
+	canvas.toBlob((blob) => {
+		if (!blob) return;
+
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = filename;
+		// O fade-in.js do site intercepta cliques em qualquer link cujo href não
+		// comece com "#", "http" ou "javascript" pra fazer uma transição de
+		// página — isso pegava esse link de blob: por engano e navegava pra ele
+		// em vez de baixar. target="_blank" é o escape que o próprio fade-in.js
+		// já reconhece pra não interceptar; com download setado, o navegador
+		// nem chega a abrir aba nenhuma, só salva o arquivo.
+		a.target = "_blank";
+		a.rel = "noopener";
+		document.body.appendChild(a);
+		a.click();
+		a.remove();
+
+		setTimeout(() => URL.revokeObjectURL(url), 1000);
+	}, "image/png");
+}
+
+async function download() {
 	if (!cropper) return;
 
 	const canvas = cropper.getCroppedCanvas();
 	if (!canvas) return;
 
-	// Usa toDataURL (síncrono) em vez de toBlob (assíncrono): o Chrome exige que
-	// o clique no link de download aconteça dentro da mesma ativação do usuário,
-	// e o callback assíncrono do toBlob pode perder essa janela e virar navegação
-	// em vez de download (erro ERR_FILE_NOT_FOUND).
-	const a = document.createElement("a");
-	a.href = canvas.toDataURL("image/png");
-	a.download = `${currentFileName}-cropped.png`;
-	document.body.appendChild(a);
-	a.click();
-	a.remove();
+	const filename = `${currentFileName}-cropped.png`;
+
+	// No Windows/desktop (Chrome, Edge), abre o diálogo nativo "salvar como" pra
+	// escolher a pasta. Precisa ser a primeira coisa chamada no clique, antes de
+	// qualquer await, pra não perder a ativação do usuário exigida pela API.
+	if (window.showSaveFilePicker) {
+		try {
+			const handle = await window.showSaveFilePicker({
+				suggestedName: filename,
+				types: [{ description: "Imagem PNG", accept: { "image/png": [".png"] } }],
+			});
+
+			const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+			const writable = await handle.createWritable();
+			await writable.write(blob);
+			await writable.close();
+			return;
+		} catch (err) {
+			if (err && err.name === "AbortError") return;
+			downloadViaAnchor(canvas, filename);
+			return;
+		}
+	}
+
+	// Fallback (Firefox, Safari, celular): baixa direto pra pasta padrão de
+	// downloads, sem abrir aba nova.
+	downloadViaAnchor(canvas, filename);
 }
 
 function positionMaximize() {
