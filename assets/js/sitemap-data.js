@@ -51,7 +51,15 @@ export const sitemap = [
           { href: "/pensamentos/index.html", label: "/pensamentos" },
           { href: "/anotacoes.html", label: "/anotacoes" },
           { href: "/inventario.html", label: "/inventario" },
+          { href: "/agora.html", label: "/agora" },
+        ],
+      },
+      { nopage: true, label: "/utils" },
+      {
+        items: [
           { href: "/links.html", label: "/links" },
+          { href: "/kaomojis.html", label: "/kaomojis" },
+          { href: "/avatar.html", label: "/avatar" },
         ],
       },
       // { href: "/doar.html", label: "/doar" }, // desativado - reativar removendo o comentário

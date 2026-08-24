@@ -154,19 +154,19 @@ async function loadFromUrl(url) {
 function download() {
 	if (!cropper) return;
 
-	cropper.getCroppedCanvas().toBlob((blob) => {
-		if (!blob) return;
+	const canvas = cropper.getCroppedCanvas();
+	if (!canvas) return;
 
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = `${currentFileName}-cropped.png`;
-		document.body.appendChild(a);
-		a.click();
-		a.remove();
-
-		setTimeout(() => URL.revokeObjectURL(url), 500);
-	});
+	// Usa toDataURL (síncrono) em vez de toBlob (assíncrono): o Chrome exige que
+	// o clique no link de download aconteça dentro da mesma ativação do usuário,
+	// e o callback assíncrono do toBlob pode perder essa janela e virar navegação
+	// em vez de download (erro ERR_FILE_NOT_FOUND).
+	const a = document.createElement("a");
+	a.href = canvas.toDataURL("image/png");
+	a.download = `${currentFileName}-cropped.png`;
+	document.body.appendChild(a);
+	a.click();
+	a.remove();
 }
 
 function positionMaximize() {
@@ -227,6 +227,14 @@ urlInput.addEventListener("keydown", (e) => {
 canvasWrap.addEventListener("drop", (e) => {
 	const file = e.dataTransfer.files && e.dataTransfer.files[0];
 	if (file) loadFromFile(file);
+});
+
+// Impede que o scroll do mouse sobre a área de corte (usado pelo Cropper.js
+// pra dar zoom) seja capturado pelo smooth-scroll global do site, que rola
+// a página inteira em cima do zoom. Precisa ser na fase de bubble (depois
+// do próprio Cropper.js já ter recebido o evento), não na de capture.
+canvasWrap.addEventListener("wheel", (e) => {
+	e.stopPropagation();
 });
 
 window.addEventListener("paste", (e) => {

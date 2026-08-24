@@ -1,5 +1,14 @@
 [
 	{
+		"date": "2026-08-23",
+		"items": [
+			"nova categoria /utils adicionada à navegação",
+			"páginas <a href=\"/kaomojis.html\">/kaomojis</a> e <a href=\"/avatar.html\">/avatar</a> adicionadas em /utils",
+			"<a href=\"/links.html\">/links</a> movida de /outros para /utils",
+			"página <a href=\"/agora.html\">/agora</a> permanece organizada em /outros"
+		]
+	},
+	{
 		"date": "2026-01-16",
 		"items": [
 			"adicionado suporte para múltiplos temas, além do tema novo 'steam green', que pode ser ativado nas configurações"
