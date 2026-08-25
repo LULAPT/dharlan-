@@ -12,6 +12,7 @@ import { initSettingsPanel } from "/assets/js/settings-panel.js";
 import { wavyText } from "/assets/js/wavy-text.js";
 import { setPageTitle } from "/assets/js/page-title.js";
 import { animateFavicon } from "/assets/js/animated-favicon.js";
+import { initAnalytics } from "/assets/js/analytics.js";
 
 function isDate(month1to12, day) {
 	const n = new Date();
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	import("/assets/js/dither.js").catch((err) =>
 		console.error("Erro ao carregar dither.js:", err)
 	);
+	initAnalytics();
 	carregarNavbar();
 	carregarFooter();
 	setPageTitle();
