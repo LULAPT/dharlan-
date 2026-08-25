@@ -1,0 +1,363 @@
+/* Página de Contato — cartão de identidade. Port de
+   https://gitlab.com/mozartsempiano/neocities-mozartsempiano (mesmo autor,
+   mesmo projeto de origem do kaomojis/avatar), retemado pros 3 temas do
+   site em vez do esquema fixo original. Efeito "duotone" da foto refeito
+   com filtro CSS puro (grayscale + overlay), sem o motor de quantização de
+   cores em canvas do projeto original. */
+
+#col-centro-contato {
+	width: 100%;
+	max-width: var(--main-width);
+	margin: 0 auto;
+	padding: 2rem 0;
+	display: flex;
+	justify-content: center;
+}
+
+/* Cartão */
+
+#cartao-wrapper {
+	--mask-bleed: clamp(24px, 3vh, 3vh);
+	--shape-url: url("/assets/img/cartao-mascara.svg");
+
+	display: inline-block;
+	position: relative;
+	aspect-ratio: 716 / 412;
+	width: min(680px, 100%);
+	height: auto;
+	margin: 0 auto;
+
+	mask: var(--shape-url) center /
+		calc(100% + var(--mask-bleed)) calc(100% + var(--mask-bleed)) no-repeat;
+	background-color: var(--clr-borda);
+}
+
+#cartao {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: calc(100% - 4px);
+	height: calc(100% - 4px);
+
+	padding: clamp(22px, 2.5vh, 2.5vh);
+	background: linear-gradient(160deg, var(--clr-black-a10), var(--clr-black-a0));
+	color: var(--clr-white);
+
+	mask: var(--shape-url) center /
+		calc(100% + var(--mask-bleed)) calc(100% + var(--mask-bleed)) no-repeat;
+	mask-mode: alpha;
+
+	font-family: var(--fonte-monospace);
+	font-size: 16px;
+}
+
+#cartao * {
+	line-height: 1.2;
+	font-family: inherit;
+}
+
+.cartao-col-wrap {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 0.8rem;
+	justify-content: space-between;
+}
+
+#cartao .cartao-col-wrap > section {
+	min-width: 0;
+	height: 100%;
+}
+
+/* Coluna esquerda: foto + barcode */
+
+#cartao-esq {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+}
+
+#foto-cartao {
+	--corte: polygon(0% 0%, 85% 0%, 100% 15%, 100% 100%, 15% 100%, 0% 85%);
+
+	position: relative;
+	display: block;
+	height: fit-content;
+	width: fit-content;
+	aspect-ratio: 1 / 1;
+	clip-path: var(--corte);
+	margin: 0 auto;
+}
+
+#foto-cartao #foto {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	filter: grayscale(1) contrast(1.15);
+}
+
+#foto-cartao::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(160deg, var(--clr-black-a0), var(--clr-main-a40));
+	mix-blend-mode: color;
+	pointer-events: none;
+}
+
+#barcode-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+#barcode {
+	width: 100%;
+}
+
+#barcode svg {
+	width: 100%;
+	display: block;
+	fill: var(--clr-white);
+}
+
+#cartao-codigo {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	width: 100%;
+	font-size: 0.7em;
+	justify-content: flex-end;
+}
+
+#cartao-logo {
+	width: 0.9em;
+	height: 0.9em;
+	display: inline-block;
+	background-color: currentColor;
+	-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='2.4' r='2.4'/><circle cx='20.4' cy='7.2' r='2.4'/><circle cx='20.4' cy='16.8' r='2.4'/><circle cx='12' cy='21.6' r='2.4'/><circle cx='3.6' cy='16.8' r='2.4'/><circle cx='3.6' cy='7.2' r='2.4'/></svg>");
+	mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='2.4' r='2.4'/><circle cx='20.4' cy='7.2' r='2.4'/><circle cx='20.4' cy='16.8' r='2.4'/><circle cx='12' cy='21.6' r='2.4'/><circle cx='3.6' cy='16.8' r='2.4'/><circle cx='3.6' cy='7.2' r='2.4'/></svg>");
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	animation: contatoSpin 4s linear infinite;
+}
+
+@keyframes contatoSpin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Coluna direita: infos */
+
+#cartao-dir {
+	flex: 1.25;
+	padding: 14px;
+}
+
+#cartao-dir > article {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	justify-content: flex-start;
+	height: 100%;
+}
+
+#titulo-cartao-section {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: -7px;
+}
+
+#titulo-cartao {
+	margin: 0 0 0.7rem 0;
+	padding: 0;
+	font-size: 1.7em;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1;
+}
+
+#cartao-nome {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+#nome,
+#username {
+	display: block;
+	width: 100%;
+	background: var(--clr-white);
+	color: var(--clr-black-a0);
+	padding: 0.1em 0.35em;
+	margin: 0;
+	white-space: nowrap;
+}
+
+#nome {
+	font-size: 1.2em;
+}
+
+#username {
+	font-size: 0.9em;
+}
+
+#cartao-local {
+	font-size: 0.84em;
+	opacity: 0.85;
+}
+
+#cartao-socials {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 6px;
+	padding: 0.6em 0;
+}
+
+#cartao-socials a,
+#cartao-socials pre.copiavel {
+	width: fit-content;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	margin: 0;
+	color: var(--clr-white);
+	text-decoration: none;
+}
+
+#cartao-socials a:hover,
+#cartao-socials pre.copiavel:hover {
+	color: var(--clr-main-a40);
+}
+
+#cartao-socials .icone {
+	min-width: 16px;
+	min-height: 16px;
+}
+
+#detalhe-baixo {
+	position: absolute;
+	bottom: 16px;
+	right: 25px;
+	width: 240px;
+	height: 3px;
+	background: var(--clr-borda);
+	opacity: 0.5;
+}
+
+/* Efeitos: flutuação 3D + brilho passando — port de cards.css */
+
+.card {
+	position: relative;
+	overflow: hidden;
+	box-shadow:
+		0 4px 8px rgba(0, 0, 0, 0.2),
+		0 12px 30px rgba(0, 0, 0, 0.15);
+	transform-style: preserve-3d;
+	transition: var(--transition-time-long);
+}
+
+.card.cardFloat {
+	animation: contatoFloatCard 6s ease-in-out infinite;
+}
+
+@keyframes contatoFloatCard {
+	0%,
+	100% {
+		transform: perspective(1000px) rotateX(-3deg) rotateY(12deg) rotateZ(-4deg);
+	}
+	50% {
+		transform: perspective(1000px) rotateX(1deg) rotateY(8deg) rotateZ(-2deg);
+	}
+}
+
+.card.glareBgPos::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		120deg,
+		transparent 40%,
+		rgba(255, 255, 255, 0.15) 47%,
+		rgba(255, 255, 255, 0.6) 50%,
+		rgba(255, 255, 255, 0.15) 53%,
+		transparent 60%
+	);
+	background-size: 250% 100%;
+	mix-blend-mode: screen;
+	opacity: 0.6;
+	animation: contatoGlareBgPos 6s ease infinite;
+	pointer-events: none;
+	z-index: 5;
+}
+
+@keyframes contatoGlareBgPos {
+	from {
+		background-position: 120% 0;
+	}
+	to {
+		background-position: -120% 0;
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.card:hover {
+		animation-play-state: paused;
+		transform: translateY(-14px) perspective(1000px) rotateX(6deg) rotateY(10deg)
+			rotateZ(2deg);
+	}
+}
+
+@media (max-width: 770px) {
+	.card.cardFloat {
+		animation: none;
+	}
+
+	#cartao-wrapper {
+		all: unset;
+		display: block;
+		width: 100%;
+	}
+
+	#cartao {
+		position: static;
+		width: 100%;
+		height: auto;
+		padding: 1.6rem;
+		font-size: 1rem;
+		background: var(--clr-black-a10);
+		border: var(--borda-padrao);
+		border-radius: var(--b-radius);
+		mask: none;
+	}
+
+	.cartao-col-wrap {
+		flex-direction: column;
+		gap: 1.6rem;
+		align-items: center;
+	}
+
+	#cartao-dir {
+		padding: 0;
+	}
+
+	#titulo-cartao {
+		display: none;
+	}
+
+	#barcode-wrapper,
+	#detalhe-baixo {
+		display: none;
+	}
+}

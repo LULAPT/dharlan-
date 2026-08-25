@@ -213,6 +213,7 @@ export function carregarNavbar() {
   #close-menu {
     background: none;
     border: none;
+    padding: 15px;
     color: var(--clr-white);
     cursor: pointer;
     font-size: 2.29em;
@@ -349,51 +350,52 @@ export function carregarNavbar() {
 	}
 	injectNavbarCSS();
 	const links = {
-		sobre: { label: "Sobre", href: "/sobre.html" },
+		sobre: { label: "Sobre", href: "/sobre/" },
 		portfolio: {
 			label: "Galeria",
-			href: "/galeria/index.html",
+			href: "/galeria/",
 			children: [
-        { label: "Arte", href: "/galeria/arte/index.html" },
-				{ label: "Fotografia", href: "/galeria/fotografia/index.html" },
-				{ label: "Cat.jpg(s)", href: "/galeria/cat.jpg/index.html" },
+        { label: "Arte", href: "/galeria/arte/" },
+				{ label: "Fotografia", href: "/galeria/fotografia/" },
+				{ label: "Cat.jpg(s)", href: "/galeria/cat.jpg/" },
 			],
 		},
 		projetos: {
 			label: "Save",
-			href: "/Save/index.html",
+			href: "/Save/",
 			children: [
-        { label: "/w/", href: "/Save/w.html" },
-				{ label: "/pfp/", href: "/Save/pfp.html" },
-				{ label: "/b/", href: "/Save/b.html" },
+        { label: "/w/", href: "/Save/w/" },
+				{ label: "/pfp/", href: "/Save/pfp/" },
+				{ label: "/b/", href: "/Save/b/" },
 			],
 		},
 		outros: {
 			label: "Outros",
-			href: "/outros.html",
+			href: "/outros/",
 			children: [
-				{ label: "Pensamentos", href: "/pensamentos/index.html" },
-				{ label: "Anotações", href: "/anotacoes.html" },
-				{ label: "Inventário", href: "/inventario.html" },
-				{ label: "Agora", href: "/agora.html" },
+				{ label: "Pensamentos", href: "/pensamentos/" },
+				{ label: "Anotações", href: "/anotacoes/" },
+				{ label: "Inventário", href: "/inventario/" },
+				{ label: "Agora", href: "/agora/" },
+				{ label: "Contato", href: "/contato/" },
 			],
 		},
 		utils: {
 			label: "Utils",
-			href: "/utils.html",
+			href: "/utils/",
 			children: [
-				{ label: "Links", href: "/links.html" },
-				{ label: "Kaomojis", href: "/kaomojis.html" },
-				{ label: "Avatar", href: "/avatar.html" },
+				{ label: "Links", href: "/links/" },
+				{ label: "Kaomojis", href: "/kaomojis/" },
+				{ label: "Avatar", href: "/avatar/" },
 			],
 		},
-		// doar: { label: "Doar", href: "/doar.html" }, // desativado - reativar removendo o comentário
+		// doar: { label: "Doar", href: "/doar/" }, // desativado - reativar removendo o comentário
 	};
 
 	function gerarNavbarLinks(obj) {
 		return Object.values(obj)
 			.map((item) => {
-				const isDoar = item.href === "/doar.html";
+				const isDoar = item.href === "/doar/";
 				const linkClass = isDoar ? "btn-doar" : "";
 				if (item.children && item.children.length) {
 					const childrenHTML = item.children
@@ -416,7 +418,7 @@ export function carregarNavbar() {
 	function gerarNavbarMobile(obj) {
 		return Object.values(obj)
 			.map((item) => {
-				const isDoar = item.href === "/doar.html";
+				const isDoar = item.href === "/doar/";
 				const itemClass = isDoar ? "btn-doar" : "";
 				if (item.children && item.children.length) {
 					const childrenHTML = item.children
@@ -450,8 +452,8 @@ export function carregarNavbar() {
 `;
 
 		headerHome.innerHTML = `
-        <div id="ascii-art-container"><pre><a href="/index.html">${asciiArt}</a></pre></div>
-        <h1 id="simple-title"><a href="/home.html">dharlan^</a></h1>
+        <div id="ascii-art-container"><pre><a href="/">${asciiArt}</a></pre></div>
+        <h1 id="simple-title"><a href="/home/">dharlan^</a></h1>
         <nav>${gerarNavbarLinks(links)}</nav>
     `;
 	}
@@ -460,7 +462,7 @@ export function carregarNavbar() {
 		headerCompacta.innerHTML = `
       <div id="header-wrap">
         <div id="header-titulo-compacto">
-          <a href="/home.html">dharlan^</a>
+          <a href="/home/">dharlan^</a>
         </div>
         <nav>${gerarNavbarLinks(links)}</nav>
       </div>
@@ -470,7 +472,7 @@ export function carregarNavbar() {
 	if (headerMobile) {
 		headerMobile.innerHTML = `
         <div id="title-mobile">
-          <a href="/home.html"><span id="site-title">dharlan^</span></a>
+          <a href="/home/"><span id="site-title">dharlan^</span></a>
           <button id="menu-btn" aria-label="Abrir menu">
 		  	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M121.87-236.28v-86h716.26v86H121.87Zm0-201.22v-86h716.26v86H121.87Zm0-201.22v-86h716.26v86H121.87Z"/></svg>
 		  </button>

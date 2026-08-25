@@ -1,10 +1,9 @@
 // Prefixa o <title> com o caminho da página atual, ex: "/home/ — dharlan"
 const SEM_BREADCRUMB = {
 	"/": ["index"],
-	"/index.html": ["index"],
-	"/home.html": ["home"],
-	"/not_found.html": ["404"],
-	"/anotacoes.html": ["anotacoes"],
+	"/home/": ["home"],
+	"/not_found/": ["404"],
+	"/anotacoes/": ["anotacoes"],
 };
 
 function slugify(text) {
@@ -21,7 +20,7 @@ export function setPageTitle() {
 
 	if (nav) {
 		segments = Array.from(nav.children)
-			.filter((el) => el.getAttribute("href") !== "/home.html")
+			.filter((el) => el.getAttribute("href") !== "/home/")
 			.map((el) => slugify(el.textContent))
 			.filter(Boolean);
 	} else if (SEM_BREADCRUMB[location.pathname]) {

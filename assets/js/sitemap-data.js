@@ -1,72 +1,73 @@
 // Sitemap data structure used to build the sitemap HTML
 export const sitemap = [
-  { href: "/index.html", label: "/index" },
+  { href: "/", label: "/index" },
   {
     group: true,
     items: [
-      { href: "/home.html", label: "/home" },
-      { href: "/sobre.html", label: "/sobre" },
+      { href: "/home/", label: "/home" },
+      { href: "/sobre/", label: "/sobre" },
       {
-        href: "/galeria/index.html",
+        href: "/galeria/",
         label: "/galeria",
         children: [
           {
-            href: "/galeria/arte/index.html",
+            href: "/galeria/arte/",
             label: "/arte",
             children: [
-              { href: "/galeria/arte/sketchbook-2019.html", label: "/sketchbook-2019" },
-              { href: "/galeria/arte/sketchbook-2022.html", label: "/sketchbook-2022" },
+              { href: "/galeria/arte/sketchbook-2019/", label: "/sketchbook-2019" },
+              { href: "/galeria/arte/sketchbook-2022/", label: "/sketchbook-2022" },
             ],
           },
-          { href: "/galeria/fotografia/index.html", label: "/fotografia" },
-          { href: "/galeria/cat.jpg/index.html", label: "/cat.jpg" },
+          { href: "/galeria/fotografia/", label: "/fotografia" },
+          { href: "/galeria/cat.jpg/", label: "/cat.jpg" },
         ],
       },
       {
-        href: "/Save/index.html",
+        href: "/Save/",
         label: "/save",
         children: [
           {
-            href: "/Save/w.html",
+            href: "/Save/w/",
             label: "/w",
             children: [
-              { href: "/Save/w-lewd.html", label: "/w-lewd" },
-              { href: "/Save/w-ultrawide.html", label: "/w-ultrawide" },
-              { href: "/Save/w-vertical.html", label: "/w-vertical" },
+              { href: "/Save/w-lewd/", label: "/w-lewd" },
+              { href: "/Save/w-ultrawide/", label: "/w-ultrawide" },
+              { href: "/Save/w-vertical/", label: "/w-vertical" },
             ],
           },
-          { href: "/Save/pfp.html", label: "/pfp" },
-          { href: "/Save/b.html", label: "/b" },
+          { href: "/Save/pfp/", label: "/pfp" },
+          { href: "/Save/b/", label: "/b" },
         ],
       },
       {
         items: [
-          { href: "/2kki.html", label: "/2kki" },
-          { href: "/mplace/index.html", label: "/mplace" },
+          { href: "/2kki/", label: "/2kki" },
+          { href: "/mplace/", label: "/mplace" },
         ],
       },
       {
-        href: "/outros.html",
+        href: "/outros/",
         label: "/outros",
         children: [
-          { href: "/pensamentos/index.html", label: "/pensamentos" },
-          { href: "/anotacoes.html", label: "/anotacoes" },
-          { href: "/inventario.html", label: "/inventario" },
-          { href: "/agora.html", label: "/agora" },
+          { href: "/pensamentos/", label: "/pensamentos" },
+          { href: "/anotacoes/", label: "/anotacoes" },
+          { href: "/inventario/", label: "/inventario" },
+          { href: "/agora/", label: "/agora" },
+          { href: "/contato/", label: "/contato" },
         ],
       },
       {
-        href: "/utils.html",
+        href: "/utils/",
         label: "/utils",
         children: [
-          { href: "/links.html", label: "/links" },
-          { href: "/kaomojis.html", label: "/kaomojis" },
-          { href: "/avatar.html", label: "/avatar" },
+          { href: "/links/", label: "/links" },
+          { href: "/kaomojis/", label: "/kaomojis" },
+          { href: "/avatar/", label: "/avatar" },
         ],
       },
-      // { href: "/doar.html", label: "/doar" }, // desativado - reativar removendo o comentário
-      { href: "/changelog.html", label: "/changelog" },
-      { href: "/not_found.html", label: "/404" },
+      // { href: "/doar/", label: "/doar" }, // desativado - reativar removendo o comentário
+      { href: "/changelog/", label: "/changelog" },
+      { href: "/not_found/", label: "/404" },
     ],
   },
   { href: "https://neocities.org/site/mozartsempiano", label: "/neocities", external: true },

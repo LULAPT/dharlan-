@@ -158,7 +158,7 @@ export function fadeIn() {
     if (!usarPreloadGlobal) return;
     const conteudo = document.getElementById("conteudo");
     if (conteudo) {
-      const paginasExcluidas = ["/home.html", "/index.html"];
+      const paginasExcluidas = ["/home/", "/"];
       conteudo.style.opacity = paginasExcluidas.includes(window.location.pathname) ? "1" : "0";
     }
   });
