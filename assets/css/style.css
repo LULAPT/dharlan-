@@ -87,6 +87,11 @@ main {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	/* #container é flex-column com min-height:100vh — isso faz o <main>
+	   crescer pra preencher o espaço vertical sobrando, empurrando o
+	   footer pro fundo da tela em páginas com pouco conteúdo, em vez
+	   dele "subir" logo depois do conteúdo. */
+	flex: 1 0 auto;
 }
 
 main:has(#col-centro) {
@@ -630,8 +635,17 @@ footer,
 #col-centro,
 .box-inner {
 	flex: 1;
-	min-height: 450px;
 	overflow: hidden;
+}
+
+/* #col-centro fica de fora do min-height fixo: em páginas com pouco
+   conteúdo (ex: /outros, /utils) isso deixava um vazio grande dentro da
+   caixa. #col-esquerda/#col-direita/.box-inner mantêm o mínimo porque
+   dependem dele pro layout de múltiplas colunas (ex: /home) não colapsar. */
+#col-esquerda,
+#col-direita,
+.box-inner {
+	min-height: 450px;
 }
 
 #col-esquerda,
