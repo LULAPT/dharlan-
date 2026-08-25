@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const empty = " ".repeat(steps - i);
 			const pct = Math.round((i / steps) * 100);
 			barLine.textContent = `[${filled}${empty}] ${pct}%`;
-			await wait(100);
+			await wait(70);
 		}
 	}
 
