@@ -63,15 +63,9 @@
 			</div>
 		</div>
 		<script>
-			// iPhone/iPod (iOS) — desabilitado por enquanto por causa de um bug de
-			// renderização no WebKit (a camada do terminal/checkbox pisca e some).
-			// Detecta qualquer navegador no iOS (todos usam WebKit por baixo, então
-			// o bug não é exclusivo do app Safari) via user-agent.
-			var isIOS = /iPhone|iPod/.test(navigator.userAgent);
-
 			// Se o boot já rodou nessa sessão (voltas intencionais pro index, tipo
 			// o ascii "dharlan" da /home), pula direto sem mostrar de novo.
-			if (isIOS || sessionStorage.getItem("bootTerminalSeen")) {
+			if (sessionStorage.getItem("bootTerminalSeen")) {
 				document.getElementById("human-verify")?.remove();
 				document.getElementById("boot-terminal").remove();
 			}
