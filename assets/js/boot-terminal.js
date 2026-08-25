@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		{ text: "Initializing dharlan.world terminal...", delay: 1100 },
 		{ text: "Running memory check...", delay: 1700 },
 		{ text: "Memory OK: 640K Base, 64M Extended", delay: 900 },
-		{ text: "CPU: dharlan.world Terminal v1.0 @ 4.77 MHz", delay: 700 },
-		{ text: "dharlan.world Terminal Ready.", delay: 1100 },
+		{ text: "CPU: dharlan.world Terminal v1.0 @ 4.77 MHz", delay: 250 },
+		{ text: "dharlan.world Terminal Ready.", delay: 350 },
 	];
 
 	function wait(ms) {
@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const typingAudio = new Audio("/assets/wav/keyboard-typing.mp3");
 	const keyPressAudio = new Audio("/assets/wav/key-press.mp3");
-	keyPressAudio.volume = 0.6;
+	keyPressAudio.volume = 0.2;
+	const pcBootAudio = new Audio("/assets/wav/pc-boot.mp3");
+	pcBootAudio.volume = 0.1;
 
 	// O volume do elemento vai até 1, então pra deixar a digitação mais alta
 	// de fato (além do teto normal) passamos o áudio por um GainNode do Web
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 			const source = audioCtx.createMediaElementSource(typingAudio);
 			typingGainNode = audioCtx.createGain();
-			typingGainNode.gain.value = 4;
+			typingGainNode.gain.value = 1.5;
 			source.connect(typingGainNode).connect(audioCtx.destination);
 		} catch (e) {
 			typingGainNode = null;
@@ -74,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		return typingGainNode;
 	}
 
-	async function fadeOutAndStop(audio, duration = 400) {
+	async function fadeOutAndStop(audio, duration = 100) {
 		const steps = 12;
 		const stepTime = duration / steps;
 		const startVolume = audio.volume;
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const cursor = addCursor(commandLine);
 
 		typingAudio.currentTime = 0;
-		typingAudio.volume = 1;
+		typingAudio.volume = 0.3;
 		getTypingGainNode();
 		if (audioCtx && audioCtx.state === "suspended") {
 			audioCtx.resume().catch(() => {});
@@ -149,6 +151,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
 		document.body.classList.add("boot-active");
+
+		pcBootAudio.currentTime = 0;
+		pcBootAudio.play().catch(() => {});
+		pcBootAudio.currentTime = 0;
+        pcBootAudio.play().catch(() => {});
+        wait(13000).then(() => fadeOutAndStop(pcBootAudio, 2000)); // corta aos 8s, com fade de 600ms
+
 
 		for (const message of bootMessages) {
 			addLine(message.text);
