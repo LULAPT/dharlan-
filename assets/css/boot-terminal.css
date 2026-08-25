@@ -29,6 +29,13 @@ body.boot-active {
 	inset: 0;
 	z-index: 0;
 	background: var(--clr-black-a0);
+}
+
+/* A animação do CRT só roda depois da verificação (bootSequence()), pra
+   não ter duas camadas fixed full-screen animando ao mesmo tempo (uma
+   invisível atrás do #human-verify) — combinação que o WebKit do iOS
+   pode renderizar mal (flicker/camada sumindo). */
+body.boot-active #boot-terminal .crt {
 	animation: boot-flicker 0.15s infinite;
 }
 
@@ -69,10 +76,13 @@ body.boot-active {
 		transparent
 	);
 	position: absolute;
-	animation: boot-scanline 8s linear infinite;
 	opacity: 0.7;
 	pointer-events: none;
 	z-index: 1;
+}
+
+body.boot-active #boot-terminal .scanline {
+	animation: boot-scanline 8s linear infinite;
 }
 
 #boot-terminal .terminal-container {

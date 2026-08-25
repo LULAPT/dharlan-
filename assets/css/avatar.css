@@ -4,10 +4,20 @@
 	margin: 0 auto;
 }
 
+/* O <button> genérico do site (style.css) só define background-color no
+   :hover, deixando o estado normal cair no ButtonFace nativo do
+   navegador — que "parece" ok no desktop (ButtonFace do Windows sai
+   escuro) mas no mobile é branco, com o texto branco por cima
+   (var(--clr-white)), ficando ilegível. Fixamos com um fundo explícito
+   só fora do hover (":not(:hover)"), assim essa regra simplesmente não
+   se aplica durante o hover — sem brigar de especificidade com a regra
+   de hover do site (background-color: var(--clr-main-a40)). */
+#avatar-app button:not(:hover) {
+	background-color: var(--clr-black-a10);
+}
+
 /* No tema claro, segue a mesma lógica dos botões da /sobre: texto/ícone
-   rosa por padrão, e invertido (fundo rosa, texto/ícone claro) no hover.
-   Escopado só nesse tema — nos outros o navegador usa o estilo nativo
-   (ButtonFace), que já fica ok nesses temas mais escuros. */
+   rosa por padrão, e invertido (fundo rosa, texto/ícone claro) no hover. */
 :root[data-theme="light"] #avatar-app button {
 	color: var(--clr-main-a40);
 	background-color: var(--clr-black-a10);
