@@ -23,20 +23,20 @@ export const sitemap = [
         ],
       },
       {
-        href: "/Save/",
+        href: "/save/",
         label: "/save",
         children: [
           {
-            href: "/Save/w/",
+            href: "/save/w/",
             label: "/w",
             children: [
-              { href: "/Save/w-lewd/", label: "/w-lewd" },
-              { href: "/Save/w-ultrawide/", label: "/w-ultrawide" },
-              { href: "/Save/w-vertical/", label: "/w-vertical" },
+              { href: "/save/w-lewd/", label: "/w-lewd" },
+              { href: "/save/w-ultrawide/", label: "/w-ultrawide" },
+              { href: "/save/w-vertical/", label: "/w-vertical" },
             ],
           },
-          { href: "/Save/pfp/", label: "/pfp" },
-          { href: "/Save/b/", label: "/b" },
+          { href: "/save/pfp/", label: "/pfp" },
+          { href: "/save/b/", label: "/b" },
         ],
       },
       {

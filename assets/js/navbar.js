@@ -362,11 +362,11 @@ export function carregarNavbar() {
 		},
 		projetos: {
 			label: "Save",
-			href: "/Save/",
+			href: "/save/",
 			children: [
-        { label: "/w/", href: "/Save/w/" },
-				{ label: "/pfp/", href: "/Save/pfp/" },
-				{ label: "/b/", href: "/Save/b/" },
+        { label: "/w/", href: "/save/w/" },
+				{ label: "/pfp/", href: "/save/pfp/" },
+				{ label: "/b/", href: "/save/b/" },
 			],
 		},
 		outros: {
